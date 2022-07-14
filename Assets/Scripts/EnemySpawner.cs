@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemy;
     public Transform player;
 
     float Maxright;
@@ -57,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
 
-        GameObject ene = Instantiate(enemy);
+        var ene = Enemypool.GetObject(); ; //Instantiate(enemy);
         ene.transform.position = enemytrans;
     }
 }

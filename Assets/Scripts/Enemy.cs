@@ -17,4 +17,12 @@ public class Enemy : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, player.position, speed);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Hole"))
+        {
+            Enemypool.ReturnObject(this);
+        }
+    }
 }

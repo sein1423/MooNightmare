@@ -18,12 +18,12 @@ public class Hole : MonoBehaviour
     {
         transform.localScale = new Vector2(1 + size , 1 + size);
     }
-
+/*
     private void OnTriggerEnter2D(Collider2D other)
     {
         Destroy(other.gameObject);
         count++;
         size = sizeover * count;
         GameManager.Instance.enemycount++;
-    }
+    }*/
 }
