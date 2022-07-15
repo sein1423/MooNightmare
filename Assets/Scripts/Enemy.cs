@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 0.01f;
+    [SerializeField,Range(0.001f, 1f)] float speed;
     public Transform player;
     // Start is called before the first frame update
     void Start()
