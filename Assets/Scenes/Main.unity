@@ -544,6 +544,7 @@ MonoBehaviour:
   user:
     name: 
     carrot: 0
+    lastGameTime: 
     StarCount: 0
 --- !u!4 &227421998
 Transform:
@@ -863,7 +864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &501219720
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1914,7 +1915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1339152455
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2006,7 +2007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1491947526
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2617,7 +2618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1765713786
 RectTransform:
   m_ObjectHideFlags: 0

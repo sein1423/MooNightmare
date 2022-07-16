@@ -19,13 +19,12 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI UserText;
     // Start is called before the first frame update
+
     void Start()
     {
-        UserText.text = $"환영합니다 {GameManager.Instance.user.name}님";
-        for(int n = MaxStarCount - 1; n >= GameManager.Instance.user.StarCount; n--)
-        {
-            stars[n].SetActive(false);
-        }
+        CountTime();
+        SetStar();
+        UserText.text = $"Welcome {GameManager.Instance.user.name}";
         lastGameTime = DateTime.Parse(GameManager.Instance.user.lastGameTime);
     }
 
@@ -63,13 +62,14 @@ public class MainMenuManager : MonoBehaviour
 
     public void CountTime()
     {
-        TimeSpan timeSpan = (lastGameTime + TimeSpan.FromMinutes(ChargeTime)) - nowTime;
-        int minute = timeSpan.Minutes;
-        int second = timeSpan.Seconds;
-        string time = minute + " : " + second;
+        TimeSpan timeSpan = nowTime - lastGameTime;
+        int minute = Math.Abs(timeSpan.Minutes);
+        int second = Math.Abs(timeSpan.Seconds);
+        string time = minute + " : " + (60 - second);
+        //Debug.Log(time);
         if(minute >= ChargeTime)
         {
-            ChargeStar();
+            ChargeStar(minute);
         }
         
         timeText.text = time;
@@ -84,7 +84,7 @@ public class MainMenuManager : MonoBehaviour
                 lastGameTime = DateTime.Now;
                 GameManager.Instance.user.lastGameTime = lastGameTime.ToString("yyyy/MM/dd HH:mm:ss");
             }
-            stars[GameManager.Instance.user.StarCount-1].SetActive(false);
+            stars[GameManager.Instance.user.StarCount - 1].SetActive(false);
             GameManager.Instance.user.StarCount--;
             GameManager.Instance.SaveData();
         }
@@ -94,15 +94,31 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    public void ChargeStar()
+    public void ChargeStar(int timeDistance)
     {
+        if (timeDistance > 4 - GameManager.Instance.user.StarCount) timeDistance = 4 - GameManager.Instance.user.StarCount;
+        Debug.Log($"{timeDistance}의 시간차이");
+        
         if (GameManager.Instance.user.StarCount < 4)
         {
-            stars[GameManager.Instance.user.StarCount].SetActive(true);
-            lastGameTime = DateTime.Now;
+            lastGameTime = lastGameTime + TimeSpan.FromMinutes(timeDistance);
             GameManager.Instance.user.lastGameTime = lastGameTime.ToString("yyyy/MM/dd HH:mm:ss");
-            GameManager.Instance.user.StarCount++;
+            GameManager.Instance.user.StarCount+= timeDistance;
             GameManager.Instance.SaveData();
+            SetStar();
         }
     }
+
+    public void SetStar()
+    {
+        for (int n = 0; n < GameManager.Instance.user.StarCount; n++)
+        {
+            if (!stars[n].activeSelf)
+            {
+                stars[n].SetActive(true);
+                Debug.Log(n + "번째 별 생성");
+            }
+        }
+    }
+
 }

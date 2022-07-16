@@ -51,10 +51,6 @@ public class GameManager : MonoBehaviour
     {
         if (user != null)
         {
-            Debug.Log(user.name);
-            Debug.Log(user.carrot);
-            Debug.Log(user.lastGameTime);
-            Debug.Log(user.StarCount);
             SceneManager.LoadScene("Main");
         }
         else
