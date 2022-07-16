@@ -4,6 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using System.IO;
+
+[System.Serializable]
+public class userData
+{
+    public string name;
+    public int carrot;
+    public DateTime lastGameTime;
+    public int StarCount;
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -20,12 +30,13 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public DateTime lastGameTime;
+    public userData user;
+    string userState;
 
 
     void Start()
     {
-        
+        LoadUserData();
     }
 
     // Update is called once per frame
@@ -39,7 +50,14 @@ public class GameManager : MonoBehaviour
 
     public void goToMain()
     {
-        SceneManager.LoadScene("Main");
+        if (user != null)
+        {
+            SceneManager.LoadScene("Main");
+        }
+        else
+        {
+            SceneManager.LoadScene("Intro");
+        }
     }
 
     public void goToStage()
@@ -51,5 +69,41 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("게임종료");
         Application.Quit();
+    }
+    public void SetUserData(string inputname)
+    {
+        user = new userData();
+        user.name = inputname;
+        user.carrot = 0;
+        user.lastGameTime = DateTime.Now;
+        user.StarCount = 4;
+
+        userState = JsonUtility.ToJson(user);
+        string path = Path.Combine(Application.dataPath, "Path/userData.Json");
+        File.WriteAllText(path, userState);
+        Debug.Log(path + " : " + userState);
+    }
+
+    public void LoadUserData()
+    {
+        string path = Path.Combine(Application.dataPath, "Path/userData.Json");
+        string jsonData = File.ReadAllText(path);
+
+        try
+        {
+            user = JsonUtility.FromJson<userData>(jsonData);
+        }
+        catch (IOException)
+        {
+            return;
+        }
+    }
+
+    public void SaveData()
+    {
+        userState = JsonUtility.ToJson(user);
+        string path = Path.Combine(Application.dataPath, "Path/userData.Json");
+        File.WriteAllText(path, userState);
+        Debug.Log(path + " : " + userState);
     }
 }
