@@ -11,7 +11,7 @@ public class userData
 {
     public string name;
     public int carrot;
-    public DateTime lastGameTime;
+    public string lastGameTime;
     public int StarCount;
 }
 
@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
     public userData user;
     string userState;
 
-
     void Start()
     {
         LoadUserData();
@@ -52,6 +51,10 @@ public class GameManager : MonoBehaviour
     {
         if (user != null)
         {
+            Debug.Log(user.name);
+            Debug.Log(user.carrot);
+            Debug.Log(user.lastGameTime);
+            Debug.Log(user.StarCount);
             SceneManager.LoadScene("Main");
         }
         else
@@ -75,13 +78,15 @@ public class GameManager : MonoBehaviour
         user = new userData();
         user.name = inputname;
         user.carrot = 0;
-        user.lastGameTime = DateTime.Now;
+        user.lastGameTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         user.StarCount = 4;
 
         userState = JsonUtility.ToJson(user);
         string path = Path.Combine(Application.dataPath, "Path/userData.Json");
         File.WriteAllText(path, userState);
         Debug.Log(path + " : " + userState);
+
+        SceneManager.LoadScene("Main");
     }
 
     public void LoadUserData()

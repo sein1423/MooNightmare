@@ -8,15 +8,25 @@ public class MainMenuManager : MonoBehaviour
 {
     public GameObject Option;
     DateTime nowTime;
-    [SerializeField]
-    TextMeshProUGUI timeText;
+    int ChargeTime = 1;
+    DateTime lastGameTime;
     const int MaxStarCount = 4;
+
     [SerializeField]
     GameObject[] stars = new GameObject[MaxStarCount];
-    int ChargeTime = 1;
+    [SerializeField]
+    TextMeshProUGUI timeText;
+    [SerializeField]
+    TextMeshProUGUI UserText;
     // Start is called before the first frame update
     void Start()
     {
+        UserText.text = $"환영합니다 {GameManager.Instance.user.name}님";
+        for(int n = MaxStarCount - 1; n >= GameManager.Instance.user.StarCount; n--)
+        {
+            stars[n].SetActive(false);
+        }
+        lastGameTime = DateTime.Parse(GameManager.Instance.user.lastGameTime);
     }
 
     // Update is called once per frame
@@ -47,25 +57,17 @@ public class MainMenuManager : MonoBehaviour
 
     public void goGame()
     {
-        if (GameManager.Instance.user.StarCount > 0)
-        {
-            if (GameManager.Instance.user.StarCount == 4)
-            {
-                GameManager.Instance.user.lastGameTime = System.DateTime.Now;
-            }
-            GameManager.Instance.user.StarCount--;
-            GameManager.Instance.goToStage();
-        }
+        UseStar();
+        GameManager.Instance.goToStage();
     }
 
     public void CountTime()
     {
-        TimeSpan timeSpan = (GameManager.Instance.user.lastGameTime + TimeSpan.FromMinutes(ChargeTime)) - nowTime;
+        TimeSpan timeSpan = (lastGameTime + TimeSpan.FromMinutes(ChargeTime)) - nowTime;
         int minute = timeSpan.Minutes;
         int second = timeSpan.Seconds;
         string time = minute + " : " + second;
-        Debug.Log((nowTime - GameManager.Instance.user.lastGameTime).Minutes + " : " + (nowTime - GameManager.Instance.user.lastGameTime).Seconds);
-        if((nowTime - GameManager.Instance.user.lastGameTime).Minutes >= ChargeTime)
+        if(minute >= ChargeTime)
         {
             ChargeStar();
         }
@@ -79,10 +81,12 @@ public class MainMenuManager : MonoBehaviour
         {
             if (GameManager.Instance.user.StarCount == 4)
             {
-                GameManager.Instance.user.lastGameTime = System.DateTime.Now;
+                lastGameTime = DateTime.Now;
+                GameManager.Instance.user.lastGameTime = lastGameTime.ToString("yyyy/MM/dd HH:mm:ss");
             }
             stars[GameManager.Instance.user.StarCount-1].SetActive(false);
             GameManager.Instance.user.StarCount--;
+            GameManager.Instance.SaveData();
         }
         else 
         {
@@ -95,12 +99,10 @@ public class MainMenuManager : MonoBehaviour
         if (GameManager.Instance.user.StarCount < 4)
         {
             stars[GameManager.Instance.user.StarCount].SetActive(true);
-            GameManager.Instance.user.lastGameTime = DateTime.Now;
+            lastGameTime = DateTime.Now;
+            GameManager.Instance.user.lastGameTime = lastGameTime.ToString("yyyy/MM/dd HH:mm:ss");
             GameManager.Instance.user.StarCount++;
-        }
-        else
-        {
-            Debug.Log("스타의 개수가 최대치입니다");
+            GameManager.Instance.SaveData();
         }
     }
 }
