@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using TMPro;
 
@@ -77,6 +78,10 @@ public class MainMenuManager : MonoBehaviour
     {
         UseStar();
         GameManager.Instance.goToStage();
+    }
+    public void goFreind()
+    {
+        GameManager.Instance.GoMyFriend();
     }
 
     public void CountTime()
@@ -175,6 +180,26 @@ public class MainMenuManager : MonoBehaviour
         while(PopupStack.Count > 0)
         {
             PopupStack.Pop().SetActive(false);
+        }
+    }
+
+    public void LookGameScore()
+    {
+        if (PlayerState.activeSelf)
+        {
+            PopupStack.Pop().SetActive(false);
+            GameScore.SetActive(true);
+            PopupStack.Push(GameScore);
+        }
+    }
+
+    public void LookPlayerState()
+    {
+        if (GameScore.activeSelf)
+        {
+            PopupStack.Pop().SetActive(false);
+            PlayerState.SetActive(true);
+            PopupStack.Push(PlayerState);
         }
     }
 

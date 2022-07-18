@@ -64,11 +64,22 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
+    public void goMain()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
     public void GameQuit()
     {
         Debug.Log("게임종료");
         Application.Quit();
     }
+
+    public void GoMyFriend()
+    {
+        SceneManager.LoadScene("My Friend");
+    }
+
     public void SetUserData(string inputname)
     {
         user = new userData();
