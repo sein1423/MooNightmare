@@ -18,6 +18,25 @@ public class MainMenuManager : MonoBehaviour
     TextMeshProUGUI timeText;
     [SerializeField]
     TextMeshProUGUI UserText;
+    
+    [SerializeField]
+    GameObject PopupPanel;
+    [SerializeField]
+    GameObject BigPanel;
+    [SerializeField]
+    GameObject SmallPanel;
+    [SerializeField]
+    GameObject OptionPanel;
+    [SerializeField]
+    GameObject ShopPanel;
+    [SerializeField]
+    GameObject ETCPanel;
+    [SerializeField]
+    GameObject PlayerState;
+    [SerializeField]
+    GameObject GameScore;
+
+    static Stack<GameObject> PopupStack = new Stack<GameObject>();
     // Start is called before the first frame update
 
     void Start()
@@ -118,6 +137,44 @@ public class MainMenuManager : MonoBehaviour
                 stars[n].SetActive(true);
                 Debug.Log(n + "번째 별 생성");
             }
+        }
+    }
+
+    public void GetOption()
+    {
+        PopupPanel.SetActive(true);
+        PopupStack.Push(PopupPanel);
+        SmallPanel.SetActive(true);
+        PopupStack.Push(SmallPanel);
+        OptionPanel.SetActive(true);
+        PopupStack.Push(OptionPanel);
+    }
+
+    public void GetShop()
+    {
+        PopupPanel.SetActive(true);
+        PopupStack.Push(PopupPanel);
+        SmallPanel.SetActive(true);
+        PopupStack.Push(SmallPanel);
+        ShopPanel.SetActive(true);
+        PopupStack.Push(ShopPanel);
+    }
+
+    public void GetMyCharactor()
+    {
+        PopupPanel.SetActive(true);
+        PopupStack.Push(PopupPanel);
+        BigPanel.SetActive(true);
+        PopupStack.Push(BigPanel);
+        PlayerState.SetActive(true);
+        PopupStack.Push(PlayerState);
+    }
+
+    public void BreakPopUp()
+    {
+        while(PopupStack.Count > 0)
+        {
+            PopupStack.Pop().SetActive(false);
         }
     }
 
