@@ -9,7 +9,7 @@ public class MainMenuManager : MonoBehaviour
 {
     public GameObject Option;
     DateTime nowTime;
-    int ChargeTime = 1;
+    int ChargeTime = 5;
     DateTime lastGameTime;
     const int MaxStarCount = 4;
 
@@ -89,7 +89,7 @@ public class MainMenuManager : MonoBehaviour
         TimeSpan timeSpan = nowTime - lastGameTime;
         int minute = Math.Abs(timeSpan.Minutes);
         int second = Math.Abs(timeSpan.Seconds);
-        string time = minute + " : " + (60 - second);
+        string time = ((ChargeTime - 1)-minute) + " : " + (60 - second);
         //Debug.Log(time);
         if(minute >= ChargeTime)
         {
@@ -120,14 +120,15 @@ public class MainMenuManager : MonoBehaviour
 
     public void ChargeStar(int timeDistance)
     {
-        if (timeDistance > 4 - GameManager.Instance.user.StarCount) timeDistance = 4 - GameManager.Instance.user.StarCount;
         Debug.Log($"{timeDistance}의 시간차이");
+        int ChargeStarCount = timeDistance / ChargeTime;
+        if (ChargeStarCount > 4 - GameManager.Instance.user.StarCount) ChargeStarCount = 4 - GameManager.Instance.user.StarCount;
         
         if (GameManager.Instance.user.StarCount < 4)
         {
-            lastGameTime = lastGameTime + TimeSpan.FromMinutes(timeDistance);
+            lastGameTime = lastGameTime + TimeSpan.FromMinutes(ChargeStarCount * ChargeTime);
             GameManager.Instance.user.lastGameTime = lastGameTime.ToString("yyyy/MM/dd HH:mm:ss");
-            GameManager.Instance.user.StarCount+= timeDistance;
+            GameManager.Instance.user.StarCount+= ChargeStarCount;
             GameManager.Instance.SaveData();
             SetStar();
         }
