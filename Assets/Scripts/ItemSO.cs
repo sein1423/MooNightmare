@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="MyScriptable")]
+[CreateAssetMenu(fileName = "ItemSO", menuName ="MyScriptable/ItemSO")]
 public class ItemSO : ScriptableObject
 {
-    [SerializeField]
-    private string itemName;
-    public string ItemName { get { return ItemName; } }
+    public Item[] items;
 
-    [SerializeField]
-    private ItemType itemType;
-    public ItemType ItemType { get { return itemType; } }
 
-    [SerializeField]
-    private int itemNum;
-    public int ItemNum { get { return itemNum; } }
+    /*public Sprite Icon;
+    public string name;
+    public ItemType type;
+    public float num;
+    public float cost;
+    public float percent;*/
 }

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using System;
 using System.IO;
 using UnityEngine.Networking;
+using System.Net;
 
 [System.Serializable]
 public class userData
@@ -20,14 +21,15 @@ public class Item
 {
     public Sprite Icon;
     public string name;
-    public string type;
+    public ItemType type;
     public float num;
+    public float cost;
     public float percent;
 }
 
 public enum ItemType
 {
-    AttackPower, AttackRange, AttackCount, Health, MoveSpeed
+    AttackPower, AttackRange, AttackCount, Health, MoveSpeed, ActiveSkill
 }
 
 public class GameManager : MonoBehaviour
@@ -44,7 +46,7 @@ public class GameManager : MonoBehaviour
         yield return www.SendWebRequest();
 
         string data = www.downloadHandler.text;
-        print(data);
+        SetItemSO(data);
     }
 
     // Start is called before the first frame update
@@ -69,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     void SetItemSO(string tsv)
     {
-        string[] row = tsv.Split('\n');
+        /*string[] row = tsv.Split('\n');
         int rowSize = row.Length;
         int columnSize = row[0].Split('\t').Length;
 
@@ -78,12 +80,23 @@ public class GameManager : MonoBehaviour
             string[] column = row[i].Split('\t');
             for (int j = 0; j < columnSize; j++)
             {
-                /*Item targetItem = ItemSO[i];
-
-                targetItem.name = column[0];
-                targetItem.type = column[1];
-                targetItem.num = int.Parse(column[2]);*/
+                print(column[j]);
             }
+        }*/
+
+        WebClient wc = new WebClient();
+        wc.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:22.0) Gecko/20100101 Firefox/22.0");
+        wc.Headers.Add("DNT", "1");
+        wc.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+        wc.Headers.Add("Accept-Encoding", "deflate");
+        wc.Headers.Add("Accept-Language", "en-US,en;q=0.5");
+
+        var data = wc.DownloadString(Link);
+        string[] row = data.Split('\n');
+        for (int i = 2; i < row.Length; i++)
+        {
+            string[] column = row[i].Split(',');
+            string name = column[0];
         }
     }
 
