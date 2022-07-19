@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 using System.IO;
+using UnityEngine.Networking;
 
 [System.Serializable]
 public class userData
@@ -15,9 +16,36 @@ public class userData
     public int StarCount;
 }
 
+public class Item
+{
+    public Sprite Icon;
+    public string name;
+    public string type;
+    public float num;
+    public float percent;
+}
+
+public enum ItemType
+{
+    AttackPower, AttackRange, AttackCount, Health, MoveSpeed
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    [SerializeField]
+    ItemSO itemSO;
+    const string Link = "https://docs.google.com/spreadsheets/d/1rd4km6B1GyLqJWLXRQdl16TKyV95esAXdV5L-w5AaaM/edit?usp=sharing";
+
+    IEnumerator DownloadItemSO()
+    {
+        UnityWebRequest www = UnityWebRequest.Get(Link);
+        yield return www.SendWebRequest();
+
+        string data = www.downloadHandler.text;
+        print(data);
+    }
 
     // Start is called before the first frame update
     private void Awake()
@@ -36,6 +64,27 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         LoadUserData();
+        StartCoroutine(DownloadItemSO());
+    }
+
+    void SetItemSO(string tsv)
+    {
+        string[] row = tsv.Split('\n');
+        int rowSize = row.Length;
+        int columnSize = row[0].Split('\t').Length;
+
+        for (int i = 0; i < rowSize; i++)
+        {
+            string[] column = row[i].Split('\t');
+            for (int j = 0; j < columnSize; j++)
+            {
+                /*Item targetItem = ItemSO[i];
+
+                targetItem.name = column[0];
+                targetItem.type = column[1];
+                targetItem.num = int.Parse(column[2]);*/
+            }
+        }
     }
 
     // Update is called once per frame
