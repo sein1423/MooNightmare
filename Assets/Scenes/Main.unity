@@ -932,6 +932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d7de2cc432b77419052da4c4d22d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSO: {fileID: 11400000, guid: 8f32f1b788cc9f444a77e4ace697a125, type: 2}
   user:
     name: 
     carrot: 0

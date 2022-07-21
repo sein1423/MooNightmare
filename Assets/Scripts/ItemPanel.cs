@@ -5,30 +5,30 @@ using UnityEngine.UI;
 
 public class ItemPanel : MonoBehaviour
 {
-    Sprite Icon;
-    Text ItemName;
-    Text effect;
+    [SerializeField] Image Icon;
+    [SerializeField] Text ItemName;
+    [SerializeField] Text effect;
+    [SerializeField] Text costText;
 
     public Item item;
     // Start is called before the first frame update
-    void Start()
-    {
-        Icon = gameObject.transform.GetChild(0).GetComponent<Sprite>();
-        ItemName = gameObject.transform.GetChild(1).GetComponent<Text>();
-        effect = gameObject.transform.GetChild(2).GetComponent<Text>();
-    }
 
     // Update is called once per frame
     public void Setup(Item item)
     {
         this.item = item;
+        print(item.Icon + ", " + item.name + ", " + item.type + ", " + item.num + ", " + item.unit + ", " + item.cost + ", " + item.percent);
 
-        Icon = item.Icon;
+        //Icon = item.Icon;
         ItemName.text = item.name;
-        switch (item.type)
+        if(item.unit == 1)
         {
-            /*case ItemType.AttackPower:
-                effect.text = "공격력 증가 +" + (item.num);*/
+            effect.text = item.type.ToString() + " +" + item.num.ToString();
         }
+        else
+        {
+            effect.text = item.type.ToString() + " +" + item.num.ToString()+"%";
+        }
+        costText.text = item.cost.ToString();
     }
 }
