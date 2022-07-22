@@ -19,7 +19,6 @@ public enum ItemType
     AttackCount,
     Attackdirection
 }
-
 public class Item
 {
     public Sprite Icon;
@@ -70,8 +69,6 @@ public class Item
 
 public class ItemManager : MonoBehaviour
 {
-
-
     public static ItemManager Instance;
     const string Link = "https://docs.google.com/spreadsheets/d/1rd4km6B1GyLqJWLXRQdl16TKyV95esAXdV5L-w5AaaM/export?format=tsv&range=A2:G";
     public List<Item> itemBuffer = new List<Item>();
@@ -82,13 +79,18 @@ public class ItemManager : MonoBehaviour
     [SerializeField] Text timeText;
     //public int itemcount;
 
+    [SerializeField] GameObject[] Heart;
+    public int playerhealth = 5;
+
     [SerializeField] float waveTime = 30f;
     float time = 0f;
 
     private void Awake()
     {
         Instance = this;
+        SetHeart();
     }
+
 
     IEnumerator Start()
     {
@@ -187,5 +189,18 @@ public class ItemManager : MonoBehaviour
         Item item3 = PopItem();
         itemp3.Setup(item3);
         //print(item3.Icon + ", " + item3.name + ", " + item3.type + ", " + item3.num + ", " + item3.unit + ", " + item3.cost + ", " + item3.percent);
+    }
+
+    public void SetHeart()
+    {
+        for(int i = 0; i < playerhealth; i++)
+        {
+            Heart[i].SetActive(true);
+        }
+
+        for(int i = playerhealth; i < Heart.Length; i++)
+        {
+            Heart[i].SetActive(false);
+        }
     }
 }

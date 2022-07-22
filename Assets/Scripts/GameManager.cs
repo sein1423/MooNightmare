@@ -97,8 +97,6 @@ public class GameManager : MonoBehaviour
         string path = Path.Combine(Application.dataPath, "Path/userData.Json");
         File.WriteAllText(path, userState);
         Debug.Log(path + " : " + userState);
-
-        SceneManager.LoadScene("Main");
     }
 
     public void LoadUserData()
@@ -123,4 +121,5 @@ public class GameManager : MonoBehaviour
         File.WriteAllText(path, userState);
         Debug.Log(path + " : " + userState);
     }
+
 }

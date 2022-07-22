@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Range(0.1f, 5f)] float attackCoolTime;
     [SerializeField] GameObject bulletPrefab;
 
+    bool isDamage = false;
     float attackTime = 0f;
     bool canAttack = true;
     public Vector2 vec;
@@ -78,5 +79,24 @@ public class PlayerController : MonoBehaviour
     public void Skill2()
     {
         Debug.Log("스킬2번 사용");
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (isDamage)
+        {
+            return;
+        }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+
+        }
+    }
+
+    void GetDamage()
+    {
+        ItemManager.Instance.playerhealth--;
+        ItemManager.Instance.SetHeart();
     }
 }
