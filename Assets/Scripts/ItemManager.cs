@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using TMPro;
 
 
 public enum ItemType
@@ -77,19 +78,24 @@ public class ItemManager : MonoBehaviour
     [SerializeField] ItemPanel itemp3;
     [SerializeField] GameObject waveshop;
     [SerializeField] Text timeText;
+    [SerializeField] GameObject GameOverPanel;
+    [SerializeField] GameObject TextObj;
     //public int itemcount;
 
     [SerializeField] GameObject[] Heart;
     public int playerhealth = 2;
     public bool isDead = false;
-
+    public bool isMenu = false;
+    [SerializeField] TextMeshProUGUI waveText;
     [SerializeField] float waveTime = 30f;
+    float wavecount = 1;
     float time = 0f;
 
     private void Awake()
     {
         Instance = this;
         SetHeart();
+        waveText.text = "Wave " + wavecount.ToString();
     }
 
 
@@ -102,7 +108,6 @@ public class ItemManager : MonoBehaviour
         SetItemSO(data);
         //print(data);
     }
-
 
     void SetItemSO(string tsv)
     {
@@ -155,10 +160,21 @@ public class ItemManager : MonoBehaviour
 
     private void Update()
     {
+        if (ItemManager.Instance.isDead)
+        {
+            if (!GameOverPanel.activeSelf)
+            {
+                GameOverPanel.SetActive(true);
+            }
+            return;
+        }
+
+        
+
         if (!waveshop.activeSelf)
         {
             time += Time.deltaTime;
-            timeText.text = (waveTime - time).ToString();
+            timeText.text = (waveTime - time).ToString("F1");
         }
 
         if(waveTime < time && !waveshop.activeSelf)
@@ -169,14 +185,20 @@ public class ItemManager : MonoBehaviour
 
     public void GetItemShop()
     {
+        isMenu = true;
         Reroll();
+        TextObj.SetActive(false);
         waveshop.SetActive(true);
     }
 
     public void ExitShop()
     {
         waveshop.SetActive(false);
+        TextObj.SetActive(true);
+        wavecount++;
+        waveText.text = "Wave " + wavecount.ToString();
         time = 0f;
+        isMenu = false;
     }
 
     public void Reroll()

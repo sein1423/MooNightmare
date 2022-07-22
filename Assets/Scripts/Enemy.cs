@@ -15,7 +15,16 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.position, speed);
+        if (ItemManager.Instance.isMenu)
+        {
+            return;
+        }
+        transform.position = Vector2.MoveTowards(transform.position, player.position, speed); 
+        
+        if (ItemManager.Instance.isDead)
+        {
+            Enemypool.ReturnObject(this);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

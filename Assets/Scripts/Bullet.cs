@@ -26,12 +26,18 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (ItemManager.Instance.isMenu)
+        {
+            return;
+        }
+
         nowtime += Time.deltaTime;
 
-        if (nowtime > Maxtime)
+        if (nowtime > Maxtime || (ItemManager.Instance.isDead))
         {
-            Destroy(gameObject);
+            Bulletpool.ReturnObject(this);
         }
+
     }
 
     public void GetSpeed()

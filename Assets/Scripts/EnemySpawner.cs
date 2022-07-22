@@ -22,6 +22,10 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (ItemManager.Instance.isMenu || ItemManager.Instance.isDead)
+        {
+            return;
+        }
         time += Time.deltaTime;
         if(time > 1.0f)
         {
