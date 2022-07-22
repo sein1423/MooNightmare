@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
 
     [SerializeField]float speed = 10.0f;
+    [SerializeField] float DamageCoolTime = 1f;
     [SerializeField] public GameObject arrow;
     [SerializeField, Range(1f, 10f)] float arrowSensitive;
     [SerializeField, Range(0.1f, 5f)] float attackCoolTime;
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     bool isDamage = false;
     float attackTime = 0f;
+    float DamageTime = 0f;
     bool canAttack = true;
     public Vector2 vec;
     void Start()
@@ -26,6 +28,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDamage)
+        {
+            DamageTime += Time.deltaTime;
+            if(DamageTime > DamageCoolTime)
+            {
+                isDamage = false;
+            }
+        }
+
         if (!canAttack)
         {
             attackTime += Time.deltaTime;
@@ -35,8 +46,6 @@ public class PlayerController : MonoBehaviour
                 attackTime = 0f;
             }
         }
-        
-
         if (arrow.transform.position == gameObject.transform.position)
         {
             
@@ -45,6 +54,11 @@ public class PlayerController : MonoBehaviour
         else
         {
             arrow.SetActive(true);
+        }
+
+        if(ItemManager.Instance.playerhealth <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -65,7 +79,9 @@ public class PlayerController : MonoBehaviour
 
         if (canAttack)
         {
-            GameObject bullet = Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.identity);
+            var bullet = Bulletpool.GetObject();
+            bullet.transform.position = gameObject.transform.position;
+            //GameObject bullet = Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.identity);
             bullet.GetComponent<Bullet>().SetDir(inputVector);
             canAttack = false;
         }
@@ -81,7 +97,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("스킬2번 사용");
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         if (isDamage)
         {
@@ -90,13 +106,20 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-
+            GetDamage();
         }
+
     }
 
     void GetDamage()
     {
         ItemManager.Instance.playerhealth--;
         ItemManager.Instance.SetHeart();
+
+
+        if (ItemManager.Instance.playerhealth <= 0)
+        {
+            ItemManager.Instance.isDead = true;
+        }
     }
 }

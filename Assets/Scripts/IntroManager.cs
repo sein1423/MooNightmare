@@ -55,6 +55,10 @@ public class IntroManager : MonoBehaviour
 
     public void Typing(string[] dialogs, TextMeshProUGUI textobj)
     {
+        if(ClickCount == 7)
+        {
+            dialogs[6] = dialogs[6].Replace("Username", GameManager.Instance.user.name);
+        }
         isDialogEnd = false;
         dialogsSave = dialogs;
         tmpSave = textobj;

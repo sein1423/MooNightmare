@@ -44,7 +44,7 @@ public class MainMenuManager : MonoBehaviour
     {
         CountTime();
         SetStar();
-        UserText.text = $"Welcome {GameManager.Instance.user.name}";
+        UserText.text = $"어서오세요 {GameManager.Instance.user.name}님";
         lastGameTime = DateTime.Parse(GameManager.Instance.user.lastGameTime);
     }
 

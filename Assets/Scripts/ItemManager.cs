@@ -80,7 +80,8 @@ public class ItemManager : MonoBehaviour
     //public int itemcount;
 
     [SerializeField] GameObject[] Heart;
-    public int playerhealth = 5;
+    public int playerhealth = 2;
+    public bool isDead = false;
 
     [SerializeField] float waveTime = 30f;
     float time = 0f;
@@ -202,5 +203,6 @@ public class ItemManager : MonoBehaviour
         {
             Heart[i].SetActive(false);
         }
+
     }
 }

@@ -48,8 +48,8 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
+            Bulletpool.ReturnObject(this);
+            Enemypool.ReturnObject(collision.gameObject.GetComponent<Enemy>());
         }
 
     }
