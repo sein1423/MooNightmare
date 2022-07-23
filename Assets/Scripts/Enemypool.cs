@@ -56,6 +56,7 @@ public class Enemypool : MonoBehaviour
             obj.gameObject.SetActive(false);
             obj.transform.SetParent(Instance.transform);
             Instance.poolingObjectQueue.Enqueue(obj);
+            ItemManager.Instance.Enemy++;
         }
 
         public void DropCarrot()

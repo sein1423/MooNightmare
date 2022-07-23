@@ -7,21 +7,20 @@ public class Bullet : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField, Range(0.1f,5f)]float Maxtime;
     [SerializeField, Range(0.1f, 100f)] float speed;
-    float nowtime = 0;
+    public float nowtime = 0;
 
     GameObject player;
     Transform arrow;
 
     Vector2 dir;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         player = GameObject.Find("Player");
         arrow = player.GetComponent<PlayerController>().arrow.transform;
         rb = GetComponent<Rigidbody2D>();
-        Debug.Log(dir);
-        GetSpeed();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -48,13 +47,15 @@ public class Bullet : MonoBehaviour
     public void SetDir(Vector2 dir)
     {
         this.dir = dir;
+        GetSpeed();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Carrotpool.GetObject();
+            var carrot = Carrotpool.GetObject();
+            carrot.gameObject.transform.position = gameObject.transform.position;
             Bulletpool.ReturnObject(this);
             Enemypool.ReturnObject(collision.gameObject.GetComponent<Enemy>());
         }

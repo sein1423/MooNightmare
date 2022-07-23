@@ -13,6 +13,8 @@ public class userData
     public int carrot;
     public string lastGameTime;
     public int StarCount;
+    public int MaxWave;
+    public string LastGameDay;
 }
 
 
@@ -92,6 +94,8 @@ public class GameManager : MonoBehaviour
         user.carrot = 0;
         user.lastGameTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         user.StarCount = 4;
+        user.MaxWave = 0;
+        user.LastGameDay = DateTime.Now.ToString("yyyy/MM/dd");
 
         userState = JsonUtility.ToJson(user);
         string path = Path.Combine(Application.dataPath, "Path/userData.Json");

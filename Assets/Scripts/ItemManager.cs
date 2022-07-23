@@ -27,7 +27,7 @@ public class Item
     public ItemType type;
     public float num;
     public int unit; //1 : ����, 2 : �ۼ�Ʈ
-    public float cost;
+    public int cost;
     public float percent;
 
     public void SetIndex(string str, int x)
@@ -51,7 +51,7 @@ public class Item
                 this.unit = int.Parse(str);
                 break;
             case 5:
-                this.cost = float.Parse(str);
+                this.cost = int.Parse(str);
                 break;
             case 6:
                 this.percent = float.Parse(str);
@@ -80,6 +80,13 @@ public class ItemManager : MonoBehaviour
     [SerializeField] Text timeText;
     [SerializeField] GameObject GameOverPanel;
     [SerializeField] GameObject TextObj;
+    [SerializeField] Text gameCarrotText;
+    [SerializeField] Text showWaveText;
+    [SerializeField] Text showCarrotText;
+    [SerializeField] GameObject Carrot;
+    [SerializeField] GameObject HeartPanel1;
+    [SerializeField] GameObject HeartPanel2;
+    [SerializeField] TextMeshProUGUI gameoverText;
     //public int itemcount;
 
     [SerializeField] GameObject[] Heart;
@@ -91,6 +98,7 @@ public class ItemManager : MonoBehaviour
     int wavecount = 1;
     float time = 0f;
     public int GetCarrot = 0;
+    public int Enemy = 0;
 
     private void Awake()
     {
@@ -163,10 +171,7 @@ public class ItemManager : MonoBehaviour
     {
         if (ItemManager.Instance.isDead)
         {
-            if (!GameOverPanel.activeSelf)
-            {
-                GameOverPanel.SetActive(true);
-            }
+            GameOver();
             return;
         }
 
@@ -189,13 +194,21 @@ public class ItemManager : MonoBehaviour
         isMenu = true;
         Reroll();
         TextObj.SetActive(false);
+        Carrot.SetActive(false);
+        HeartPanel1.SetActive(false);
+        HeartPanel2.SetActive(false);
         waveshop.SetActive(true);
+        showWaveText.text = $"Show(Wave{wavecount})";
+        showCarrotText.text = GetCarrot.ToString();
     }
 
     public void ExitShop()
     {
         waveshop.SetActive(false);
         TextObj.SetActive(true);
+        Carrot.SetActive(true);
+        HeartPanel1.SetActive(true);
+        HeartPanel2.SetActive(true);
         wavecount++;
         waveText.text = "Wave " + wavecount.ToString();
         time = 0f;
@@ -232,5 +245,27 @@ public class ItemManager : MonoBehaviour
     public void AddCarrot()
     {
         GetCarrot += wavecount;
+        gameCarrotText.text = GetCarrot.ToString();
+    }
+
+    public void GameOver()
+    {
+        if(GameManager.Instance.user.MaxWave < wavecount)
+        {
+            GameManager.Instance.user.MaxWave = wavecount;
+        }
+        GameManager.Instance.user.carrot += wavecount * 3;
+
+
+        if (!GameOverPanel.activeSelf)
+        {
+            GameOverPanel.SetActive(true);
+            gameoverText.text = $"최고 기록 : {GameManager.Instance.user.MaxWave.ToString()}\n" +
+                $"현재 기록 : {wavecount}\n" +
+                $"획득한 빛나는 당근 : {(wavecount * 3).ToString()}\n" +
+                $"보유한 빛나는 당근 {GameManager.Instance.user.carrot.ToString()}\n " +
+                $"처치한 적의 수 : {Enemy.ToString()}\n " +
+                $"생존한 시간 : {((wavecount * waveTime) + time).ToString()}";
+        }
     }
 }

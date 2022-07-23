@@ -12,8 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float DamageCoolTime = 1f;
     [SerializeField] public GameObject arrow;
     [SerializeField, Range(1f, 10f)] float arrowSensitive;
-    [SerializeField, Range(0.1f, 5f)] float attackCoolTime;
-    [SerializeField] GameObject bulletPrefab;
+    [SerializeField, Range(0.05f, 5f)] float attackCoolTime;
 
     bool isDamage = false;
     float attackTime = 0f;
@@ -22,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 vec;
     void Start()
     {
+        Application.targetFrameRate = 60;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
 
         if(ItemManager.Instance.playerhealth <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
@@ -81,7 +81,6 @@ public class PlayerController : MonoBehaviour
         {
             var bullet = Bulletpool.GetObject();
             bullet.transform.position = gameObject.transform.position;
-            //GameObject bullet = Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.identity);
             bullet.GetComponent<Bullet>().SetDir(inputVector);
             canAttack = false;
         }

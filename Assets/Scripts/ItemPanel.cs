@@ -11,12 +11,14 @@ public class ItemPanel : MonoBehaviour
     [SerializeField] Text costText;
 
     public Item item;
+    bool getItem;
     // Start is called before the first frame update
 
     // Update is called once per frame
     public void Setup(Item item)
     {
         this.item = item;
+        getItem = false;
         print(item.Icon + ", " + item.name + ", " + item.type + ", " + item.num + ", " + item.unit + ", " + item.cost + ", " + item.percent);
 
         //Icon = item.Icon;
@@ -30,5 +32,23 @@ public class ItemPanel : MonoBehaviour
             effect.text = item.type.ToString() + " +" + item.num.ToString()+"%";
         }
         costText.text = item.cost.ToString();
+    }
+
+    public void GetItem()
+    {
+        if (getItem)
+        {
+            return;
+        }
+
+        if (ItemManager.Instance.GetCarrot > item.cost)
+        {
+            ItemManager.Instance.GetCarrot -= item.cost;
+            getItem = true;
+        }
+        else
+        {
+            Debug.Log("당근이 부족합니다");
+        }
     }
 }

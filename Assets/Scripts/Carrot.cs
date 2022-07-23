@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Carrot : MonoBehaviour
 {
-    float time=0;
+    public float time=0;
     float maxtime = 10f;
     // Start is called before the first frame update
     void Start()

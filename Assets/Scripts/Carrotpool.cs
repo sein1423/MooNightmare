@@ -53,6 +53,7 @@ public class Carrotpool : MonoBehaviour
 
     public static void ReturnObject(Carrot obj)
     {
+        obj.time = 0f;
         obj.gameObject.SetActive(false);
         obj.transform.SetParent(Instance.transform);
         Instance.poolingObjectQueue.Enqueue(obj);

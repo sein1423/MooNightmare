@@ -54,8 +54,9 @@ public class Bulletpool : MonoBehaviour
 
     public static void ReturnObject(Bullet obj)
     {
+        Instance.poolingObjectQueue.Enqueue(obj);
+        obj.nowtime = 0f;
         obj.gameObject.SetActive(false);
         obj.transform.SetParent(Instance.transform);
-        Instance.poolingObjectQueue.Enqueue(obj);
     }
 }
