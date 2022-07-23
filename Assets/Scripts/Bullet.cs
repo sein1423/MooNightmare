@@ -54,6 +54,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            Carrotpool.GetObject();
             Bulletpool.ReturnObject(this);
             Enemypool.ReturnObject(collision.gameObject.GetComponent<Enemy>());
         }

@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     public void GameQuit()
     {
-        Debug.Log("°ÔÀÓÁ¾·á");
+        Debug.Log("ê²Œìž„ì¢…ë£Œ");
         Application.Quit();
     }
 

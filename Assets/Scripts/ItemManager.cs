@@ -26,7 +26,7 @@ public class Item
     public string name;
     public ItemType type;
     public float num;
-    public int unit; //1 : °íÁ¤, 2 : ÆÛ¼¾Æ®
+    public int unit; //1 : ï¿½ï¿½ï¿½ï¿½, 2 : ï¿½Û¼ï¿½Æ®
     public float cost;
     public float percent;
 
@@ -88,8 +88,9 @@ public class ItemManager : MonoBehaviour
     public bool isMenu = false;
     [SerializeField] TextMeshProUGUI waveText;
     [SerializeField] float waveTime = 30f;
-    float wavecount = 1;
+    int wavecount = 1;
     float time = 0f;
+    public int GetCarrot = 0;
 
     private void Awake()
     {
@@ -226,5 +227,10 @@ public class ItemManager : MonoBehaviour
             Heart[i].SetActive(false);
         }
 
+    }
+
+    public void AddCarrot()
+    {
+        GetCarrot += wavecount;
     }
 }

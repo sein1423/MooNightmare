@@ -45,10 +45,11 @@ public class Bulletpool : MonoBehaviour
         else
         {
             var newObj = Instance.CreateNewObject();
-            newObj.gameObject.SetActive(true);
             newObj.transform.SetParent(null);
+            newObj.gameObject.SetActive(true);
             return newObj;
         }
+
     }
 
     public static void ReturnObject(Bullet obj)

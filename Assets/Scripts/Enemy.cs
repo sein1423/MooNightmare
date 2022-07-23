@@ -34,4 +34,7 @@ public class Enemy : MonoBehaviour
             Enemypool.ReturnObject(this);
         }
     }
+
+    //당근을 드랍하는 함수
+    
 }

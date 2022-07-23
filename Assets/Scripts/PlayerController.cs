@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     bool isDamage = false;
     float attackTime = 0f;
     float DamageTime = 0f;
-    bool canAttack = true;
+    [SerializeField]bool canAttack = true;
     public Vector2 vec;
     void Start()
     {
@@ -89,12 +89,12 @@ public class PlayerController : MonoBehaviour
 
     public void Skill1()
     {
-        Debug.Log("½ºÅ³1¹ø »ç¿ë");
+        Debug.Log("ï¿½ï¿½Å³1ï¿½ï¿½ ï¿½ï¿½ï¿½");
     }
     
     public void Skill2()
     {
-        Debug.Log("½ºÅ³2¹ø »ç¿ë");
+        Debug.Log("ï¿½ï¿½Å³2ï¿½ï¿½ ï¿½ï¿½ï¿½");
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
