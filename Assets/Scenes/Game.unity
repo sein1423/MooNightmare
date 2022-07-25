@@ -2546,6 +2546,8 @@ MonoBehaviour:
     carrot: 0
     lastGameTime: 
     StarCount: 0
+    MaxWave: 0
+    LastGameDay: 
 --- !u!4 &837924707
 Transform:
   m_ObjectHideFlags: 0
@@ -5730,6 +5732,7 @@ MonoBehaviour:
   Carrot: {fileID: 1634538889}
   HeartPanel1: {fileID: 443284444}
   HeartPanel2: {fileID: 1165847808}
+  gameoverText: {fileID: 388190348}
   Heart:
   - {fileID: 1746437512}
   - {fileID: 1386243887}
@@ -5747,6 +5750,7 @@ MonoBehaviour:
   waveText: {fileID: 993070731}
   waveTime: 5
   GetCarrot: 0
+  Enemy: 0
 --- !u!4 &1789374521
 Transform:
   m_ObjectHideFlags: 0
