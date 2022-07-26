@@ -8,7 +8,8 @@ public class Bullet : MonoBehaviour
     [SerializeField, Range(0.1f,5f)]float Maxtime;
     [SerializeField, Range(0.1f, 100f)] float speed;
     public float nowtime = 0;
-
+    int Damage = 10;
+    int CriticalPercent;
     GameObject player;
     Transform arrow;
 
@@ -32,7 +33,7 @@ public class Bullet : MonoBehaviour
 
         nowtime += Time.deltaTime;
 
-        if (nowtime > Maxtime || (ItemManager.Instance.isDead))
+        if (nowtime > (Maxtime + (Maxtime * ItemManager.Instance.AttackRange)) || (ItemManager.Instance.isDead))
         {
             Bulletpool.ReturnObject(this);
         }
@@ -54,10 +55,20 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            var carrot = Carrotpool.GetObject();
-            carrot.gameObject.transform.position = gameObject.transform.position;
-            Bulletpool.ReturnObject(this);
-            Enemypool.ReturnObject(collision.gameObject.GetComponent<Enemy>());
+            if(Random.Range(0,100) < (CriticalPercent + ItemManager.Instance.CriticalPercent))
+            {
+                Bulletpool.ReturnObject(this);
+                int Dam = Damage + (int)ItemManager.Instance.AttackPower;
+                int Cridam = (int)(Dam * (1.5f * ItemManager.Instance.CriticalDamage));
+                collision.gameObject.GetComponent<Enemy>().GetDamage(Cridam);
+            }
+            else
+            {
+                Bulletpool.ReturnObject(this);
+                collision.gameObject.GetComponent<Enemy>().GetDamage(Damage + (int)ItemManager.Instance.AttackPower);
+            }
+
+            
         }
 
     }

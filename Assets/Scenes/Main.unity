@@ -938,6 +938,8 @@ MonoBehaviour:
     carrot: 0
     lastGameTime: 
     StarCount: 0
+    MaxWave: 0
+    LastGameDay: 
 --- !u!4 &227421998
 Transform:
   m_ObjectHideFlags: 0

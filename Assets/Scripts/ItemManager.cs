@@ -87,24 +87,36 @@ public class ItemManager : MonoBehaviour
     [SerializeField] GameObject HeartPanel1;
     [SerializeField] GameObject HeartPanel2;
     [SerializeField] TextMeshProUGUI gameoverText;
+    [SerializeField] TextMeshProUGUI[] StatesText;
     //public int itemcount;
 
     [SerializeField] GameObject[] Heart;
-    public int playerhealth = 2;
+    public int playerhealth = 5;
     public bool isDead = false;
     public bool isMenu = false;
     [SerializeField] TextMeshProUGUI waveText;
     [SerializeField] float waveTime = 30f;
-    int wavecount = 1;
+    public int wavecount = 1;
     float time = 0f;
     public int GetCarrot = 0;
     public int Enemy = 0;
+    //int ActiveSkill,
+    public float AttackPower = 0;
+    public float AttackRange = 0;
+    public float AttackCoolTime = 0;
+    public float Health = 0;
+    public float MoveSpeed = 0;
+    public float CriticalDamage = 0;
+    public float CriticalPercent= 0;
+    public int AttackCount = 0;
+    public int Attackdirection  =0;
 
     private void Awake()
     {
         Instance = this;
         SetHeart();
         waveText.text = "Wave " + wavecount.ToString();
+        gameCarrotText.text = GetCarrot.ToString();
     }
 
 
@@ -197,6 +209,7 @@ public class ItemManager : MonoBehaviour
         Carrot.SetActive(false);
         HeartPanel1.SetActive(false);
         HeartPanel2.SetActive(false);
+        UpdateStates();
         waveshop.SetActive(true);
         showWaveText.text = $"Show(Wave{wavecount})";
         showCarrotText.text = GetCarrot.ToString();
@@ -211,6 +224,8 @@ public class ItemManager : MonoBehaviour
         HeartPanel2.SetActive(true);
         wavecount++;
         waveText.text = "Wave " + wavecount.ToString();
+        gameCarrotText.text = GetCarrot.ToString(); 
+        SetHeart();
         time = 0f;
         isMenu = false;
     }
@@ -226,6 +241,17 @@ public class ItemManager : MonoBehaviour
         Item item3 = PopItem();
         itemp3.Setup(item3);
         //print(item3.Icon + ", " + item3.name + ", " + item3.type + ", " + item3.num + ", " + item3.unit + ", " + item3.cost + ", " + item3.percent);
+    }
+
+    public void RerollButton()
+    {
+        if(GetCarrot < 10)
+        {
+            return;
+        }
+        GetCarrot -= 10;
+        showCarrotText.text = GetCarrot.ToString();
+        Reroll();
     }
 
     public void SetHeart()
@@ -267,5 +293,61 @@ public class ItemManager : MonoBehaviour
                 $"처치한 적의 수 : {Enemy.ToString()}\n " +
                 $"생존한 시간 : {((wavecount * waveTime) + time).ToString()}";
         }
+    }
+
+    public void GetItem(Item item)
+    {
+        if(item.type == ItemType.Health && playerhealth == 10)
+        {
+            return;
+        }
+
+        GetCarrot -= item.cost;
+        showCarrotText.text = GetCarrot.ToString();
+        switch (item.type)
+        {
+            case ItemType.AttackPower:
+                AttackPower += item.num;
+                break;
+            case ItemType.AttackRange:
+                AttackRange += item.num;
+                break;
+            case ItemType.AttackCoolTime:
+                AttackCoolTime += item.num;
+                break;
+            case ItemType.Health:
+                playerhealth += (int)item.num;
+                break;
+            case ItemType.MoveSpeed:
+                MoveSpeed += item.num;
+                break;
+            case ItemType.CriticalDamage:
+                CriticalDamage += item.num;
+                break;
+            case ItemType.CriticalPercent:
+                CriticalPercent += item.num;
+                break;
+            case ItemType.AttackCount:
+                AttackCount += (int)item.num;
+                break;
+            case ItemType.Attackdirection:
+                Attackdirection += (int)item.num;
+                break;
+
+        }
+        UpdateStates();
+    }
+
+    public void UpdateStates()
+    {
+        StatesText[0].text = "+" + AttackPower.ToString("F0");
+        StatesText[1].text = "+" + (AttackRange*100f).ToString("F0") + "%";
+        StatesText[2].text = "+" + (AttackCoolTime*100f).ToString("F0") + "%";
+        StatesText[3].text = "+" + playerhealth.ToString("F0");
+        StatesText[4].text = "+" + (MoveSpeed * 100f).ToString("F0") + "%";
+        StatesText[5].text = "+" + (CriticalDamage * 100f).ToString("F0") + "%";
+        StatesText[6].text = "+" + CriticalPercent.ToString("F0") + "%";
+        StatesText[7].text = "+" + AttackCount.ToString("F0");
+        StatesText[8].text = "+" + Attackdirection.ToString("F0");
     }
 }

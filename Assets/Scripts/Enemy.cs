@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField,Range(0.001f, 1f)] float speed;
     public Transform player;
+    public int health;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,15 +26,22 @@ public class Enemy : MonoBehaviour
         {
             Enemypool.ReturnObject(this);
         }
+
+        
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void GetDamage(int Damage)
     {
-        if (collision.CompareTag("Hole"))
+        health -= Damage; 
+        
+        if (health < 1)
         {
-            Enemypool.ReturnObject(this);
+            Enemypool.ReturnObject(this); 
+            var carrot = Carrotpool.GetObject();
+            carrot.gameObject.transform.position = gameObject.transform.position;
         }
     }
+
 
     //당근을 드랍하는 함수
     

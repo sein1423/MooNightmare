@@ -38,13 +38,15 @@ public class Enemypool : MonoBehaviour
             if (Instance.poolingObjectQueue.Count > 0)
             {
                 var obj = Instance.poolingObjectQueue.Dequeue();
-                obj.transform.SetParent(null);
+            obj.health = 8 + (ItemManager.Instance.wavecount * 2);
+            obj.transform.SetParent(null);
                 obj.gameObject.SetActive(true);
                 return obj;
             }
             else
             {
                 var newObj = Instance.CreateNewObject();
+                newObj.health = 8 + (ItemManager.Instance.wavecount * 2);
                 newObj.gameObject.SetActive(true);
                 newObj.transform.SetParent(null);
                 return newObj;
@@ -60,9 +62,9 @@ public class Enemypool : MonoBehaviour
         }
 
         public void DropCarrot()
-    {
+        {
         Carrot carrot = Carrotpool.GetObject();
         carrot.gameObject.transform.position = transform.position;
         carrot.gameObject.SetActive(true);
-    }
+        }
 }

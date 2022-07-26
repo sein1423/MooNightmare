@@ -41,9 +41,9 @@ public class ItemPanel : MonoBehaviour
             return;
         }
 
-        if (ItemManager.Instance.GetCarrot > item.cost)
+        if (ItemManager.Instance.GetCarrot >= item.cost)
         {
-            ItemManager.Instance.GetCarrot -= item.cost;
+            ItemManager.Instance.GetItem(item);
             getItem = true;
         }
         else

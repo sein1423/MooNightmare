@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.01
   player: {fileID: 0}
+  health: 0
 --- !u!61 &5648766030132054848
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,4 +146,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

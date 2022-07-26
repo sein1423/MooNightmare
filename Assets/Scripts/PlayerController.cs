@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float DamageCoolTime = 1f;
     [SerializeField] public GameObject arrow;
     [SerializeField, Range(1f, 10f)] float arrowSensitive;
-    [SerializeField, Range(0.05f, 5f)] float attackCoolTime;
+    float attackCoolTime = 0.5f;
 
     bool isDamage = false;
     float attackTime = 0f;
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         if (!canAttack)
         {
             attackTime += Time.deltaTime;
-            if (attackTime > attackCoolTime)
+            if (attackTime > (attackCoolTime - (attackCoolTime * ItemManager.Instance.AttackCoolTime)))
             {
                 canAttack = true;
                 attackTime = 0f;
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 moveDirection = (Vector2.up * v) + (Vector2.right * h);
 
-        rb.velocity = moveDirection * speed;
+        rb.velocity = moveDirection * (speed + (speed * ItemManager.Instance.MoveSpeed));
     }
 
     public void Attack(Vector2 inputVector)
