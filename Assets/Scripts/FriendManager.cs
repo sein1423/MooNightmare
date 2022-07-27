@@ -27,6 +27,9 @@ public class FriendManager : MonoBehaviour
     [SerializeField]
     DiarySO[] diary;
 
+    [SerializeField]
+    GameObject[] Buttons;
+
 
     // Start is called before the first frame update
     void Start()
@@ -68,11 +71,25 @@ public class FriendManager : MonoBehaviour
 
     public void UpdateDiary(int a)
     {
-        diary[a].diaryEx = diary[a].diaryEx.Replace("Username", GameManager.Instance.user.name);
+        string diaryEx = diary[a].diaryEx.Replace("Username", GameManager.Instance.user.name);
         DiaryImage.sprite = diary[a].diaryImage;
         DiaryTitle.text = "제목 : " + diary[a].diaryTitle;
         DiaryWeather.text = "날씨 : " + diary[a].weather;
         Diaryfeel.text = "기분 : " + diary[a].feel;
-        DiaryText.text = diary[a].diaryEx;
+        DiaryText.text = diaryEx;
+    }
+
+    public void ButtonSet()
+    {//new Color(114, 114, 114, 255); new Color(243, 155, 155, 255);
+        for(int i = 0; i < Buttons.Length; i++)
+        {
+            if (diary[i].Get)
+            {
+                Buttons[0].GetComponent<Image>().color = new Color(114, 114, 114, 255);
+
+            }
+
+        }
+        Buttons[1].GetComponent<Image>().color = new Color(243, 155, 155, 255);
     }
 }

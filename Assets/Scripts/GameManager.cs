@@ -18,7 +18,6 @@ public class userData
 }
 
 
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;

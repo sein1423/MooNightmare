@@ -11,4 +11,5 @@ public class DiarySO : ScriptableObject
     public string feel;
     [TextArea]
     public string diaryEx;
+    public bool Get;
 }
