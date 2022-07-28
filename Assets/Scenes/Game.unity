@@ -6041,7 +6041,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 46b4d6afb622f714696350ff0e906a88, type: 3}
-    m_FontSize: 50
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -6521,7 +6521,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 46b4d6afb622f714696350ff0e906a88, type: 3}
-    m_FontSize: 50
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -7489,7 +7489,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 46b4d6afb622f714696350ff0e906a88, type: 3}
-    m_FontSize: 50
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -8315,6 +8315,8 @@ MonoBehaviour:
   - {fileID: 177320585}
   - {fileID: 2056517608}
   - {fileID: 1508000142}
+  MoveLever: {fileID: 323556236}
+  AttackLever: {fileID: 886026116}
   Heart:
   - {fileID: 1746437512}
   - {fileID: 1386243887}
@@ -8326,7 +8328,7 @@ MonoBehaviour:
   - {fileID: 128656483}
   - {fileID: 2144462171}
   - {fileID: 2029985281}
-  playerhealth: 5
+  playerhealth: 1
   isDead: 0
   isMenu: 0
   waveText: {fileID: 993070731}

@@ -14,6 +14,7 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private Vector2 inputVector;
     private bool isInput;
+    bool SetCenter = false;
 
     public PlayerController player;
     
@@ -61,6 +62,21 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 break;
         }
     }
+
+    public void DragEnd()
+    {
+        lever.anchoredPosition = Vector2.zero;
+        isInput = false;
+        switch (joystickType)
+        {
+            case JoystichType.Move:
+                player.Move(Vector2.zero);
+                break;
+            case JoystichType.Attack:
+                player.Attack(Vector2.zero);
+                break;
+        }
+    }
     
     private void InputcontrolVecter()
     {
@@ -78,6 +94,7 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     void Update()
     {
+
         if (isInput)
         {
             InputcontrolVecter();

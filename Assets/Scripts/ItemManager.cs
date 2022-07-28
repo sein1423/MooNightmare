@@ -88,6 +88,8 @@ public class ItemManager : MonoBehaviour
     [SerializeField] GameObject HeartPanel2;
     [SerializeField] TextMeshProUGUI gameoverText;
     [SerializeField] TextMeshProUGUI[] StatesText;
+    [SerializeField] GameObject MoveLever;
+    [SerializeField] GameObject AttackLever;
     //public int itemcount;
 
     [SerializeField] GameObject[] Heart;
@@ -209,6 +211,10 @@ public class ItemManager : MonoBehaviour
         Carrot.SetActive(false);
         HeartPanel1.SetActive(false);
         HeartPanel2.SetActive(false);
+        MoveLever.GetComponent<JoyStick>().DragEnd(); 
+        AttackLever.GetComponent<JoyStick>().DragEnd();
+        MoveLever.SetActive(false);
+        AttackLever.SetActive(false);
         UpdateStates();
         waveshop.SetActive(true);
         showWaveText.text = $"Show(Wave{wavecount})";
@@ -222,6 +228,8 @@ public class ItemManager : MonoBehaviour
         Carrot.SetActive(true);
         HeartPanel1.SetActive(true);
         HeartPanel2.SetActive(true);
+        MoveLever.SetActive(true);
+        AttackLever.SetActive(true);
         wavecount++;
         waveText.text = "Wave " + wavecount.ToString();
         gameCarrotText.text = GetCarrot.ToString(); 
@@ -232,13 +240,26 @@ public class ItemManager : MonoBehaviour
 
     public void Reroll()
     {
+        
         Item item1 = PopItem();
+        while((CriticalPercent >= 90) && (item1.type == ItemType.CriticalPercent))
+        {
+            item1 = PopItem();
+        }
         itemp1.Setup(item1);
         //print(item1.Icon + ", " + item1.name + ", " + item1.type + ", " + item1.num + ", " + item1.unit + ", " + item1.cost + ", " + item1.percent);
-        Item item2 = PopItem();
+        Item item2 = PopItem(); 
+        while (CriticalPercent >= 90 && item2.type == ItemType.CriticalPercent)
+        {
+            item2 = PopItem();
+        }
         itemp2.Setup(item2);
         //print(item2.Icon + ", " + item2.name + ", " + item2.type + ", " + item2.num + ", " + item2.unit + ", " + item2.cost + ", " + item2.percent);
-        Item item3 = PopItem();
+        Item item3 = PopItem(); 
+        while (CriticalPercent >= 90 && item3.type == ItemType.CriticalPercent)
+        {
+            item3 = PopItem();
+        }
         itemp3.Setup(item3);
         //print(item3.Icon + ", " + item3.name + ", " + item3.type + ", " + item3.num + ", " + item3.unit + ", " + item3.cost + ", " + item3.percent);
     }
@@ -276,7 +297,14 @@ public class ItemManager : MonoBehaviour
 
     public void GameOver()
     {
-        if(GameManager.Instance.user.MaxWave < wavecount)
+        waveshop.SetActive(false);
+        TextObj.SetActive(false);
+        Carrot.SetActive(false);
+        HeartPanel1.SetActive(false);
+        HeartPanel2.SetActive(false);
+        MoveLever.SetActive(false);
+        AttackLever.SetActive(false);
+        if (GameManager.Instance.user.MaxWave < wavecount)
         {
             GameManager.Instance.user.MaxWave = wavecount;
         }
@@ -340,13 +368,13 @@ public class ItemManager : MonoBehaviour
 
     public void UpdateStates()
     {
-        StatesText[0].text = "+" + AttackPower.ToString("F0");
+        StatesText[0].text = (10+AttackPower).ToString("F0");
         StatesText[1].text = "+" + (AttackRange*100f).ToString("F0") + "%";
         StatesText[2].text = "+" + (AttackCoolTime*100f).ToString("F0") + "%";
         StatesText[3].text = "+" + playerhealth.ToString("F0");
         StatesText[4].text = "+" + (MoveSpeed * 100f).ToString("F0") + "%";
         StatesText[5].text = "+" + (CriticalDamage * 100f).ToString("F0") + "%";
-        StatesText[6].text = "+" + CriticalPercent.ToString("F0") + "%";
+        StatesText[6].text = "+" +  (10+CriticalPercent).ToString("F0") + "%";
         StatesText[7].text = "+" + AttackCount.ToString("F0");
         StatesText[8].text = "+" + Attackdirection.ToString("F0");
     }

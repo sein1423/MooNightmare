@@ -35,7 +35,8 @@ public class FriendManager : MonoBehaviour
     void Start()
     {
         CarrotText.text = GameManager.Instance.user.carrot.ToString();
-        UpdateDiary(0);
+        UpdateDiary(0); 
+        ButtonSet();
     }
 
     // Update is called once per frame
@@ -80,16 +81,24 @@ public class FriendManager : MonoBehaviour
     }
 
     public void ButtonSet()
-    {//new Color(114, 114, 114, 255); new Color(243, 155, 155, 255);
+    {
         for(int i = 0; i < Buttons.Length; i++)
         {
-            if (diary[i].Get)
+            if (GameManager.Instance.user.DiaryGet[i])
             {
-                Buttons[0].GetComponent<Image>().color = new Color(114, 114, 114, 255);
-
+                Buttons[i].gameObject.transform.parent.transform.GetChild(0).GetComponent<Text>().text = "선물완료";
+                Buttons[i].GetComponent<Image>().color = new Color32(243, 155, 155, 255);
+            }
+            else if (GameManager.Instance.user.DreamGet[i])
+            {
+                Buttons[i].GetComponent<Image>().color = new Color32(243, 155, 155, 255);
+            }
+            else
+            {
+                Buttons[i].GetComponent<Image>().color = new Color32(114, 114, 114, 255);
             }
 
         }
-        Buttons[1].GetComponent<Image>().color = new Color(243, 155, 155, 255);
+        
     }
 }

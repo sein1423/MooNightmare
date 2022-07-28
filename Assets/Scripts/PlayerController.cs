@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
         {
             var bullet = Bulletpool.GetObject();
             bullet.transform.position = gameObject.transform.position;
-            bullet.GetComponent<Bullet>().SetDir(inputVector);
+            bullet.GetComponent<Bullet>().SetDir(inputVector.normalized);
             canAttack = false;
         }
     }

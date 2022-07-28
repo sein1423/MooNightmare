@@ -15,6 +15,8 @@ public class userData
     public int StarCount;
     public int MaxWave;
     public string LastGameDay;
+    public bool[] DreamGet = new bool[5];
+    public bool[] DiaryGet = new bool[5];
 }
 
 
@@ -95,6 +97,11 @@ public class GameManager : MonoBehaviour
         user.StarCount = 4;
         user.MaxWave = 0;
         user.LastGameDay = DateTime.Now.ToString("yyyy/MM/dd");
+        for(int i = 0; i < user.DreamGet.Length; i++)
+        {
+            user.DreamGet[i] = false;
+            user.DiaryGet[i] = false;
+        }
 
         userState = JsonUtility.ToJson(user);
         string path = Path.Combine(Application.dataPath, "Path/userData.Json");

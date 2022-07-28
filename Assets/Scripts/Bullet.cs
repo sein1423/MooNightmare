@@ -59,7 +59,7 @@ public class Bullet : MonoBehaviour
             {
                 Bulletpool.ReturnObject(this);
                 int Dam = Damage + (int)ItemManager.Instance.AttackPower;
-                int Cridam = (int)(Dam * (1.5f * ItemManager.Instance.CriticalDamage));
+                int Cridam = (int)(Dam * (1.5f + ItemManager.Instance.CriticalDamage));
                 collision.gameObject.GetComponent<Enemy>().GetDamage(Cridam);
             }
             else
