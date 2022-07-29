@@ -30,6 +30,12 @@ public class FriendManager : MonoBehaviour
     [SerializeField]
     GameObject[] Buttons;
 
+    [SerializeField]
+    GameObject GiftPanel;
+
+    [SerializeField]
+    Text giftText;
+
 
     // Start is called before the first frame update
     void Start()
@@ -72,12 +78,24 @@ public class FriendManager : MonoBehaviour
 
     public void UpdateDiary(int a)
     {
-        string diaryEx = diary[a].diaryEx.Replace("Username", GameManager.Instance.user.name);
-        DiaryImage.sprite = diary[a].diaryImage;
-        DiaryTitle.text = "제목 : " + diary[a].diaryTitle;
-        DiaryWeather.text = "날씨 : " + diary[a].weather;
-        Diaryfeel.text = "기분 : " + diary[a].feel;
-        DiaryText.text = diaryEx;
+        if (GameManager.Instance.user.DiaryGet[a])
+        {
+            string diaryEx = diary[a].diaryEx.Replace("Username", GameManager.Instance.user.name);
+            DiaryImage.sprite = diary[a].diaryImage;
+            DiaryTitle.text = "제목 : " + diary[a].diaryTitle;
+            DiaryWeather.text = "날씨 : " + diary[a].weather;
+            Diaryfeel.text = "기분 : " + diary[a].feel;
+            DiaryText.text = diaryEx;
+        }
+        else
+        {
+            DiaryImage.sprite = null;
+            DiaryTitle.text = "제목 : ?";
+            DiaryWeather.text = "날씨 : ?";
+            Diaryfeel.text = "기분 : ?";
+            DiaryText.text = "비어있음";
+        }
+        
     }
 
     public void ButtonSet()
@@ -86,7 +104,7 @@ public class FriendManager : MonoBehaviour
         {
             if (GameManager.Instance.user.DiaryGet[i])
             {
-                Buttons[i].gameObject.transform.parent.transform.GetChild(0).GetComponent<Text>().text = "선물완료";
+                Buttons[i].gameObject.transform.GetChild(0).GetComponent<Text>().text = "선물완료";
                 Buttons[i].GetComponent<Image>().color = new Color32(243, 155, 155, 255);
             }
             else if (GameManager.Instance.user.DreamGet[i])
@@ -100,5 +118,28 @@ public class FriendManager : MonoBehaviour
 
         }
         
+    }
+
+    public void DreamGift(int a)
+    {
+        if (GameManager.Instance.user.DreamGet[a] && !GameManager.Instance.user.DiaryGet[a])
+        {
+            GameManager.Instance.user.DiaryGet[a] = true;
+            GameManager.Instance.SaveData();
+            GetPanel(a);
+            ButtonSet();
+        }
+    }
+
+    public void GetPanel(int a)
+    {
+        GiftPanel.SetActive(true);
+        giftText.text = $"{diary[a].DreamName} 꿈을 선물했습니다.\n{diary[a].diaryTitle} 그림일기를 선물받았습니다.";
+        
+    }
+
+    public void ExitPanel(GameObject go)
+    {
+        GiftPanel.SetActive(false);
     }
 }

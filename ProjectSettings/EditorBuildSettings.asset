@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/My Friend.unity
     guid: 1eee0cc2da46f41438f8336b7616990f
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 617246a53123931489587bf8350d73ae
   m_configObjects: {}

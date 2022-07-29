@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diaryImage: {fileID: 21300000, guid: a5f1f5071f871b44191749a5c96e32a4, type: 3}
   diaryTitle: "\uB180\uC774\uACF5\uC6D0"
+  DreamName: "\uB180\uC774\uACF5\uC6D0"
   weather: "\uB0A0\uC528"
   feel: "\uAE30\uBD84"
   diaryEx: "\uC624\uB298\uC740 Username(\uC774)\uB791 \uD1A0\uB07C \uB180\uC774\uB3D9\uC0B0\uC5D0
@@ -27,4 +28,3 @@ MonoBehaviour:
     \uC788\uC5C8\uB2E4!\r\n\uB108\uBB34\uB108\uBB34 \uC2E0\uAE30\uD588\uB2E4!!!!
     \r\n\uC5C4\uB9C8\uB791 \uC544\uBE60\uB791 \uD558\uB8E8\uC885\uC77C \uB9DB\uC788\uB294
     \uAC83\uB3C4 \uBA39\uACE0 \uC2E0\uB098\uAC8C \uB180\uC544\uC11C \uD589\uBCF5\uD588\uB2E4!!"
-  Get: 0

@@ -525,6 +525,7 @@ MonoBehaviour:
   ETCPanel: {fileID: 630480918}
   PlayerState: {fileID: 1872581796}
   GameScore: {fileID: 1196178361}
+  CarrotText: {fileID: 2053372707}
 --- !u!4 &70077410
 Transform:
   m_ObjectHideFlags: 0
@@ -940,6 +941,8 @@ MonoBehaviour:
     StarCount: 0
     MaxWave: 0
     LastGameDay: 
+    DreamGet: 000000000000
+    DiaryGet: 000000000000
 --- !u!4 &227421998
 Transform:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class DiarySO : ScriptableObject
 {
     public Sprite diaryImage;
     public string diaryTitle;
+    public string DreamName;
     public string weather;
     public string feel;
     [TextArea]

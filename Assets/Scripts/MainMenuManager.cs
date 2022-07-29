@@ -36,6 +36,8 @@ public class MainMenuManager : MonoBehaviour
     GameObject PlayerState;
     [SerializeField]
     GameObject GameScore;
+    [SerializeField]
+    TextMeshProUGUI CarrotText;
 
     static Stack<GameObject> PopupStack = new Stack<GameObject>();
     // Start is called before the first frame update
@@ -46,6 +48,7 @@ public class MainMenuManager : MonoBehaviour
         SetStar();
         UserText.text = $"어서오세요 {GameManager.Instance.user.name}님";
         lastGameTime = DateTime.Parse(GameManager.Instance.user.lastGameTime);
+        CarrotText.text = GameManager.Instance.user.carrot.ToString();
     }
 
     // Update is called once per frame
@@ -158,12 +161,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void GetShop()
     {
-        PopupPanel.SetActive(true);
-        PopupStack.Push(PopupPanel);
-        SmallPanel.SetActive(true);
-        PopupStack.Push(SmallPanel);
-        ShopPanel.SetActive(true);
-        PopupStack.Push(ShopPanel);
+        GameManager.Instance.GoShop();
     }
 
     public void GetMyCharactor()

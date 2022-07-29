@@ -15,8 +15,8 @@ public class userData
     public int StarCount;
     public int MaxWave;
     public string LastGameDay;
-    public bool[] DreamGet = new bool[5];
-    public bool[] DiaryGet = new bool[5];
+    public bool[] DreamGet = new bool[6];
+    public bool[] DiaryGet = new bool[6];
 }
 
 
@@ -132,4 +132,8 @@ public class GameManager : MonoBehaviour
         Debug.Log(path + " : " + userState);
     }
 
+    public void GoShop()
+    {
+        SceneManager.LoadScene("Shop");
+    }
 }
