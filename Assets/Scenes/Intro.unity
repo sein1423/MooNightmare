@@ -955,6 +955,7 @@ GameObject:
   - component: {fileID: 1099404885}
   - component: {fileID: 1099404884}
   - component: {fileID: 1099404883}
+  - component: {fileID: 1099404886}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1027,6 +1028,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1099404886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099404882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a59e6897d33f292458cf3d01574e7a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1278615530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,11 +1521,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d7de2cc432b77419052da4c4d22d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userdataget: 0
   user:
     name: 
     carrot: 0
     lastGameTime: 
     StarCount: 0
+    MaxWave: 0
+    MaxTime: 0
+    monster: 0
+    LastGameDay: 
+    DreamGet: 000000000000
+    DiaryGet: 000000000000
 --- !u!4 &2051020282
 Transform:
   m_ObjectHideFlags: 0

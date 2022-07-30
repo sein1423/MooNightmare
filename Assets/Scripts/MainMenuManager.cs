@@ -38,6 +38,16 @@ public class MainMenuManager : MonoBehaviour
     GameObject GameScore;
     [SerializeField]
     TextMeshProUGUI CarrotText;
+    [SerializeField]
+    Text WaveText;
+    [SerializeField]
+    Text MonsterText;
+    [SerializeField]
+    Text TimeText;
+    [SerializeField]
+    Text DayText;
+    [SerializeField]
+    TextMeshProUGUI UsernameText;
 
     static Stack<GameObject> PopupStack = new Stack<GameObject>();
     // Start is called before the first frame update
@@ -49,6 +59,7 @@ public class MainMenuManager : MonoBehaviour
         UserText.text = $"어서오세요 {GameManager.Instance.user.name}님";
         lastGameTime = DateTime.Parse(GameManager.Instance.user.lastGameTime);
         CarrotText.text = GameManager.Instance.user.carrot.ToString();
+        SetUserState();
     }
 
     // Update is called once per frame
@@ -79,8 +90,10 @@ public class MainMenuManager : MonoBehaviour
 
     public void goGame()
     {
-        UseStar();
-        GameManager.Instance.goToStage();
+        if (UseStar())
+        {
+            GameManager.Instance.goToStage();
+        }
     }
     public void goFreind()
     {
@@ -102,7 +115,7 @@ public class MainMenuManager : MonoBehaviour
         timeText.text = time;
     }
 
-    public void UseStar()
+    public bool UseStar()
     {
         if (GameManager.Instance.user.StarCount > 0)
         {
@@ -114,10 +127,11 @@ public class MainMenuManager : MonoBehaviour
             stars[GameManager.Instance.user.StarCount - 1].SetActive(false);
             GameManager.Instance.user.StarCount--;
             GameManager.Instance.SaveData();
+            return true;
         }
         else 
         {
-            Debug.Log("스타의 개수가 부족합니다");
+            return false;
         }
     }
 
@@ -182,24 +196,17 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    public void LookGameScore()
+    public void SetUserState()
     {
-        if (PlayerState.activeSelf)
-        {
-            PopupStack.Pop().SetActive(false);
-            GameScore.SetActive(true);
-            PopupStack.Push(GameScore);
-        }
+        WaveText.text = "Wave : " + GameManager.Instance.user.MaxWave.ToString();
+        MonsterText.text = GameManager.Instance.user.monster.ToString() + " 마리";
+        TimeText.text = GameManager.Instance.user.MaxTime.ToString() + " 초";
+        DayText.text = GameManager.Instance.user.LastGameDay.ToString();
+        UsernameText.text = GameManager.Instance.user.name;
     }
 
-    public void LookPlayerState()
+    public void ExitGame()
     {
-        if (GameScore.activeSelf)
-        {
-            PopupStack.Pop().SetActive(false);
-            PlayerState.SetActive(true);
-            PopupStack.Push(PlayerState);
-        }
+        GameManager.Instance.GameQuit();
     }
-
 }

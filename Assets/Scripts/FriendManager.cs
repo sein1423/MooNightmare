@@ -36,6 +36,8 @@ public class FriendManager : MonoBehaviour
     [SerializeField]
     Text giftText;
 
+    [SerializeField]
+    Toggle[] toggles;
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +76,14 @@ public class FriendManager : MonoBehaviour
         }
         DreamPanel.SetActive(false);
         DiaryPanel.SetActive(true);
+
+        for(int i = 0; i < toggles.Length; i++)
+        {
+            if (toggles[i].isOn)
+            {
+                UpdateDiary(i);
+            }
+        }
     }
 
     public void UpdateDiary(int a)

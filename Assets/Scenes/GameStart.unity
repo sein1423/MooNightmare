@@ -286,13 +286,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d7de2cc432b77419052da4c4d22d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userdataget: 0
   user:
     name: 
     carrot: 0
     lastGameTime: 
     StarCount: 0
     MaxWave: 0
+    MaxTime: 0
+    monster: 0
     LastGameDay: 
+    DreamGet: 000000000000
+    DiaryGet: 000000000000
 --- !u!4 &526373837
 Transform:
   m_ObjectHideFlags: 0
@@ -429,7 +434,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 526373836}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: goMain
+        m_MethodName: goToMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -516,6 +521,7 @@ GameObject:
   - component: {fileID: 1852375249}
   - component: {fileID: 1852375248}
   - component: {fileID: 1852375247}
+  - component: {fileID: 1852375250}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -588,6 +594,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1852375250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852375246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a59e6897d33f292458cf3d01574e7a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2088925183
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,11 +654,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 2160, y: 1080}
+  m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96

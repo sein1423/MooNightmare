@@ -26,7 +26,8 @@ public class Item
     public string name;
     public ItemType type;
     public float num;
-    public int unit; //1 : ����, 2 : �ۼ�Ʈ
+    public int unit;
+    public string Text;
     public int cost;
     public float percent;
 
@@ -51,10 +52,14 @@ public class Item
                 this.unit = int.Parse(str);
                 break;
             case 5:
-                this.cost = int.Parse(str);
+                this.Text = str;
                 break;
             case 6:
+                this.cost = int.Parse(str);
+                break;
+            case 7:
                 this.percent = float.Parse(str);
+                Debug.Log(this.percent);
                 break;
         }
     }
@@ -62,7 +67,6 @@ public class Item
     public void SetItemType(string str)
     {
         ItemType t = (ItemType)Enum.Parse(typeof(ItemType), str);
-        //Debug.Log(t.ToString());
         this.type = t;
     }
 }
@@ -71,7 +75,8 @@ public class Item
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance;
-    const string Link = "https://docs.google.com/spreadsheets/d/1rd4km6B1GyLqJWLXRQdl16TKyV95esAXdV5L-w5AaaM/export?format=tsv&range=A2:G";
+    const string Link = "https://docs.google.com/spreadsheets/d/1rd4km6B1GyLqJWLXRQdl16TKyV95esAXdV5L-w5AaaM/export?format=tsv&range=A2:H";
+
     public List<Item> itemBuffer = new List<Item>();
     [SerializeField] ItemPanel itemp1;
     [SerializeField] ItemPanel itemp2;
@@ -90,8 +95,9 @@ public class ItemManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI[] StatesText;
     [SerializeField] GameObject MoveLever;
     [SerializeField] GameObject AttackLever;
-    //public int itemcount;
-
+    [SerializeField] GameObject PauseBg;
+    [SerializeField] GameObject PausePanel;
+    [SerializeField] GameObject OptionPanel;
     [SerializeField] GameObject[] Heart;
     public int playerhealth = 5;
     public bool isDead = false;
@@ -112,6 +118,8 @@ public class ItemManager : MonoBehaviour
     public float CriticalPercent= 0;
     public int AttackCount = 0;
     public int Attackdirection  =0;
+
+    static Stack<GameObject> PopupStack = new Stack<GameObject>();
 
     private void Awake()
     {
@@ -138,6 +146,8 @@ public class ItemManager : MonoBehaviour
         int rowSize = row.Length;
         //itemcount = rowSize;
         int columnSize = row[0].Split('\t').Length;
+        print(rowSize);
+        print(columnSize);
         for (int i = 0; i < rowSize; i++)
         {
             string[] column = row[i].Split('\t');
@@ -191,10 +201,11 @@ public class ItemManager : MonoBehaviour
 
         
 
-        if (!waveshop.activeSelf)
+        if (!isMenu)
         {
             time += Time.deltaTime;
             timeText.text = (waveTime - time).ToString("F1");
+
         }
 
         if(waveTime < time && !waveshop.activeSelf)
@@ -304,11 +315,7 @@ public class ItemManager : MonoBehaviour
         HeartPanel2.SetActive(false);
         MoveLever.SetActive(false);
         AttackLever.SetActive(false);
-        if (GameManager.Instance.user.MaxWave < wavecount)
-        {
-            GameManager.Instance.user.MaxWave = wavecount;
-        }
-        GameManager.Instance.user.carrot += wavecount * 3;
+        
 
 
         if (!GameOverPanel.activeSelf)
@@ -377,5 +384,63 @@ public class ItemManager : MonoBehaviour
         StatesText[6].text = "+" +  (10+CriticalPercent).ToString("F0") + "%";
         StatesText[7].text = "+" + AttackCount.ToString("F0");
         StatesText[8].text = "+" + Attackdirection.ToString("F0");
+    }
+
+    public void Pause()
+    {
+        PauseBg.SetActive(true);
+        PopupStack.Push(PauseBg);
+        isMenu = true;
+        PausePanel.SetActive(true);
+        PopupStack.Push(PausePanel);
+    }
+
+    public void Option()
+    {
+        (PopupStack.Pop()).SetActive(false);
+        OptionPanel.SetActive(true);
+        PopupStack.Push(OptionPanel);
+    }
+
+    public void BreakPanel()
+    {
+        while (PopupStack.Count > 0)
+        {
+            PopupStack.Pop().SetActive(false);
+        }
+        isMenu = false;
+    }
+
+    public void BreakOption()
+    {
+        (PopupStack.Pop()).SetActive(false);
+        PausePanel.SetActive(true);
+        PopupStack.Push(PausePanel);
+    }
+
+    public void GameQuit()
+    {
+        BreakPanel();
+        isDead = true;
+        GameOver();
+    }
+
+    public void GameOverSave()
+    {
+        if (GameManager.Instance.user.MaxWave < wavecount)
+        {
+            GameManager.Instance.user.MaxWave = wavecount;
+        }
+        GameManager.Instance.user.carrot += wavecount * 3;
+        GameManager.Instance.user.MaxTime = (int)((wavecount * waveTime) + time);
+        GameManager.Instance.user.monster = Enemy;
+        GameManager.Instance.user.lastGameTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+        GameManager.Instance.user.LastGameDay = DateTime.Now.ToString("yyyy/MM/dd");
+    }
+
+    public void EndGame()
+    {
+        GameOverSave();
+        GameManager.Instance.goMain();
     }
 }

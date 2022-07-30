@@ -23,14 +23,9 @@ public class ItemPanel : MonoBehaviour
 
         //Icon = item.Icon;
         ItemName.text = item.name;
-        if(item.unit == 1)
-        {
-            effect.text = item.type.ToString() + " +" + item.num.ToString();
-        }
-        else
-        {
-            effect.text = item.type.ToString() + " +" + item.num.ToString()+"%";
-        }
+        
+        effect.text = item.Text;
+        
         costText.text = item.cost.ToString();
     }
 
