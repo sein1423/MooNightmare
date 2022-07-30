@@ -326,7 +326,7 @@ public class ItemManager : MonoBehaviour
                 $"획득한 빛나는 당근 : {(wavecount * 3).ToString()}\n" +
                 $"보유한 빛나는 당근 {GameManager.Instance.user.carrot.ToString()}\n " +
                 $"처치한 적의 수 : {Enemy.ToString()}\n " +
-                $"생존한 시간 : {((wavecount * waveTime) + time).ToString()}";
+                $"생존한 시간 : {(((wavecount - 1) * waveTime) + time).ToString()}";
         }
     }
 
@@ -432,7 +432,7 @@ public class ItemManager : MonoBehaviour
             GameManager.Instance.user.MaxWave = wavecount;
         }
         GameManager.Instance.user.carrot += wavecount * 3;
-        GameManager.Instance.user.MaxTime = (int)((wavecount * waveTime) + time);
+        GameManager.Instance.user.MaxTime = (int)(((wavecount-1) * waveTime) + time);
         GameManager.Instance.user.monster = Enemy;
         GameManager.Instance.user.lastGameTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         GameManager.Instance.user.LastGameDay = DateTime.Now.ToString("yyyy/MM/dd");
