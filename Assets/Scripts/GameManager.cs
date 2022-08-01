@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
         userState = JsonUtility.ToJson(user);
         /*string path = Path.Combine(Application.persistentDataPath, "Path/userData.Json");
         File.WriteAllText(path, userState);*/
-        File.WriteAllText(Application.persistentDataPath + jsonFilePath, JsonUtility.ToJson(userState));
+        File.WriteAllText(Application.persistentDataPath + jsonFilePath, JsonUtility.ToJson(user));
     }
 
     public void GoShop()
