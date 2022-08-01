@@ -99,6 +99,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField] GameObject PausePanel;
     [SerializeField] GameObject OptionPanel;
     [SerializeField] GameObject[] Heart;
+    [SerializeField] GameObject LockButton;
     public int playerhealth = 5;
     public bool isDead = false;
     public bool isMenu = false;
@@ -117,7 +118,7 @@ public class ItemManager : MonoBehaviour
     public float CriticalDamage = 0;
     public float CriticalPercent= 0;
     public int AttackCount = 0;
-    public int Attackdirection  =0;
+    public bool Lock = false;
 
     static Stack<GameObject> PopupStack = new Stack<GameObject>();
 
@@ -217,7 +218,15 @@ public class ItemManager : MonoBehaviour
     public void GetItemShop()
     {
         isMenu = true;
-        Reroll();
+        if (Lock)
+        {
+            ShopLock();
+        }
+        else
+        {
+            Reroll();
+        }
+        
         TextObj.SetActive(false);
         Carrot.SetActive(false);
         HeartPanel1.SetActive(false);
@@ -228,7 +237,7 @@ public class ItemManager : MonoBehaviour
         AttackLever.SetActive(false);
         UpdateStates();
         waveshop.SetActive(true);
-        showWaveText.text = $"Show(Wave{wavecount})";
+        showWaveText.text = $"Shop(Wave{wavecount})";
         showCarrotText.text = GetCarrot.ToString();
     }
 
@@ -360,13 +369,10 @@ public class ItemManager : MonoBehaviour
                 CriticalDamage += item.num;
                 break;
             case ItemType.CriticalPercent:
-                CriticalPercent += item.num;
+                CriticalPercent += (item.num * 100f);
                 break;
             case ItemType.AttackCount:
                 AttackCount += (int)item.num;
-                break;
-            case ItemType.Attackdirection:
-                Attackdirection += (int)item.num;
                 break;
 
         }
@@ -376,14 +382,13 @@ public class ItemManager : MonoBehaviour
     public void UpdateStates()
     {
         StatesText[0].text = (10+AttackPower).ToString("F0");
-        StatesText[1].text = "+" + (AttackRange*100f).ToString("F0") + "%";
+        StatesText[1].text = "+" + (AttackRange*5f).ToString("F1") + "m";
         StatesText[2].text = "+" + (AttackCoolTime*100f).ToString("F0") + "%";
         StatesText[3].text = "+" + playerhealth.ToString("F0");
         StatesText[4].text = "+" + (MoveSpeed * 100f).ToString("F0") + "%";
         StatesText[5].text = "+" + (CriticalDamage * 100f).ToString("F0") + "%";
         StatesText[6].text = "+" +  (10+CriticalPercent).ToString("F0") + "%";
         StatesText[7].text = "+" + AttackCount.ToString("F0");
-        StatesText[8].text = "+" + Attackdirection.ToString("F0");
     }
 
     public void Pause()
@@ -408,7 +413,11 @@ public class ItemManager : MonoBehaviour
         {
             PopupStack.Pop().SetActive(false);
         }
-        isMenu = false;
+
+        if (!waveshop.activeSelf)
+        {
+            isMenu = false;
+        }
     }
 
     public void BreakOption()
@@ -443,5 +452,20 @@ public class ItemManager : MonoBehaviour
     {
         GameOverSave();
         GameManager.Instance.goMain();
+    }
+    public void ShopLock()
+    {
+        if (Lock)
+        {
+            LockButton.GetComponent<Image>().color = new Color32(255,255,255, 255);
+            Lock = false;
+            LockButton.transform.GetChild(0).GetComponent<Text>().text = "잠금";
+        }
+        else
+        {
+            LockButton.GetComponent<Image>().color = new Color32(114, 114, 114, 255);
+            Lock = true;
+            LockButton.transform.GetChild(0).GetComponent<Text>().text = "잠금해제";
+        }
     }
 }

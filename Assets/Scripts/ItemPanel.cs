@@ -17,6 +17,7 @@ public class ItemPanel : MonoBehaviour
     // Update is called once per frame
     public void Setup(Item item)
     {
+        gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         this.item = item;
         getItem = false;
         print(item.Icon + ", " + item.name + ", " + item.type + ", " + item.num + ", " + item.unit + ", " + item.cost + ", " + item.percent);
@@ -40,6 +41,8 @@ public class ItemPanel : MonoBehaviour
         {
             ItemManager.Instance.GetItem(item);
             getItem = true;
+            gameObject.GetComponent<Image>().color = new Color32(144, 144, 144, 255);
+            costText.text = "구입완료";
         }
         else
         {

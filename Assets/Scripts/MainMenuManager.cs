@@ -9,7 +9,7 @@ public class MainMenuManager : MonoBehaviour
 {
     public GameObject Option;
     DateTime nowTime;
-    int ChargeTime = 5;
+    int ChargeTime = 30;
     DateTime lastGameTime;
     const int MaxStarCount = 4;
 
@@ -56,7 +56,7 @@ public class MainMenuManager : MonoBehaviour
     {
         CountTime();
         SetStar();
-        UserText.text = $"어서오세요 {GameManager.Instance.user.name}님";
+        UserText.text = $"{GameManager.Instance.user.name}요원 접속완료";
         lastGameTime = DateTime.Parse(GameManager.Instance.user.lastGameTime);
         CarrotText.text = GameManager.Instance.user.carrot.ToString();
         SetUserState();

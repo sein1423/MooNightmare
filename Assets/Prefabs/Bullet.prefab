@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Maxtime: 1
-  speed: 20
+  speed: 15
   nowtime: 0
 --- !u!70 &756440213466636450
 CapsuleCollider2D:
