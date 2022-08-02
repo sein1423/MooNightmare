@@ -11,5 +11,7 @@ public class DiarySO : ScriptableObject
     public string weather;
     public string feel;
     [TextArea]
-    public string diaryEx;
+    public string diaryEx1;
+    [TextArea]
+    public string diaryEx2;
 }

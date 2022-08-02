@@ -35,16 +35,24 @@ public class FriendManager : MonoBehaviour
 
     [SerializeField]
     Text giftText;
+    [SerializeField]
+    Text giftbarText;
+    [SerializeField]
+    Image GiftImage;
 
     [SerializeField]
     Toggle[] toggles;
+
+    int nowDiary = 0;
+    int GetDream = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         CarrotText.text = GameManager.Instance.user.carrot.ToString();
-        UpdateDiary(0); 
+        UpdateDiary(0);
         ButtonSet();
+        UpdateBar();
     }
 
     // Update is called once per frame
@@ -90,7 +98,8 @@ public class FriendManager : MonoBehaviour
     {
         if (GameManager.Instance.user.DiaryGet[a])
         {
-            string diaryEx = diary[a].diaryEx.Replace("Username", GameManager.Instance.user.name);
+            nowDiary = a;
+            string diaryEx = diary[a].diaryEx1.Replace("000", GameManager.Instance.user.name);
             DiaryImage.sprite = diary[a].diaryImage;
             DiaryTitle.text = "제목 : " + diary[a].diaryTitle;
             DiaryWeather.text = "날씨 : " + diary[a].weather;
@@ -115,7 +124,7 @@ public class FriendManager : MonoBehaviour
             if (GameManager.Instance.user.DiaryGet[i])
             {
                 Buttons[i].gameObject.transform.GetChild(0).GetComponent<Text>().text = "선물완료";
-                Buttons[i].GetComponent<Image>().color = new Color32(243, 155, 155, 255);
+                Buttons[i].GetComponent<Image>().color = new Color32(0, 0, 255, 255);
             }
             else if (GameManager.Instance.user.DreamGet[i])
             {
@@ -138,6 +147,7 @@ public class FriendManager : MonoBehaviour
             GameManager.Instance.SaveData();
             GetPanel(a);
             ButtonSet();
+            UpdateBar();
         }
     }
 
@@ -151,5 +161,44 @@ public class FriendManager : MonoBehaviour
     public void ExitPanel(GameObject go)
     {
         GiftPanel.SetActive(false);
+    }
+
+    public void UpdateBar()
+    {
+        GetDream = 0;
+        for (int i = 0; i < GameManager.Instance.user.DiaryGet.Length; i++)
+        {
+            if (GameManager.Instance.user.DiaryGet[i])
+            {
+                GetDream++;
+            }
+        }
+
+        giftbarText.text = (GetDream / (float)GameManager.Instance.user.DiaryGet.Length * 100f).ToString("F0") + "%";
+        GiftImage.fillAmount = GetDream / (float)GameManager.Instance.user.DiaryGet.Length;
+    }
+
+    public void GoShop()
+    {
+        GameManager.Instance.GoShop();
+    }
+
+    public void NextText()
+    {
+        if (GameManager.Instance.user.DiaryGet[nowDiary])
+        {
+            string diaryEx = diary[nowDiary].diaryEx2.Replace("000", GameManager.Instance.user.name);
+            DiaryText.text = diaryEx;
+        }
+
+    }
+
+    public void backText()
+    {
+        if (GameManager.Instance.user.DiaryGet[nowDiary])
+        {
+            string diaryEx = diary[nowDiary].diaryEx1.Replace("000", GameManager.Instance.user.name);
+            DiaryText.text = diaryEx;
+        }
     }
 }

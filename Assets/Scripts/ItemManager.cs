@@ -75,7 +75,7 @@ public class Item
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance;
-    const string Link = "https://docs.google.com/spreadsheets/d/1rd4km6B1GyLqJWLXRQdl16TKyV95esAXdV5L-w5AaaM/export?format=tsv&range=A2:H";
+    const string Link = "https://docs.google.com/spreadsheets/d/1rd4km6B1GyLqJWLXRQdl16TKyV95esAXdV5L-w5AaaM/export?format=tsv&range=B2:I";
 
     public List<Item> itemBuffer = new List<Item>();
     [SerializeField] ItemPanel itemp1;
@@ -100,6 +100,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField] GameObject OptionPanel;
     [SerializeField] GameObject[] Heart;
     [SerializeField] GameObject LockButton;
+    [SerializeField] GameObject ExitPanel;
     public int playerhealth = 5;
     public bool isDead = false;
     public bool isMenu = false;
@@ -335,7 +336,7 @@ public class ItemManager : MonoBehaviour
                 $"획득한 빛나는 당근 : {(wavecount * 3).ToString()}\n" +
                 $"보유한 빛나는 당근 {GameManager.Instance.user.carrot.ToString()}\n " +
                 $"처치한 적의 수 : {Enemy.ToString()}\n " +
-                $"생존한 시간 : {(((wavecount - 1) * waveTime) + time).ToString()}";
+                $"생존한 시간 : {(((wavecount - 1) * waveTime) + time).ToString("F2")}";
         }
     }
 
@@ -425,6 +426,20 @@ public class ItemManager : MonoBehaviour
         (PopupStack.Pop()).SetActive(false);
         PausePanel.SetActive(true);
         PopupStack.Push(PausePanel);
+    }
+
+    public void BreakExit()
+    {
+        (PopupStack.Pop()).SetActive(false);
+        PausePanel.SetActive(true);
+        PopupStack.Push(PausePanel);
+    }
+
+    public void GetExit()
+    {
+        (PopupStack.Pop()).SetActive(false);
+        ExitPanel.SetActive(true);
+        PopupStack.Push(ExitPanel);
     }
 
     public void GameQuit()

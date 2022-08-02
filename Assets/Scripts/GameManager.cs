@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         LoadUserData();
+        Debug.Log(Application.persistentDataPath + jsonFilePath);
+        //user.carrot += 10000;
     }
 
     

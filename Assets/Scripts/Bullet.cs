@@ -28,6 +28,10 @@ public class Bullet : MonoBehaviour
     {
         if (ItemManager.Instance.isMenu)
         {
+            if(gameObject.transform.position == player.transform.position)
+            {
+                Bulletpool.ReturnObject(this);
+            }
             return;
         }
 

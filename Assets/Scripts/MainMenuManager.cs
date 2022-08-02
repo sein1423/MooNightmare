@@ -33,9 +33,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     GameObject ETCPanel;
     [SerializeField]
-    GameObject PlayerState;
+    GameObject ExitPanel;
     [SerializeField]
-    GameObject GameScore;
+    GameObject PlayerState;
     [SerializeField]
     TextMeshProUGUI CarrotText;
     [SerializeField]
@@ -46,6 +46,8 @@ public class MainMenuManager : MonoBehaviour
     Text TimeText;
     [SerializeField]
     Text DayText;
+    [SerializeField]
+    Text StarTimeCountText;
     [SerializeField]
     TextMeshProUGUI UsernameText;
 
@@ -103,7 +105,8 @@ public class MainMenuManager : MonoBehaviour
     public void CountTime()
     {
         TimeSpan timeSpan = nowTime - lastGameTime;
-        int minute = Math.Abs(timeSpan.Minutes);
+        
+        int minute = Math.Abs(timeSpan.Hours * 30) + Math.Abs(timeSpan.Minutes);
         int second = Math.Abs(timeSpan.Seconds);
         string time = ((ChargeTime - 1)-minute) + " : " + (60 - second);
         //Debug.Log(time);
@@ -131,6 +134,7 @@ public class MainMenuManager : MonoBehaviour
         }
         else 
         {
+            GetStarPanel();
             return false;
         }
     }
@@ -171,6 +175,26 @@ public class MainMenuManager : MonoBehaviour
         PopupStack.Push(SmallPanel);
         OptionPanel.SetActive(true);
         PopupStack.Push(OptionPanel);
+    }
+
+    public void GetStarPanel()
+    {
+        PopupPanel.SetActive(true);
+        PopupStack.Push(PopupPanel);
+        SmallPanel.SetActive(true);
+        PopupStack.Push(SmallPanel);
+        ETCPanel.SetActive(true);
+        PopupStack.Push(ETCPanel);
+    }
+
+    public void GetExit()
+    {
+        PopupPanel.SetActive(true);
+        PopupStack.Push(PopupPanel);
+        SmallPanel.SetActive(true);
+        PopupStack.Push(SmallPanel);
+        ExitPanel.SetActive(true);
+        PopupStack.Push(ExitPanel);
     }
 
     public void GetShop()
