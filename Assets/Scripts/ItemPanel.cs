@@ -9,6 +9,8 @@ public class ItemPanel : MonoBehaviour
     [SerializeField] Text ItemName;
     [SerializeField] Text effect;
     [SerializeField] Text costText;
+    [SerializeField] GameObject CostText;
+    [SerializeField] GameObject comText;
 
     public Item item;
     bool getItem;
@@ -17,6 +19,8 @@ public class ItemPanel : MonoBehaviour
     // Update is called once per frame
     public void Setup(Item item)
     {
+        comText.SetActive(false);
+        CostText.SetActive(true);
         gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         this.item = item;
         getItem = false;
@@ -42,7 +46,8 @@ public class ItemPanel : MonoBehaviour
             ItemManager.Instance.GetItem(item);
             getItem = true;
             gameObject.GetComponent<Image>().color = new Color32(144, 144, 144, 255);
-            costText.text = "구입완료";
+            comText.SetActive(true);
+            CostText.SetActive(false);
         }
         else
         {
