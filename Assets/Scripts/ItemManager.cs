@@ -333,7 +333,7 @@ public class ItemManager : MonoBehaviour
             GameOverPanel.SetActive(true);
             gameoverText.text = $"최고 기록 : {GameManager.Instance.user.MaxWave.ToString()}\n" +
                 $"현재 기록 : {wavecount}\n" +
-                $"획득한 빛나는 당근 : {(wavecount * 3).ToString()}\n" +
+                $"획득한 빛나는 당근 : {((wavecount - 1) * 3).ToString()}\n" +
                 $"보유한 빛나는 당근 {GameManager.Instance.user.carrot.ToString()}\n " +
                 $"처치한 적의 수 : {Enemy.ToString()}\n " +
                 $"생존한 시간 : {(((wavecount - 1) * waveTime) + time).ToString("F2")}";

@@ -141,7 +141,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void ChargeStar(int timeDistance)
     {
-        Debug.Log($"{timeDistance}의 시간차이");
         int ChargeStarCount = timeDistance / ChargeTime;
         if (ChargeStarCount > 4 - GameManager.Instance.user.StarCount) ChargeStarCount = 4 - GameManager.Instance.user.StarCount;
         
@@ -162,7 +161,6 @@ public class MainMenuManager : MonoBehaviour
             if (!stars[n].activeSelf)
             {
                 stars[n].SetActive(true);
-                Debug.Log(n + "번째 별 생성");
             }
         }
     }

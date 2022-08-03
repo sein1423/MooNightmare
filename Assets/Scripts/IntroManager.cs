@@ -10,6 +10,8 @@ public class IntroManager : MonoBehaviour
     public static IntroManager Instance;
     [SerializeField] Text userName;
     [SerializeField] GameObject NamePanel;
+    [SerializeField] GameObject text;
+    [SerializeField] GameObject SkipButton;
 
     [Header("Timess for each character")]
     public float timeForCharacter;
@@ -25,6 +27,7 @@ public class IntroManager : MonoBehaviour
 
     bool isTypingEnd = false;
     int dialogNumber = 0;
+    bool skip = false;
 
     float timer;
     int ClickCount = 0;
@@ -45,7 +48,12 @@ public class IntroManager : MonoBehaviour
     public void CompleteName()
     {
         GameManager.Instance.SetUserData(userName.text);
+        if (skip)
+        {
+            GameManager.Instance.goMain();
+        }
         NamePanel.SetActive(false);
+        SkipButton.SetActive(true);
         Typing(dialogsSave, tmpSave);
     }
     public void CancleName()
@@ -145,7 +153,24 @@ public class IntroManager : MonoBehaviour
     void GetNickName()
     {
         NamePanel.SetActive(true);
+        SkipButton.SetActive(false);
         isTypingEnd = true;
         ClickCount++;
+    }
+
+    public void Skip()
+    {
+        if(ClickCount < 6)
+        {
+            skip = true;
+            ClickCount = 5;
+            text.SetActive(false);
+            isTypingEnd = true;
+            GetInputDown();
+        }
+        else
+        {
+            GameManager.Instance.goMain();
+        }
     }
 }
