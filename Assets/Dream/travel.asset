@@ -15,6 +15,6 @@ MonoBehaviour:
   dreamnum: 4
   dreamImage: {fileID: 21300000, guid: b318a92a1c612dd4dad0d75da0bcd84d, type: 3}
   dreamTitle: "\uD558\uB298\uC744 \uB0A0\uC544\uAC00\uBCF4\uC790"
-  dreamEx: "\uBD84\uBA85\uD788 \uCC98\uC74C \uC640 \uBCF8 \uACF3\uC778\uB370, \uC65C
+  dreamEx: "\uBD84\uBA85\uD788 \uCC98\uC74C \uC640 \uBCF8 \uACF3\uC778\uB370, \n\uC65C
     \uB0AE\uC124\uC9C0 \uC54A\uC740 \uAE30\uBD84\uC774 \uB4DC\uB294 \uAC78\uAE4C?"
   cost: 250

@@ -30960,7 +30960,7 @@ MonoBehaviour:
   isDead: 0
   isMenu: 0
   waveText: {fileID: 993070731}
-  waveTime: 3
+  waveTime: 30
   wavecount: 1
   GetCarrot: 5000
   Enemy: 0

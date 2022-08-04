@@ -543,7 +543,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199774419}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -4827,8 +4827,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 132365255}
   m_HandleRect: {fileID: 132365254}
   m_Direction: 2
-  m_Value: 0.9999999
-  m_Size: 0.325
+  m_Value: 1
+  m_Size: 0.32499996
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5077,7 +5077,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7d7f69742a04f7743966a010ab67e75a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5de2e4c505a2edb4fb5b47ebff9a6da0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

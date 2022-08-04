@@ -3,8 +3,9 @@ using UnityEditor;
 using UnityEngine;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
+using System.Collections.Generic;
 #if GSTU_Legacy
-GoogleSheetsToUnity.Legacy
+using GoogleSheetsToUnity.Legacy;
 #endif
 
 namespace GoogleSheetsToUnity.Editor

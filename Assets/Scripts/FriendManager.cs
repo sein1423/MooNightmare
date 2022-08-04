@@ -45,6 +45,13 @@ public class FriendManager : MonoBehaviour
     [SerializeField]
     Toggle[] toggles;
 
+    [SerializeField]
+    Sprite defaultFriend;
+    [SerializeField]
+    Sprite NextFriend;
+    [SerializeField]
+    Image FriendImage;
+
     int nowDiary = 0;
     int GetDream = 0;
     #region º° º¯¼ö
@@ -273,6 +280,14 @@ public class FriendManager : MonoBehaviour
 
         giftbarText.text = (GetDream / (float)GameManager.Instance.user.DiaryGet.Length * 100f).ToString("F0") + "%";
         GiftImage.fillAmount = GetDream / (float)GameManager.Instance.user.DiaryGet.Length;
+        if(GiftImage.fillAmount < 0.1f)
+        {
+            FriendImage.sprite = defaultFriend;
+        }
+        else
+        {
+            FriendImage.sprite = NextFriend;
+        }
     }
 
     public void GoShop()

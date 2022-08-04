@@ -165,8 +165,12 @@ public class MainMenuManager : MonoBehaviour
     #endregion
     public void GetOption()
     {
-        StarPanel.SetActive(true);
-        PopupStack.Push(StarPanel);
+        PopupPanel.SetActive(true);
+        PopupStack.Push(PopupPanel);
+        SmallPanel.SetActive(true);
+        PopupStack.Push(SmallPanel);
+        OptionPanel.SetActive(true);
+        PopupStack.Push(OptionPanel);
     }
 
     
