@@ -5,9 +5,8 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 
-public class MainMenuManager : MonoBehaviour
+public class CharacterManager : MonoBehaviour
 {
-    public GameObject Option;
     #region 별 변수
     DateTime nowTime;
     int ChargeTime = 30;
@@ -19,37 +18,28 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI timeText;
     [SerializeField]
-    GameObject ETCPanel;
-    #endregion
-
-    [SerializeField]
-    TextMeshProUGUI UserText;
-    
-    [SerializeField]
-    GameObject PopupPanel;
-    [SerializeField]
-    GameObject SmallPanel;
-    [SerializeField]
-    GameObject OptionPanel;
-    [SerializeField]
-    GameObject ShopPanel;
-    [SerializeField]
-    GameObject ExitPanel;
+    GameObject StarPanel;
     [SerializeField]
     TextMeshProUGUI CarrotText;
     [SerializeField]
-    GameObject StarPanel;
-
-    static Stack<GameObject> PopupStack = new Stack<GameObject>();
-    // Start is called before the first frame update
-
+    TextMeshProUGUI UsernameText;
+    [SerializeField]
+    Text WaveText;
+    [SerializeField]
+    Text MonsterText;
+    [SerializeField]
+    Text TimeText;
+    #endregion
     void Start()
     {
         CountTime();
         SetStar();
-        UserText.text = $"{GameManager.Instance.user.name}요원 접속완료";
         lastGameTime = DateTime.Parse(GameManager.Instance.user.lastGameTime);
         CarrotText.text = GameManager.Instance.user.carrot.ToString();
+        UsernameText.text = GameManager.Instance.user.name;
+        WaveText.text = "Wave " + GameManager.Instance.user.MaxWave.ToString();
+        MonsterText.text = GameManager.Instance.user.monster.ToString() + " 마리";
+        TimeText.text = GameManager.Instance.user.MaxTime.ToString() + " 초";
     }
 
     // Update is called once per frame
@@ -65,45 +55,20 @@ public class MainMenuManager : MonoBehaviour
             timeText.text = "";
         }
     }
-
-    public void optionControll()
-    {
-        if (Option.activeSelf)
-        {
-            Option.SetActive(false);
-        }
-        else
-        {
-            Option.SetActive(true);
-        }
-    }
-
-    public void goGame()
-    {
-        if (UseStar())
-        {
-            GameManager.Instance.goToStage();
-        }
-    }
-    public void goFreind()
-    {
-        GameManager.Instance.GoMyFriend();
-    }
-
     #region 별
     public void CountTime()
     {
         TimeSpan timeSpan = nowTime - lastGameTime;
-        
+
         int minute = Math.Abs(timeSpan.Hours * 30) + Math.Abs(timeSpan.Minutes);
         int second = Math.Abs(timeSpan.Seconds);
-        string time = ((ChargeTime - 1)-minute) + " : " + (60 - second);
+        string time = ((ChargeTime - 1) - minute) + " : " + (60 - second);
         //Debug.Log(time);
-        if(minute >= ChargeTime)
+        if (minute >= ChargeTime)
         {
             ChargeStar(minute);
         }
-        
+
         timeText.text = time;
     }
 
@@ -121,7 +86,7 @@ public class MainMenuManager : MonoBehaviour
             GameManager.Instance.SaveData();
             return true;
         }
-        else 
+        else
         {
             GetStarPanel();
             return false;
@@ -132,12 +97,12 @@ public class MainMenuManager : MonoBehaviour
     {
         int ChargeStarCount = timeDistance / ChargeTime;
         if (ChargeStarCount > 4 - GameManager.Instance.user.StarCount) ChargeStarCount = 4 - GameManager.Instance.user.StarCount;
-        
+
         if (GameManager.Instance.user.StarCount < 4)
         {
             lastGameTime = lastGameTime + TimeSpan.FromMinutes(ChargeStarCount * ChargeTime);
             GameManager.Instance.user.lastGameTime = lastGameTime.ToString("yyyy/MM/dd HH:mm:ss");
-            GameManager.Instance.user.StarCount+= ChargeStarCount;
+            GameManager.Instance.user.StarCount += ChargeStarCount;
             GameManager.Instance.SaveData();
             SetStar();
         }
@@ -155,53 +120,35 @@ public class MainMenuManager : MonoBehaviour
     }
     public void GetStarPanel()
     {
-        PopupPanel.SetActive(true);
-        PopupStack.Push(PopupPanel);
-        SmallPanel.SetActive(true);
-        PopupStack.Push(SmallPanel);
-        ETCPanel.SetActive(true);
-        PopupStack.Push(ETCPanel);
+        StarPanel.SetActive(true);
+    }
+
+    public void BreakStarPopup()
+    {
+        StarPanel.SetActive(false);
     }
     #endregion
-    public void GetOption()
+
+    public void GoMain()
     {
-        StarPanel.SetActive(true);
-        PopupStack.Push(StarPanel);
+        GameManager.Instance.goMain();
     }
 
-    
-
-    public void GetExit()
-    {
-        PopupPanel.SetActive(true);
-        PopupStack.Push(PopupPanel);
-        SmallPanel.SetActive(true);
-        PopupStack.Push(SmallPanel);
-        ExitPanel.SetActive(true);
-        PopupStack.Push(ExitPanel);
-    }
-
-    public void GetShop()
+    public void Goshop()
     {
         GameManager.Instance.GoShop();
     }
 
-    public void GetMyCharactor()
+    public void GoFriend()
     {
-        GameManager.Instance.GoCharacter();
+        GameManager.Instance.GoMyFriend();
     }
 
-    public void BreakPopUp()
+    public void goGame()
     {
-        while(PopupStack.Count > 0)
+        if (UseStar())
         {
-            PopupStack.Pop().SetActive(false);
+            GameManager.Instance.goToStage();
         }
-    }
-
-
-    public void ExitGame()
-    {
-        GameManager.Instance.GameQuit();
     }
 }

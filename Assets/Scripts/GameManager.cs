@@ -157,6 +157,6 @@ public class GameManager : MonoBehaviour
 
     public void GoCharacter()
     {
-        SceneManager.LoadScene("MyCharacter");
+        SceneManager.LoadScene("My Charactor");
     }
 }
