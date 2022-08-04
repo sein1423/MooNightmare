@@ -3,21 +3,20 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c84b370c07161d418509239739a9524, type: 3}
   m_Name: GSTU_Config
   m_EditorClassIdentifier: Assembly-CSharp:GoogleSheetsToUnity:GoogleSheetsToUnityConfig
-  CLIENT_ID: 23005380949-qp7qskf1ogifk48q2miakg3etr70uuc2.apps.googleusercontent.com
-  CLIENT_SECRET: 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
+  CLIENT_ID: 
+  CLIENT_SECRET: 
   ACCESS_TOKEN: 
   REFRESH_TOKEN: 1/kqepo9i9qIVDShLRC2c0kJgb-3DYKJevwVTF6LAfGGM
-  API_Key: 23005380949-kneg1jsod71ata51c2j7cf95cr463j8r.apps.googleusercontent.com
-  PORT: 8080
+  API_Key: 
+  PORT: 0
   gdr:
     access_token: 
     refresh_token: 

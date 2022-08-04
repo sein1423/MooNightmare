@@ -458,7 +458,6 @@ public class ItemManager : MonoBehaviour
         GameManager.Instance.user.carrot += (wavecount - 1) * 3;
         GameManager.Instance.user.MaxTime = (int)(((wavecount-1) * waveTime) + time);
         GameManager.Instance.user.monster = Enemy;
-        GameManager.Instance.user.lastGameTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         GameManager.Instance.user.LastGameDay = DateTime.Now.ToString("yyyy/MM/dd");
         GameManager.Instance.SaveData();
     }

@@ -8,6 +8,7 @@ using TMPro;
 public class MainMenuManager : MonoBehaviour
 {
     public GameObject Option;
+    #region 별 변수
     DateTime nowTime;
     int ChargeTime = 30;
     DateTime lastGameTime;
@@ -18,12 +19,14 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI timeText;
     [SerializeField]
+    GameObject ETCPanel;
+    #endregion
+
+    [SerializeField]
     TextMeshProUGUI UserText;
     
     [SerializeField]
     GameObject PopupPanel;
-    [SerializeField]
-    GameObject BigPanel;
     [SerializeField]
     GameObject SmallPanel;
     [SerializeField]
@@ -31,25 +34,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     GameObject ShopPanel;
     [SerializeField]
-    GameObject ETCPanel;
-    [SerializeField]
     GameObject ExitPanel;
     [SerializeField]
-    GameObject PlayerState;
-    [SerializeField]
     TextMeshProUGUI CarrotText;
-    [SerializeField]
-    Text WaveText;
-    [SerializeField]
-    Text MonsterText;
-    [SerializeField]
-    Text TimeText;
-    [SerializeField]
-    Text DayText;
-    [SerializeField]
-    Text StarTimeCountText;
-    [SerializeField]
-    TextMeshProUGUI UsernameText;
 
     static Stack<GameObject> PopupStack = new Stack<GameObject>();
     // Start is called before the first frame update
@@ -61,7 +48,6 @@ public class MainMenuManager : MonoBehaviour
         UserText.text = $"{GameManager.Instance.user.name}요원 접속완료";
         lastGameTime = DateTime.Parse(GameManager.Instance.user.lastGameTime);
         CarrotText.text = GameManager.Instance.user.carrot.ToString();
-        SetUserState();
     }
 
     // Update is called once per frame
@@ -102,6 +88,7 @@ public class MainMenuManager : MonoBehaviour
         GameManager.Instance.GoMyFriend();
     }
 
+    #region 별
     public void CountTime()
     {
         TimeSpan timeSpan = nowTime - lastGameTime;
@@ -164,7 +151,16 @@ public class MainMenuManager : MonoBehaviour
             }
         }
     }
-
+    public void GetStarPanel()
+    {
+        PopupPanel.SetActive(true);
+        PopupStack.Push(PopupPanel);
+        SmallPanel.SetActive(true);
+        PopupStack.Push(SmallPanel);
+        ETCPanel.SetActive(true);
+        PopupStack.Push(ETCPanel);
+    }
+    #endregion
     public void GetOption()
     {
         PopupPanel.SetActive(true);
@@ -175,15 +171,7 @@ public class MainMenuManager : MonoBehaviour
         PopupStack.Push(OptionPanel);
     }
 
-    public void GetStarPanel()
-    {
-        PopupPanel.SetActive(true);
-        PopupStack.Push(PopupPanel);
-        SmallPanel.SetActive(true);
-        PopupStack.Push(SmallPanel);
-        ETCPanel.SetActive(true);
-        PopupStack.Push(ETCPanel);
-    }
+    
 
     public void GetExit()
     {
@@ -202,12 +190,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void GetMyCharactor()
     {
-        PopupPanel.SetActive(true);
-        PopupStack.Push(PopupPanel);
-        BigPanel.SetActive(true);
-        PopupStack.Push(BigPanel);
-        PlayerState.SetActive(true);
-        PopupStack.Push(PlayerState);
+        GameManager.Instance.GoCharacter();
     }
 
     public void BreakPopUp()
@@ -218,14 +201,6 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    public void SetUserState()
-    {
-        WaveText.text = "Wave : " + GameManager.Instance.user.MaxWave.ToString();
-        MonsterText.text = GameManager.Instance.user.monster.ToString() + " 마리";
-        TimeText.text = GameManager.Instance.user.MaxTime.ToString() + " 초";
-        DayText.text = GameManager.Instance.user.LastGameDay.ToString();
-        UsernameText.text = GameManager.Instance.user.name;
-    }
 
     public void ExitGame()
     {

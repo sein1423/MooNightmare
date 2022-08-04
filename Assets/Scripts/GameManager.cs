@@ -154,4 +154,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Shop");
     }
+
+    public void GoCharacter()
+    {
+        SceneManager.LoadScene("MyCharacter");
+    }
 }
