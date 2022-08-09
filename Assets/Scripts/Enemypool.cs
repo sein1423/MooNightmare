@@ -7,9 +7,9 @@ public class Enemypool : MonoBehaviour
         public static Enemypool Instance;
 
         [SerializeField]
-        private GameObject poolingObjectPrefab;
+        private GameObject[] MonsterPrefab;
 
-        Queue<Enemy> poolingObjectQueue = new Queue<Enemy>();
+        Queue<Monster> poolingObjectQueue = new Queue<Monster>();
 
         private void Awake()
         {
@@ -25,35 +25,35 @@ public class Enemypool : MonoBehaviour
             }
         }
 
-        private Enemy CreateNewObject()
+        private Monster CreateNewObject()
         {
-            var newObj = Instantiate(poolingObjectPrefab).GetComponent<Enemy>();
+            var newObj = Instantiate(MonsterPrefab[Random.Range(0,4)]).GetComponent<Monster>();
             newObj.gameObject.SetActive(false);
             newObj.transform.SetParent(transform);
             return newObj;
         }
 
-        public static Enemy GetObject()
+        public static Monster GetObject()
         {
             if (Instance.poolingObjectQueue.Count > 0)
             {
                 var obj = Instance.poolingObjectQueue.Dequeue();
-            obj.health = 8 + (ItemManager.Instance.wavecount * 2);
-            obj.transform.SetParent(null);
+                obj.health = 8 + (ItemManager.Instance.wavecount * obj.GetComponent<Monster>().waveHealth);
+                obj.transform.SetParent(null);
                 obj.gameObject.SetActive(true);
                 return obj;
             }
             else
             {
                 var newObj = Instance.CreateNewObject();
-                newObj.health = 8 + (ItemManager.Instance.wavecount * 2);
+                newObj.health = 8 + (ItemManager.Instance.wavecount * newObj.GetComponent<Monster>().waveHealth);
                 newObj.gameObject.SetActive(true);
                 newObj.transform.SetParent(null);
                 return newObj;
             }
         }
 
-        public static void ReturnObject(Enemy obj)
+        public static void ReturnObject(Monster obj)
         {
             obj.gameObject.SetActive(false);
             obj.transform.SetParent(Instance.transform);
@@ -63,8 +63,8 @@ public class Enemypool : MonoBehaviour
 
         public void DropCarrot()
         {
-        Carrot carrot = Carrotpool.GetObject();
-        carrot.gameObject.transform.position = transform.position;
-        carrot.gameObject.SetActive(true);
+            Carrot carrot = Carrotpool.GetObject();
+            carrot.gameObject.transform.position = transform.position;
+            carrot.gameObject.SetActive(true);
         }
 }

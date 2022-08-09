@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7121597646606737727}
   - component: {fileID: 7121597646606737697}
-  - component: {fileID: 7121597646606737726}
   - component: {fileID: 5648766030132054848}
   - component: {fileID: 5691657672845146436}
+  - component: {fileID: 621761719}
   m_Layer: 9
   m_Name: Circle
   m_TagString: Enemy
@@ -85,21 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7121597646606737726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7121597646606737724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b96a09efbabcda84b9ecc96494b00b0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.05
-  player: {fileID: 0}
-  health: 0
 --- !u!61 &5648766030132054848
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147,3 +132,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &621761719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7121597646606737724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eabd5f73a32caac45939bf47b8184205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  waveHealth: 2
+  speed: 0.052
+  player: {fileID: 0}
+  health: 8
