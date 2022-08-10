@@ -12,6 +12,7 @@ public class Monster : MonoBehaviour
     public Transform player;
     public int health;
     public int carrot;
+    bool touch = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,8 +29,20 @@ public class Monster : MonoBehaviour
         {
             return;
         }
-        transform.position = Vector2.MoveTowards(transform.position, player.position, speed);
+        if (!touch)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed);
+        }
 
+        float h = (player.transform.position.x - gameObject.transform.position.x);
+        if (h > 0f)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else if(h < 0f)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
         if (ItemManager.Instance.isDead)
         {
             Enemypool.ReturnObject(this);
@@ -46,5 +59,18 @@ public class Monster : MonoBehaviour
             Enemypool.ReturnObject(this);
             ItemManager.Instance.AddCarrot(carrot);
         }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            touch=true;
+        }
+    }
+
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        touch=false;
     }
 }

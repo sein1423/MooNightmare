@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
-        else
+        else if(h < 0f)
         {
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
@@ -118,11 +118,27 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if (isDamage)
+        {
+            return;
+        }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            GetDamage();
+        }
+
+    }
+
     void GetDamage()
     {
+        isDamage = true;
+        DamageTime = 0f;
         ItemManager.Instance.playerhealth--;
         ItemManager.Instance.SetHeart();
-
+        
 
         if (ItemManager.Instance.playerhealth <= 0)
         {
