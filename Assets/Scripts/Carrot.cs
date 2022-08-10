@@ -26,7 +26,7 @@ public class Carrot : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            ItemManager.Instance.AddCarrot();
+            //ItemManager.Instance.AddCarrot();
             Carrotpool.ReturnObject(this);
         }
     }

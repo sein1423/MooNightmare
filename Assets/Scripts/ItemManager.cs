@@ -310,9 +310,9 @@ public class ItemManager : MonoBehaviour
 
     }
 
-    public void AddCarrot()
+    public void AddCarrot(int carrot)
     {
-        GetCarrot += wavecount;
+        GetCarrot += carrot;
         gameCarrotText.text = GetCarrot.ToString();
     }
 

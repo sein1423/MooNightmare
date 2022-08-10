@@ -61,10 +61,4 @@ public class Enemypool : MonoBehaviour
             ItemManager.Instance.Enemy++;
         }
 
-        public void DropCarrot()
-        {
-            Carrot carrot = Carrotpool.GetObject();
-            carrot.gameObject.transform.position = transform.position;
-            carrot.gameObject.SetActive(true);
-        }
 }

@@ -59,8 +59,8 @@ public class EnemySpawner : MonoBehaviour
         }
 
         var ene1 = Enemypool.GetObject();
-        ene1.transform.position = spawnPoint1.transform.position;
+        ene1.transform.position = Hole[Random.Range(0, 8)].transform.position;
         var ene2 = Enemypool.GetObject(); //Instantiate(enemy);
-        ene2.transform.position = spawnPoint2.transform.position;
+        ene2.transform.position = Hole[Random.Range(0, 8)].transform.position;
     }
 }

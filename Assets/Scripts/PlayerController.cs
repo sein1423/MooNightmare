@@ -70,6 +70,14 @@ public class PlayerController : MonoBehaviour
         Vector2 moveDirection = (Vector2.up * v) + (Vector2.right * h);
 
         rb.velocity = moveDirection * (speed + (speed * ItemManager.Instance.MoveSpeed));
+        if(h > 0f)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     public void Attack(Vector2 inputVector)

@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     int CriticalPercent;
     GameObject player;
     Transform arrow;
+    ParticleSystem ps;
 
     Vector2 dir;
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class Bullet : MonoBehaviour
         player = GameObject.Find("Player");
         arrow = player.GetComponent<PlayerController>().arrow.transform;
         rb = GetComponent<Rigidbody2D>();
+        ps = GetComponent<ParticleSystem>();
     }
 
 
@@ -59,6 +61,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            ps.Play();
             if(Random.Range(0,100) < (CriticalPercent + ItemManager.Instance.CriticalPercent))
             {
                 Bulletpool.ReturnObject(this);

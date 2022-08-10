@@ -11,7 +11,7 @@ public class Monster : MonoBehaviour
     [SerializeField, Range(0.001f, 1f)] protected float speed;
     public Transform player;
     public int health;
-
+    public int carrot;
 
     // Start is called before the first frame update
     void Start()
@@ -44,8 +44,7 @@ public class Monster : MonoBehaviour
         if (health < 1)
         {
             Enemypool.ReturnObject(this);
-            var carrot = Carrotpool.GetObject();
-            carrot.gameObject.transform.position = gameObject.transform.position;
+            ItemManager.Instance.AddCarrot(carrot);
         }
     }
 }
