@@ -24,7 +24,6 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -81,7 +80,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -94,6 +93,18 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -428,22 +439,6 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Basalt 32x32_4: -552592412
-      Basalt 32x32_13: 1349213948
-      Basalt 32x32_14: 653502281
-      Basalt 32x32_11: -941635760
-      Basalt 32x32_3: 441865903
-      Basalt 32x32_6: 6676970
-      Basalt 32x32_1: -226301970
-      Basalt 32x32_8: 123338790
-      Basalt 32x32_7: 806759840
-      Basalt 32x32_9: 231669189
-      Basalt 32x32_10: -1060473457
-      Basalt 32x32_5: 1512492148
-      Basalt 32x32_12: 1333584843
-      Basalt 32x32_0: 103096964
-      Basalt 32x32_2: -884412112
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
