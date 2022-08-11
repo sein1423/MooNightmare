@@ -39,6 +39,14 @@ public class MainMenuManager : MonoBehaviour
     TextMeshProUGUI CarrotText;
     [SerializeField]
     GameObject StarPanel;
+    [SerializeField]
+    GameObject CheatPanel;
+    [SerializeField]
+    Scrollbar all;
+    [SerializeField]
+    Scrollbar BGM;
+    [SerializeField]
+    Scrollbar effect;
 
     static Stack<GameObject> PopupStack = new Stack<GameObject>();
     // Start is called before the first frame update
@@ -50,6 +58,9 @@ public class MainMenuManager : MonoBehaviour
         UserText.text = $"{GameManager.Instance.user.name}요원 접속완료";
         lastGameTime = DateTime.Parse(GameManager.Instance.user.lastGameTime);
         CarrotText.text = GameManager.Instance.user.carrot.ToString();
+        all.value = GameManager.Instance.user.Volume;
+        BGM.value = GameManager.Instance.user.BGM;
+        effect.value = GameManager.Instance.user.effect;
     }
 
     // Update is called once per frame
@@ -207,5 +218,47 @@ public class MainMenuManager : MonoBehaviour
     public void ExitGame()
     {
         GameManager.Instance.GameQuit();
+    }
+
+    public void CheatStar()
+    {
+        GameManager.Instance.user.StarCount = 4;
+        GameManager.Instance.SaveData();
+        SetStar();
+    }
+
+    public void CheatCarrot()
+    {
+        GameManager.Instance.user.carrot += 100;
+        GameManager.Instance.SaveData();
+        CarrotText.text = GameManager.Instance.user.carrot.ToString();
+    }
+
+    public void OpenCheatMenu()
+    {
+        PopupPanel.SetActive(true);
+        PopupStack.Push(PopupPanel);
+        SmallPanel.SetActive(true);
+        PopupStack.Push(SmallPanel);
+        CheatPanel.SetActive(true);
+        PopupStack.Push(CheatPanel);
+    }
+
+
+ /*   public void SetVolume(Scrollbar sb)
+    {
+        GameManager.Instance.user.Volume = sb.value;
+        GameManager.Instance.SaveVolumeButton(sb.value);
+    }*/
+
+    public void SetBGM(Scrollbar sb)
+    {
+        GameManager.Instance.user.BGM = sb.value;
+        GameManager.Instance.SaveVolumeButton(sb.value);
+    }
+
+    public void Seteffect(Scrollbar sb)
+    {
+        GameManager.Instance.user.effect = sb.value;
     }
 }

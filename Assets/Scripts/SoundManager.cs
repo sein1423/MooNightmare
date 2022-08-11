@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,12 +41,7 @@ public class SoundManager : MonoBehaviour
         LoadValues();
     }
 
-    void LoadValues()
-    {
-        float volumeValue = PlayerPrefs.GetFloat("VolumeValue");
-        volumeSlider.value = volumeValue;
-        AudioListener.volume = volumeValue;
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -54,3 +49,4 @@ public class SoundManager : MonoBehaviour
         
     }
 }
+*/

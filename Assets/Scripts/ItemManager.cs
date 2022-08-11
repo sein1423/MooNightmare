@@ -72,6 +72,7 @@ public class Item
 }
 
 
+public enum MonsterType { Human, goblin, snowman }
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance;
@@ -122,13 +123,14 @@ public class ItemManager : MonoBehaviour
     public bool Lock = false;
 
     static Stack<GameObject> PopupStack = new Stack<GameObject>();
-
+    public MonsterType Type;
     private void Awake()
     {
         Instance = this;
         SetHeart();
         waveText.text = "Wave " + wavecount.ToString();
         gameCarrotText.text = GetCarrot.ToString();
+        Type = MonsterType.Human;
     }
 
 
@@ -257,6 +259,15 @@ public class ItemManager : MonoBehaviour
         SetHeart();
         time = 0f;
         isMenu = false;
+        switch (wavecount % 3)
+        {
+            case 0:
+                Type = MonsterType.snowman; break;
+            case 1:
+                Type = MonsterType.Human; break;
+            case 2:
+                Type = MonsterType.goblin; break;
+        }
     }
 
     public void Reroll()

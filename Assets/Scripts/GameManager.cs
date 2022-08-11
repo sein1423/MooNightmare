@@ -19,16 +19,22 @@ public class userData
     public string LastGameDay;
     public bool[] DreamGet = new bool[6];
     public bool[] DiaryGet = new bool[6];
+    public float Volume;
+    public float BGM;
+    public float effect;
 }
 
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
+    AudioSource AS;
     public bool userdataget = false;
     private const string jsonFilePath = "/UserData.json";
-    
+    [SerializeField] AudioClip Main;
+    [SerializeField] AudioClip Shop;
+    [SerializeField] AudioClip Game;
+
     
 
     private void Awake()
@@ -46,6 +52,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        AS = GetComponent<AudioSource>();
         LoadUserData();
         Debug.Log(Application.persistentDataPath + jsonFilePath);
         //user.carrot += 10000;
@@ -102,6 +109,9 @@ public class GameManager : MonoBehaviour
         user.MaxWave = 0;
         user.monster = 0;
         user.LastGameDay = DateTime.Now.ToString("yyyy/MM/dd");
+        user.Volume = 1;
+        user.BGM = 1;
+        user.effect = 1;
         for(int i = 0; i < user.DreamGet.Length; i++)
         {
             user.DreamGet[i] = false;
@@ -137,6 +147,7 @@ public class GameManager : MonoBehaviour
             string json = File.ReadAllText(Application.persistentDataPath + jsonFilePath);
             user = JsonUtility.FromJson<userData>(json);
             userdataget = true;
+            LoadValues();
         }
         
         
@@ -159,4 +170,50 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("My Charactor");
     }
+    void LoadValues()
+    {
+        AS.volume = user.Volume;
+    }
+
+    public void SaveVolumeButton(float value)
+    {
+        user.Volume = value;
+        LoadValues();
+        SaveData();
+    }
+    public void SaveListenerButton(float value)
+    {
+        user.Volume = value;
+        LoadValues();
+        SaveData();
+    }
+
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Game")
+        {
+            AS.clip = Game;
+        }
+        else if (scene.name == "Main")
+        {
+            AS.clip = Main;
+        }
+        else
+        {
+            AS.clip = Shop;
+        }
+        AS.Play();
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
 }

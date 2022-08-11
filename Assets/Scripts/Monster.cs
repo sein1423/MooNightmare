@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    public enum MonsterType {A,B,C,D}
     [SerializeField] public int waveHealth; 
     [SerializeField, Range(0.001f, 1f)] protected float speed;
     public Transform player;
     public int health;
     public int carrot;
     bool touch = false;
+    public MonsterType type;
 
     // Start is called before the first frame update
     void Start()
@@ -37,11 +37,11 @@ public class Monster : MonoBehaviour
         float h = (player.transform.position.x - gameObject.transform.position.x);
         if (h > 0f)
         {
-            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
         }
         else if(h < 0f)
         {
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
         }
         if (ItemManager.Instance.isDead)
         {
