@@ -200,9 +200,10 @@ public class FriendManager : MonoBehaviour
 
     public void UpdateDiary(int a)
     {
+        nowDiary = a;
         if (GameManager.Instance.user.DiaryGet[a])
         {
-            nowDiary = a;
+            
             string diaryEx = diary[a].diaryEx1.Replace("000", GameManager.Instance.user.name);
             DiaryImage.sprite = diary[a].diaryImage;
             DiaryTitle.text = "Á¦¸ñ : " + diary[a].diaryTitle;

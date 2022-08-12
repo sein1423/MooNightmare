@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         AS = GetComponent<AudioSource>();
+        AS.clip = Main;
+        AS.Play();
         LoadUserData();
         Debug.Log(Application.persistentDataPath + jsonFilePath);
         //user.carrot += 10000;
@@ -198,17 +200,20 @@ public class GameManager : MonoBehaviour
     {
         if (scene.name == "Game")
         {
-            AS.clip = Game;
-        }
-        else if (scene.name == "Main")
-        {
-            AS.clip = Main;
+            if (!(AS.clip == Game))
+            {
+                AS.clip = Game;
+                AS.Play();
+            }
         }
         else
         {
-            AS.clip = Shop;
+            if(!(AS.clip == Main))
+            {
+                AS.clip = Main;
+                AS.Play();
+            }
         }
-        AS.Play();
     }
 
     private void OnDisable()
