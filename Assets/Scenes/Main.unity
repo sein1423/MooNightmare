@@ -644,7 +644,11 @@ MonoBehaviour:
   ShopPanel: {fileID: 1293287943}
   ExitPanel: {fileID: 260317689}
   CarrotText: {fileID: 2053372707}
-  StarPanel: {fileID: 0}
+  StarPanel: {fileID: 368185424}
+  CheatPanel: {fileID: 1293287943}
+  all: {fileID: 991989370}
+  BGM: {fileID: 2091803542}
+  effect: {fileID: 1970773122}
 --- !u!4 &70077410
 Transform:
   m_ObjectHideFlags: 0
@@ -1016,6 +1020,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userdataget: 0
+  Main: {fileID: 0}
+  Shop: {fileID: 0}
+  Game: {fileID: 0}
   user:
     name: 
     carrot: 0
@@ -1027,6 +1034,9 @@ MonoBehaviour:
     LastGameDay: 
     DreamGet: 000000000000
     DiaryGet: 000000000000
+    Volume: 0
+    BGM: 0
+    effect: 0
 --- !u!4 &227421998
 Transform:
   m_ObjectHideFlags: 0
@@ -1322,7 +1332,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &326478055
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5365,7 +5375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1312736600
 RectTransform:
   m_ObjectHideFlags: 0
