@@ -288,7 +288,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userdataget: 0
-  StartC: {fileID: 8300000, guid: 098af00ec2715fe4cbc9de4c76a2a1e1, type: 3}
   Main: {fileID: 8300000, guid: 098af00ec2715fe4cbc9de4c76a2a1e1, type: 3}
   Shop: {fileID: 8300000, guid: 97594f3660afcb342bbe82de9fd7e7b2, type: 3}
   Game: {fileID: 8300000, guid: 1472623fd2467a349863de4a75485292, type: 3}
@@ -304,6 +303,8 @@ MonoBehaviour:
     DreamGet: 000000000000
     DiaryGet: 000000000000
     Volume: 0
+    BGM: 0
+    effect: 0
 --- !u!4 &526373837
 Transform:
   m_ObjectHideFlags: 0
@@ -328,11 +329,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: df857cb075b9a0246ad4eeae2f96e798, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 098af00ec2715fe4cbc9de4c76a2a1e1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

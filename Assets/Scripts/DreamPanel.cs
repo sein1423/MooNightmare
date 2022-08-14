@@ -51,11 +51,11 @@ public class DreamPanel : MonoBehaviour
     {
         if (GameManager.Instance.user.DreamGet[dream.dreamnum])
         {
-            button.transform.GetChild(0).GetComponent<Text>().text = "구입완료";
+            button.transform.GetChild(0).GetComponent<Text>().text = "구매완료";
         }
         else
         {
-            button.transform.GetChild(0).GetComponent<Text>().text = "구입";
+            button.transform.GetChild(0).GetComponent<Text>().text = "구매하기";
         }
 
     }
