@@ -19,7 +19,6 @@ public class userData
     public string LastGameDay;
     public bool[] DreamGet = new bool[6];
     public bool[] DiaryGet = new bool[6];
-    public float Volume;
     public float BGM;
     public float effect;
 }
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour
     public bool userdataget = false;
     private const string jsonFilePath = "/UserData.json";
     [SerializeField] AudioClip Main;
-    [SerializeField] AudioClip Shop;
     [SerializeField] AudioClip Game;
 
     
@@ -53,11 +51,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         AS = GetComponent<AudioSource>();
-        AS.clip = Main;
-        AS.Play();
         LoadUserData();
         Debug.Log(Application.persistentDataPath + jsonFilePath);
-        //user.carrot += 10000;
     }
 
     
@@ -111,7 +106,6 @@ public class GameManager : MonoBehaviour
         user.MaxWave = 0;
         user.monster = 0;
         user.LastGameDay = DateTime.Now.ToString("yyyy/MM/dd");
-        user.Volume = 1;
         user.BGM = 1;
         user.effect = 1;
         for(int i = 0; i < user.DreamGet.Length; i++)
@@ -122,28 +116,11 @@ public class GameManager : MonoBehaviour
 
         userState = JsonUtility.ToJson(user);
 
-
-        /*string path = Path.Combine(Application.persistentDataPath, jsonFilePath);
-        File.WriteAllText(path, userState);*/
-
         File.WriteAllText(Application.persistentDataPath + jsonFilePath, JsonUtility.ToJson(user));
     }
 
     public void LoadUserData()
     {
-        /*string path = Path.Combine(Application.persistentDataPath, jsonFilePath);
-        string jsonData = File.ReadAllText(path);
-
-        try
-        {
-            user = JsonUtility.FromJson<userData>(jsonData);
-            
-        }
-        catch (IOException)
-        {
-            return;
-        }*/
-
         if(File.Exists(Application.persistentDataPath + jsonFilePath))
         {
             string json = File.ReadAllText(Application.persistentDataPath + jsonFilePath);
@@ -151,15 +128,11 @@ public class GameManager : MonoBehaviour
             userdataget = true;
             LoadValues();
         }
-        
-        
     }
 
     public void SaveData()
     {
         userState = JsonUtility.ToJson(user);
-        /*string path = Path.Combine(Application.persistentDataPath, "Path/userData.Json");
-        File.WriteAllText(path, userState);*/
         File.WriteAllText(Application.persistentDataPath + jsonFilePath, JsonUtility.ToJson(user));
     }
 
@@ -174,18 +147,18 @@ public class GameManager : MonoBehaviour
     }
     void LoadValues()
     {
-        AS.volume = user.Volume;
+        AS.volume = user.BGM;
     }
 
     public void SaveVolumeButton(float value)
     {
-        user.Volume = value;
+        user.BGM = value;
         LoadValues();
         SaveData();
     }
     public void SaveListenerButton(float value)
     {
-        user.Volume = value;
+        user.effect = value;
         LoadValues();
         SaveData();
     }
@@ -206,7 +179,7 @@ public class GameManager : MonoBehaviour
                 AS.Play();
             }
         }
-        else
+        else if(scene.name == "Main")
         {
             if(!(AS.clip == Main))
             {

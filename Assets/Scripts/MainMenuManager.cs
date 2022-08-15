@@ -19,7 +19,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI timeText;
     [SerializeField]
-    GameObject ETCPanel;
+    GameObject StarPanel;
     #endregion
 
     [SerializeField]
@@ -38,11 +38,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI CarrotText;
     [SerializeField]
-    GameObject StarPanel;
-    [SerializeField]
     GameObject CheatPanel;
-    [SerializeField]
-    Scrollbar all;
     [SerializeField]
     Scrollbar BGM;
     [SerializeField]
@@ -58,7 +54,6 @@ public class MainMenuManager : MonoBehaviour
         UserText.text = $"{GameManager.Instance.user.name}요원 접속완료";
         lastGameTime = DateTime.Parse(GameManager.Instance.user.lastGameTime);
         CarrotText.text = GameManager.Instance.user.carrot.ToString();
-        all.value = GameManager.Instance.user.Volume;
         BGM.value = GameManager.Instance.user.BGM;
         effect.value = GameManager.Instance.user.effect;
     }
@@ -166,12 +161,8 @@ public class MainMenuManager : MonoBehaviour
     }
     public void GetStarPanel()
     {
-        PopupPanel.SetActive(true);
-        PopupStack.Push(PopupPanel);
-        SmallPanel.SetActive(true);
-        PopupStack.Push(SmallPanel);
-        ETCPanel.SetActive(true);
-        PopupStack.Push(ETCPanel);
+        StarPanel.SetActive(true);
+        PopupStack.Push(StarPanel);
     }
     #endregion
     public void GetOption()

@@ -33,12 +33,18 @@ public class FriendManager : MonoBehaviour
     GameObject[] Buttons;
 
     [SerializeField]
-    GameObject GiftPanel;
+    GameObject Gift1Panel;
+    [SerializeField]
+    GameObject Gift2Panel;
+    [SerializeField]
+    GameObject Gift3Panel;
 
     [SerializeField]
     Text giftText;
     [SerializeField]
     Text giftbarText;
+    [SerializeField]
+    Text DreamText;
     [SerializeField]
     Image GiftImage;
 
@@ -54,6 +60,7 @@ public class FriendManager : MonoBehaviour
 
     int nowDiary = 0;
     int GetDream = 0;
+    int num = 0;
     #region 별 변수
     DateTime nowTime;
     int ChargeTime = 30;
@@ -258,14 +265,33 @@ public class FriendManager : MonoBehaviour
 
     public void GetPanel(int a)
     {
-        GiftPanel.SetActive(true);
-        giftText.text = $"{diary[a].DreamName} 꿈을 선물했습니다.\n{diary[a].diaryTitle} 그림일기를 선물받았습니다.";
+        num = a;
+        Gift1Panel.SetActive(true);
+        giftText.text = $"{diary[num].DreamName} 꿈을 선물하시겠습니까?";
         
     }
+    //선물했습니다.\n{diary[a].diaryTitle} 그림일기를 선물받았습니다.
 
-    public void ExitPanel(GameObject go)
+    public void Canclediary()
     {
-        GiftPanel.SetActive(false);
+        Gift1Panel.SetActive(false);
+    }
+    public void GetNextPanel()
+    {
+        Gift1Panel.SetActive(false);
+        Gift2Panel.SetActive(true);
+    }
+
+    public void GetEndPanel()
+    {
+        Gift2Panel.SetActive(false);
+        Gift3Panel.SetActive(true);
+        DreamText.text = $"{diary[num].diaryTitle} 그림일기를\n 선물받았습니다..";
+    }
+
+    public void ExitPanel()
+    {
+        Gift3Panel.SetActive(false);
     }
 
     public void UpdateBar()

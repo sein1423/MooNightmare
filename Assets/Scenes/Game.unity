@@ -6056,6 +6056,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userdataget: 0
+  Main: {fileID: 0}
+  Game: {fileID: 0}
   user:
     name: 
     carrot: 0
@@ -6067,6 +6069,8 @@ MonoBehaviour:
     LastGameDay: 
     DreamGet: 000000000000
     DiaryGet: 000000000000
+    BGM: 0
+    effect: 0
 --- !u!4 &837924707
 Transform:
   m_ObjectHideFlags: 0
@@ -35486,6 +35490,7 @@ MonoBehaviour:
   CriticalPercent: 0
   AttackCount: 0
   Lock: 0
+  Type: 0
 --- !u!4 &1789374521
 Transform:
   m_ObjectHideFlags: 0
@@ -37895,10 +37900,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterPrefab:
-  - {fileID: 7121597646606737724, guid: 10e82462cd98f8343a267ccc03fa4fd4, type: 3}
-  - {fileID: 7121597646606737724, guid: 10e82462cd98f8343a267ccc03fa4fd4, type: 3}
-  - {fileID: 7121597646606737724, guid: 10e82462cd98f8343a267ccc03fa4fd4, type: 3}
-  - {fileID: 7121597646606737724, guid: 10e82462cd98f8343a267ccc03fa4fd4, type: 3}
+  - {fileID: 2430325351947484707, guid: 42a5bb568294ed44594b40a7800c9293, type: 3}
+  - {fileID: 2692362594227029327, guid: 2b14a79d3b01eee4da66f7c73e732ca9, type: 3}
+  - {fileID: 7104755350505840583, guid: 26bf4d59e2eb27e43851e4770c49c87b, type: 3}
 --- !u!4 &2129193445
 Transform:
   m_ObjectHideFlags: 0
