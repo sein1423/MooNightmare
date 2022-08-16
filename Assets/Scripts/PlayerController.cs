@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public GameObject arrow;
     [SerializeField, Range(1f, 10f)] float arrowSensitive;
     float attackCoolTime = 0.5f;
-
+    float blinktime = 0f;
     bool isDamage = false;
     float attackTime = 0f;
     float DamageTime = 0f;
@@ -31,9 +31,13 @@ public class PlayerController : MonoBehaviour
         if (isDamage)
         {
             DamageTime += Time.deltaTime;
-            if(DamageTime > DamageCoolTime)
+            blink();
+            if (DamageTime > DamageCoolTime)
             {
                 isDamage = false;
+                gameObject.GetComponent<BoxCollider2D>().enabled = true;
+
+                gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
             }
         }
 
@@ -135,14 +139,33 @@ public class PlayerController : MonoBehaviour
     void GetDamage()
     {
         isDamage = true;
-        DamageTime = 0f;
+        DamageTime = 0f; 
+        Handheld.Vibrate();
         ItemManager.Instance.playerhealth--;
         ItemManager.Instance.SetHeart();
-        
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
         if (ItemManager.Instance.playerhealth <= 0)
         {
             ItemManager.Instance.isDead = true;
         }
+    }
+
+    void blink()
+    {
+        if(blinktime < 0.2f)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1 - blinktime);
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, blinktime);
+            if(blinktime > 0.4f)
+            {
+                blinktime = 0;
+            }
+        }
+
+        blinktime += Time.deltaTime;
     }
 }
