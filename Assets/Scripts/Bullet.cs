@@ -12,7 +12,6 @@ public class Bullet : MonoBehaviour
     int CriticalPercent;
     GameObject player;
     Transform arrow;
-    ParticleSystem ps;
 
     Vector2 dir;
     // Start is called before the first frame update
@@ -21,7 +20,6 @@ public class Bullet : MonoBehaviour
         player = GameObject.Find("Player");
         arrow = player.GetComponent<PlayerController>().arrow.transform;
         rb = GetComponent<Rigidbody2D>();
-        ps = GetComponent<ParticleSystem>();
     }
 
 
@@ -55,13 +53,22 @@ public class Bullet : MonoBehaviour
     {
         this.dir = dir;
         GetSpeed();
+        LookAngle();
+    }
+
+    public void LookAngle()
+    {
+        Vector2 target = arrow.transform.position - player.transform.position;
+        float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
+        Quaternion angleAxis = Quaternion.AngleAxis(angle + 90f, Vector3.forward);
+        Quaternion rotation = Quaternion.Slerp(transform.rotation, angleAxis, 1f);
+        transform.rotation = rotation;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            ps.Play();
             if(Random.Range(0,100) < (CriticalPercent + ItemManager.Instance.CriticalPercent))
             {
                 Bulletpool.ReturnObject(this);

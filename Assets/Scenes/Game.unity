@@ -6391,7 +6391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &788196865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7719,7 +7719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &937770613
 Transform:
   m_ObjectHideFlags: 0
@@ -39572,7 +39572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9007005223879902585, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.34087408
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 9007005223879902585, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -39610,6 +39610,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902586, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9007005223879902588, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
       propertyPath: bossType
       value: 2
@@ -39622,13 +39626,17 @@ PrefabInstance:
       propertyPath: dusteffect
       value: 
       objectReference: {fileID: 2629699026152072687, guid: 4699a1e14476d5c46bd68ed9b60c6a25, type: 3}
+    - target: {fileID: 9007005223879902588, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: attack2cooltime
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 9007005223879902589, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
       propertyPath: m_Name
       value: "\uBBF8\uCE5C\uD1A0\uB07C"
       objectReference: {fileID: 0}
     - target: {fileID: 9007005223879902589, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}

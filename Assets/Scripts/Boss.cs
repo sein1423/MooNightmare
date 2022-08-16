@@ -10,9 +10,10 @@ public class Boss : MonoBehaviour
     [SerializeField] GameObject balleffect;
     [SerializeField] Vector2[] attacktransform;
     [SerializeField] Vector2[] balltransform;
+    [SerializeField, Range(0.005f, 0.5f)] float speed;
     float attack1time = 0;
     float attack2time = 0;
-
+    bool up = false;
 
     [SerializeField]float attack1cooltime;
     [SerializeField]float attack2cooltime;
@@ -21,6 +22,25 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (up)
+        {
+            gameObject.transform.Translate(Vector2.up * speed);
+        }
+        else
+        {
+            gameObject.transform.Translate(-Vector2.up * speed);
+        }
+
+        if(gameObject.transform.position.y > 3)
+        {
+            up = false;
+        }
+        if (gameObject.transform.position.y<-3)
+        {
+            up = true;
+        }
+
+
         switch (bossType)
         {
             case BossType.Boss1:
@@ -46,7 +66,7 @@ public class Boss : MonoBehaviour
         if(attack2time > attack2cooltime)
         {
             var attack = Instantiate(balleffect);
-            attack.transform.position = balltransform[Random.Range(0, attacktransform.Length)];
+            attack.transform.position = new Vector2(gameObject.transform.position.x,gameObject.transform.position.y - 0.01f)/*balltransform[Random.Range(0, attacktransform.Length)]*/;
             attack2time = 0f;
         }
     }
