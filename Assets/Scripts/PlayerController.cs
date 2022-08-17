@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         if (!canAttack)
         {
             attackTime += Time.deltaTime;
-            if (attackTime > (attackCoolTime - (attackCoolTime * ItemManager.Instance.AttackCoolTime)))
+            if (attackTime > (attackCoolTime - (attackCoolTime * (ItemManager.Instance.AttackCoolTime * 0.1f))))
             {
                 canAttack = true;
                 attackTime = 0f;
@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("BossAttack"))
         {
             GetDamage();
         }

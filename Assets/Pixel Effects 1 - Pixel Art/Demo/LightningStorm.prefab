@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -647853041694069091}
   m_Layer: 0
   m_Name: LightningStorm
-  m_TagString: Enemy
+  m_TagString: BossAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

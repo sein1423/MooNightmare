@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ItemPanel : MonoBehaviour
 {
-    [SerializeField] Image Icon;
+    [SerializeField] Sprite[] Icon;
     [SerializeField] Text ItemName;
     [SerializeField] Text effect;
     [SerializeField] Text costText;
@@ -22,9 +22,10 @@ public class ItemPanel : MonoBehaviour
         comText.SetActive(false);
         CostText.SetActive(true);
         gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = Icon[item.Icon];
+        gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         this.item = item;
         getItem = false;
-        print(item.Icon + ", " + item.name + ", " + item.type + ", " + item.num + ", " + item.unit + ", " + item.cost + ", " + item.percent);
 
         //Icon = item.Icon;
         ItemName.text = item.name;
@@ -46,6 +47,7 @@ public class ItemPanel : MonoBehaviour
             ItemManager.Instance.GetItem(item);
             getItem = true;
             gameObject.GetComponent<Image>().color = new Color32(144, 144, 144, 255);
+            gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color32(144, 144, 144, 255);
             comText.SetActive(true);
             CostText.SetActive(false);
         }

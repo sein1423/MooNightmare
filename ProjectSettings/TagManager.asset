@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Hole
   - Enemy
+  - Boss
+  - BossAttack
   layers:
   - Default
   - TransparentFX
@@ -42,4 +44,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: bullet
+    uniqueID: 152780585
     locked: 0

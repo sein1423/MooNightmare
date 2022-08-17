@@ -11,9 +11,11 @@ public class Boss : MonoBehaviour
     [SerializeField] Vector2[] attacktransform;
     [SerializeField] Vector2[] balltransform;
     [SerializeField, Range(0.005f, 0.5f)] float speed;
+    [SerializeField] float health;
     float attack1time = 0;
     float attack2time = 0;
     bool up = false;
+
 
     [SerializeField]float attack1cooltime;
     [SerializeField]float attack2cooltime;
@@ -69,5 +71,21 @@ public class Boss : MonoBehaviour
             attack.transform.position = new Vector2(gameObject.transform.position.x,gameObject.transform.position.y - 0.01f)/*balltransform[Random.Range(0, attacktransform.Length)]*/;
             attack2time = 0f;
         }
+    }
+
+    public void GetDamage(int Damage)
+    {
+        health -= Damage;
+
+        if (health < 1)
+        {
+            Invoke("next", 5f);
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void next()
+    {
+        ItemManager.Instance.NextStage();
     }
 }

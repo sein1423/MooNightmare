@@ -22,7 +22,7 @@ public enum ItemType
 }
 public class Item
 {
-    public Sprite Icon;
+    public int Icon;
     public string name;
     public ItemType type;
     public float num;
@@ -37,7 +37,7 @@ public class Item
         {
             case 0:
                 //this.Icon = str;
-                Icon = null;
+                Icon = int.Parse(str);
                 break;
             case 1:
                 this.name = str;
@@ -59,7 +59,6 @@ public class Item
                 break;
             case 7:
                 this.percent = float.Parse(str);
-                Debug.Log(this.percent);
                 break;
         }
     }
@@ -102,6 +101,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField] GameObject[] Heart;
     [SerializeField] GameObject LockButton;
     [SerializeField] GameObject ExitPanel;
+    [SerializeField] GameObject[] Stage;
     public int playerhealth = 5;
     public bool isDead = false;
     public bool isMenu = false;
@@ -123,6 +123,8 @@ public class ItemManager : MonoBehaviour
     public bool Lock = false;
     public int StageCount = 1;
 
+    public bool isBoss = false;
+
     static Stack<GameObject> PopupStack = new Stack<GameObject>();
     public MonsterType Type;
     private void Awake()
@@ -142,7 +144,6 @@ public class ItemManager : MonoBehaviour
 
         string data = www.downloadHandler.text;
         SetItemSO(data);
-        //print(data);
     }
 
     void SetItemSO(string tsv)
@@ -151,8 +152,6 @@ public class ItemManager : MonoBehaviour
         int rowSize = row.Length;
         //itemcount = rowSize;
         int columnSize = row[0].Split('\t').Length;
-        print(rowSize);
-        print(columnSize);
         for (int i = 0; i < rowSize; i++)
         {
             string[] column = row[i].Split('\t');
@@ -198,7 +197,7 @@ public class ItemManager : MonoBehaviour
 
     private void Update()
     {
-        if (ItemManager.Instance.isDead)
+        if (isDead && !GameOverPanel.activeSelf)
         {
             GameOver();
             return;
@@ -206,7 +205,7 @@ public class ItemManager : MonoBehaviour
 
         
 
-        if (!isMenu)
+        if (!isMenu && !isBoss && !isDead)
         {
             time += Time.deltaTime;
             timeText.text = (waveTime - time).ToString("F1");
@@ -260,7 +259,13 @@ public class ItemManager : MonoBehaviour
         SetHeart();
         time = 0f;
         isMenu = false;
-        switch (wavecount % 3)
+
+        if(wavecount % 6 == 0)
+        {
+            BossStage();
+        }
+
+        switch (StageCount)
         {
             case 0:
                 Type = MonsterType.TypeB; break;
@@ -280,21 +285,18 @@ public class ItemManager : MonoBehaviour
             item1 = PopItem();
         }
         itemp1.Setup(item1);
-        //print(item1.Icon + ", " + item1.name + ", " + item1.type + ", " + item1.num + ", " + item1.unit + ", " + item1.cost + ", " + item1.percent);
         Item item2 = PopItem(); 
         while (CriticalPercent >= 90 && item2.type == ItemType.CriticalPercent)
         {
             item2 = PopItem();
         }
         itemp2.Setup(item2);
-        //print(item2.Icon + ", " + item2.name + ", " + item2.type + ", " + item2.num + ", " + item2.unit + ", " + item2.cost + ", " + item2.percent);
         Item item3 = PopItem(); 
         while (CriticalPercent >= 90 && item3.type == ItemType.CriticalPercent)
         {
             item3 = PopItem();
         }
         itemp3.Setup(item3);
-        //print(item3.Icon + ", " + item3.name + ", " + item3.type + ", " + item3.num + ", " + item3.unit + ", " + item3.cost + ", " + item3.percent);
     }
 
     public void RerollButton()
@@ -493,5 +495,29 @@ public class ItemManager : MonoBehaviour
             Lock = true;
             LockButton.transform.GetChild(0).GetComponent<Text>().text = "잠금해제";
         }
+    }
+    public void BossStage()
+    {
+        Stage[StageCount - 1].SetActive(false);
+        StageCount++;
+        Stage[StageCount - 1].SetActive(true);
+        waveText.text = $"{StageCount / 2}-Boss";
+        GameObject Player = GameObject.Find("Player");
+        Player.transform.position = Vector3.zero;
+        isBoss = true;
+    }
+    public void NextStage()
+    {
+        if(StageCount >= 5)
+        {
+            GameOver();
+        }
+        isBoss = false;
+        wavecount = 1;
+        Stage[StageCount-1].SetActive(false);
+        StageCount++;
+        Stage[StageCount-1].SetActive(true);
+
+        waveText.text = $"{StageCount / 2 + 1} - {wavecount}";
     }
 }

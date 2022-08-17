@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 9007005223879902585}
   - component: {fileID: 9007005223879902586}
   - component: {fileID: 9007005223879902588}
+  - component: {fileID: 820251925}
   m_Layer: 0
   m_Name: "\uBBF8\uCE5C\uD1A0\uB07C"
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a3c4a6bed0a89b0448c6f7f6bd8759c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.08, y: 1.98}
@@ -97,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossType: 2
   dusteffect: {fileID: 7346847624060808981, guid: 6558de38b49873a47809f4e4ff737a24, type: 3}
-  balleffect: {fileID: 7278293868687999696, guid: a6bbb3d3e2099404299963aa627e02d2, type: 3}
+  balleffect: {fileID: 2725582664459735670, guid: 89e32d33ca639ea48b95f8cb09f3e7bd, type: 3}
   attacktransform:
   - {x: 7, y: 0}
   - {x: 5, y: 2}
@@ -108,12 +109,40 @@ MonoBehaviour:
   - {x: -7, y: 1}
   - {x: 3.6, y: -3}
   balltransform:
-  - {x: 10, y: 4.5}
-  - {x: 10, y: 3}
-  - {x: 10, y: 1.5}
-  - {x: 10, y: 0}
-  - {x: 10, y: -1.5}
-  - {x: 10, y: -3}
-  - {x: 10, y: -4.5}
+  - {x: -12, y: 4.5}
+  - {x: -12, y: 3}
+  - {x: -12, y: 1.5}
+  - {x: -12, y: 0}
+  - {x: -12, y: -1.5}
+  - {x: -12, y: -3}
+  - {x: -12, y: -4.5}
+  speed: 0.013
+  health: 5
   attack1cooltime: 5
   attack2cooltime: 3
+--- !u!61 &820251925
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9007005223879902589}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.08, y: 1.98}
+    newSize: {x: 1.08, y: 1.98}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.08, y: 1.98}
+  m_EdgeRadius: 0
