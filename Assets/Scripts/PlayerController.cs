@@ -88,12 +88,46 @@ public class PlayerController : MonoBehaviour
     {
         vec= (Vector2)gameObject.transform.position + (inputVector.normalized * arrowSensitive);
         arrow.transform.position = vec;
-
+        Bullet[] bullet = new Bullet[ItemManager.Instance.AttackCount];
         if (canAttack)
         {
-            var bullet = Bulletpool.GetObject();
-            bullet.transform.position = gameObject.transform.position;
-            bullet.GetComponent<Bullet>().SetDir(inputVector.normalized);
+            bullet[0] = Bulletpool.GetObject();
+            bullet[0].transform.position = gameObject.transform.position;
+            bullet[0].GetComponent<Bullet>().SetDir(inputVector.normalized);
+
+            for(int i = 1; i < ItemManager.Instance.AttackCount; i++)
+            {
+                if (i % 2 == 1)
+                {
+                    bullet[i] = Bulletpool.GetObject();
+                    if(Mathf.Abs(inputVector.normalized.y) >= 0.43 && Mathf.Abs(inputVector.normalized.y) <= 0.48)
+                    {
+                        bullet[i].transform.position = gameObject.transform.position + (Vector3.Cross(inputVector.normalized, new Vector3(inputVector.normalized.y,inputVector.normalized.x,0)) * (0.5f * (i / 2)));
+                    }
+                    else
+                    {
+                        bullet[i].transform.position = gameObject.transform.position + (new Vector3(inputVector.normalized.y, inputVector.normalized.x) * (0.5f * (i / 2)));
+                    }
+                    bullet[i].GetComponent<Bullet>().SetDir(inputVector.normalized);
+                }
+                else
+                {
+                    bullet[i] = Bulletpool.GetObject();
+
+                    if (Mathf.Abs(inputVector.normalized.y) >= 0.43 && Mathf.Abs(inputVector.normalized.y) <= 0.48)
+                    {
+                        bullet[i].transform.position = gameObject.transform.position + (Vector3.Cross(inputVector.normalized, new Vector3(inputVector.normalized.y, inputVector.normalized.x, 0)) * (0.5f * (i / 2)));
+                    }
+                    else
+                    {
+                        bullet[i].transform.position = gameObject.transform.position + (new Vector3(-inputVector.normalized.y, -inputVector.normalized.x) * (0.5f * (i / 2)));
+
+                    }
+                    bullet[i].GetComponent<Bullet>().SetDir(inputVector.normalized);
+                }
+            }
+
+
             canAttack = false;
         }
     }

@@ -13,6 +13,7 @@ public class Monster : MonoBehaviour
     public int carrot;
     bool touch = false;
     public MonsterType type;
+    bool dead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,19 +30,21 @@ public class Monster : MonoBehaviour
         {
             return;
         }
-        if (!touch)
+        
+        if (!touch && !dead)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed);
+            GetComponent<Animator>().SetBool("Walk", true);
         }
 
         float h = (player.transform.position.x - gameObject.transform.position.x);
         if (h > 0f)
         {
-            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
         else if(h < 0f)
         {
-            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
         if (ItemManager.Instance.isDead)
         {
@@ -56,8 +59,10 @@ public class Monster : MonoBehaviour
 
         if (health < 1)
         {
-            Enemypool.ReturnObject(this);
-            ItemManager.Instance.AddCarrot(carrot);
+            dead = true;
+            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<AudioSource>().Play();
+            GetComponent<Animator>().SetTrigger("Attack");
         }
     }
 
@@ -72,5 +77,11 @@ public class Monster : MonoBehaviour
     public void OnCollisionExit2D(Collision2D collision)
     {
         touch=false;
+    }
+
+    public void Dead()
+    {
+        Enemypool.ReturnObject(this);
+        ItemManager.Instance.AddCarrot(carrot);
     }
 }

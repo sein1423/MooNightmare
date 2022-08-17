@@ -72,7 +72,7 @@ public class Item
 }
 
 
-public enum MonsterType { Human, goblin, snowman }
+public enum MonsterType { TypeA,TypeB,TypeC,TypeD }
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance;
@@ -121,6 +121,7 @@ public class ItemManager : MonoBehaviour
     public float CriticalPercent= 0;
     public int AttackCount = 0;
     public bool Lock = false;
+    public int StageCount = 1;
 
     static Stack<GameObject> PopupStack = new Stack<GameObject>();
     public MonsterType Type;
@@ -130,7 +131,7 @@ public class ItemManager : MonoBehaviour
         SetHeart();
         waveText.text = "Wave " + wavecount.ToString();
         gameCarrotText.text = GetCarrot.ToString();
-        Type = MonsterType.Human;
+        Type = MonsterType.TypeA;
     }
 
 
@@ -262,11 +263,11 @@ public class ItemManager : MonoBehaviour
         switch (wavecount % 3)
         {
             case 0:
-                Type = MonsterType.snowman; break;
+                Type = MonsterType.TypeB; break;
             case 1:
-                Type = MonsterType.Human; break;
+                Type = MonsterType.TypeC; break;
             case 2:
-                Type = MonsterType.goblin; break;
+                Type = MonsterType.TypeD; break;
         }
     }
 

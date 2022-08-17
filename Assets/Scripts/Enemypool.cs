@@ -9,9 +9,10 @@ public class Enemypool : MonoBehaviour
         [SerializeField]
         private GameObject[] MonsterPrefab;
 
-        Queue<Monster> HumanQueue = new Queue<Monster>();
-        Queue<Monster> goblinQueue = new Queue<Monster>();
-        Queue<Monster> snowmanQueue = new Queue<Monster>();
+        Queue<Monster> TypeAQueue = new Queue<Monster>();
+        Queue<Monster> TypeBQueue = new Queue<Monster>();
+        Queue<Monster> TypeCQueue = new Queue<Monster>();
+        Queue<Monster> TypeDQueue = new Queue<Monster>();
 
     private void Awake()
         {
@@ -23,10 +24,11 @@ public class Enemypool : MonoBehaviour
         {
             for (int i = 0; i < initCount; i++)
             {
-                HumanQueue.Enqueue(CreateNewObject(0));
-                goblinQueue.Enqueue(CreateNewObject(1));
-                snowmanQueue.Enqueue(CreateNewObject(2));
-        }
+                TypeAQueue.Enqueue(CreateNewObject(3));
+                TypeBQueue.Enqueue(CreateNewObject(0));
+                TypeCQueue.Enqueue(CreateNewObject(1));
+                TypeDQueue.Enqueue(CreateNewObject(2));
+            }
         }
 
         private Monster CreateNewObject(int num)
@@ -39,11 +41,33 @@ public class Enemypool : MonoBehaviour
 
         public static Monster GetObject()
         {
-            if(ItemManager.Instance.Type == MonsterType.Human)
+            if(Random.Range(0,10) > 8)
             {
-                if (Instance.HumanQueue.Count > 0)
+            if (Instance.TypeAQueue.Count > 0)
+            {
+                var obj = Instance.TypeAQueue.Dequeue();
+                obj.health = 8 + (ItemManager.Instance.wavecount * obj.GetComponent<Monster>().waveHealth);
+                obj.transform.SetParent(null);
+                obj.gameObject.SetActive(true);
+                return obj;
+            }
+            else
+            {
+                var newObj = Instance.CreateNewObject(3);
+                newObj.health = 8 + (ItemManager.Instance.wavecount * newObj.GetComponent<Monster>().waveHealth);
+                newObj.gameObject.SetActive(true);
+                newObj.transform.SetParent(null);
+                return newObj;
+            }
+        }
+            else
+            {
+
+            if (ItemManager.Instance.Type == MonsterType.TypeB)
+            {
+                if (Instance.TypeBQueue.Count > 0)
                 {
-                    var obj = Instance.HumanQueue.Dequeue();
+                    var obj = Instance.TypeBQueue.Dequeue();
                     obj.health = 8 + (ItemManager.Instance.wavecount * obj.GetComponent<Monster>().waveHealth);
                     obj.transform.SetParent(null);
                     obj.gameObject.SetActive(true);
@@ -58,43 +82,44 @@ public class Enemypool : MonoBehaviour
                     return newObj;
                 }
             }
-            else if(ItemManager.Instance.Type == MonsterType.goblin)
-        {
-            if (Instance.goblinQueue.Count > 0)
+            else if (ItemManager.Instance.Type == MonsterType.TypeC)
             {
-                var obj = Instance.goblinQueue.Dequeue();
-                obj.health = 8 + (ItemManager.Instance.wavecount * obj.GetComponent<Monster>().waveHealth);
-                obj.transform.SetParent(null);
-                obj.gameObject.SetActive(true);
-                return obj;
-            }
-            else
-            {
-                var newObj = Instance.CreateNewObject(1);
-                newObj.health = 8 + (ItemManager.Instance.wavecount * newObj.GetComponent<Monster>().waveHealth);
-                newObj.gameObject.SetActive(true);
-                newObj.transform.SetParent(null);
-                return newObj;
-            }
+                if (Instance.TypeCQueue.Count > 0)
+                {
+                    var obj = Instance.TypeCQueue.Dequeue();
+                    obj.health = 8 + (ItemManager.Instance.wavecount * obj.GetComponent<Monster>().waveHealth);
+                    obj.transform.SetParent(null);
+                    obj.gameObject.SetActive(true);
+                    return obj;
+                }
+                else
+                {
+                    var newObj = Instance.CreateNewObject(1);
+                    newObj.health = 8 + (ItemManager.Instance.wavecount * newObj.GetComponent<Monster>().waveHealth);
+                    newObj.gameObject.SetActive(true);
+                    newObj.transform.SetParent(null);
+                    return newObj;
+                }
 
-        }
-        else
-        {
-            if (Instance.snowmanQueue.Count > 0)
-            {
-                var obj = Instance.snowmanQueue.Dequeue();
-                obj.health = 8 + (ItemManager.Instance.wavecount * obj.GetComponent<Monster>().waveHealth);
-                obj.transform.SetParent(null);
-                obj.gameObject.SetActive(true);
-                return obj;
             }
             else
             {
-                var newObj = Instance.CreateNewObject(2);
-                newObj.health = 8 + (ItemManager.Instance.wavecount * newObj.GetComponent<Monster>().waveHealth);
-                newObj.gameObject.SetActive(true);
-                newObj.transform.SetParent(null);
-                return newObj;
+                if (Instance.TypeDQueue.Count > 0)
+                {
+                    var obj = Instance.TypeDQueue.Dequeue();
+                    obj.health = 8 + (ItemManager.Instance.wavecount * obj.GetComponent<Monster>().waveHealth);
+                    obj.transform.SetParent(null);
+                    obj.gameObject.SetActive(true);
+                    return obj;
+                }
+                else
+                {
+                    var newObj = Instance.CreateNewObject(2);
+                    newObj.health = 8 + (ItemManager.Instance.wavecount * newObj.GetComponent<Monster>().waveHealth);
+                    newObj.gameObject.SetActive(true);
+                    newObj.transform.SetParent(null);
+                    return newObj;
+                }
             }
         }
             
