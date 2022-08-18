@@ -24,6 +24,11 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(ItemManager.Instance.isMenu || ItemManager.Instance.isDead)
+        {
+            return;
+        }
+
         if (up)
         {
             gameObject.transform.Translate(Vector2.up * speed);

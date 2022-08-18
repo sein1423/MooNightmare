@@ -163,6 +163,8 @@ public class MainMenuManager : MonoBehaviour
     {
         StarPanel.SetActive(true);
         PopupStack.Push(StarPanel);
+        StarPanel.GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
+        StarPanel.GetComponent<AudioSource>().Play();
     }
     #endregion
     public void GetOption()
@@ -234,13 +236,6 @@ public class MainMenuManager : MonoBehaviour
         CheatPanel.SetActive(true);
         PopupStack.Push(CheatPanel);
     }
-
-
- /*   public void SetVolume(Scrollbar sb)
-    {
-        GameManager.Instance.user.Volume = sb.value;
-        GameManager.Instance.SaveVolumeButton(sb.value);
-    }*/
 
     public void SetBGM(Scrollbar sb)
     {

@@ -117,6 +117,8 @@ public class ShopManager : MonoBehaviour
     public void GetStarPanel()
     {
         StarPanel.SetActive(true);
+        StarPanel.GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
+        StarPanel.GetComponent<AudioSource>().Play();
     }
 
     public void BreakStarPopup()

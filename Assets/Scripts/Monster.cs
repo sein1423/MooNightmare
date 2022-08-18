@@ -30,7 +30,12 @@ public class Monster : MonoBehaviour
         {
             return;
         }
-        
+
+        if (ItemManager.Instance.isBoss)
+        {
+            Enemypool.ReturnObject(this);
+        }
+
         if (!touch && !dead)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed);
@@ -61,6 +66,7 @@ public class Monster : MonoBehaviour
         {
             dead = true;
             GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
             GetComponent<AudioSource>().Play();
             GetComponent<Animator>().SetTrigger("Attack");
         }

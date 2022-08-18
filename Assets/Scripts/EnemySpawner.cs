@@ -37,27 +37,6 @@ public class EnemySpawner : MonoBehaviour
 
     void MakeEnemy()
     {
-        switch (ItemManager.Instance.wavecount % 4)
-        {
-            case 0:
-                spawnPoint1 = Hole[3];
-                spawnPoint2 = Hole[4];
-                break;
-            case 1:
-                spawnPoint1 = Hole[0];
-                spawnPoint2 = Hole[7];
-                break;
-            case 2:
-                spawnPoint1 = Hole[1];
-                spawnPoint2 = Hole[6];
-                break;
-            default:
-                spawnPoint1 = Hole[2];
-                spawnPoint2 = Hole[5];
-                break;
-
-        }
-
         var ene1 = Enemypool.GetObject();
         ene1.transform.position = Hole[Random.Range(0, 8)].transform.position;
         var ene2 = Enemypool.GetObject(); //Instantiate(enemy);

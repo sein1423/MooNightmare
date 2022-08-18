@@ -36,6 +36,8 @@ public class DreamPanel : MonoBehaviour
         SetButtonText();
         ShopManager.Instance.CarrotText.text = GameManager.Instance.user.carrot.ToString();
         GameManager.Instance.SaveData();
+        GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
+        GetComponent<AudioSource>().Play();
         Dreampp();
     }
 

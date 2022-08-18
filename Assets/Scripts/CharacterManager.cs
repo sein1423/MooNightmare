@@ -37,7 +37,9 @@ public class CharacterManager : MonoBehaviour
         lastGameTime = DateTime.Parse(GameManager.Instance.user.lastGameTime);
         CarrotText.text = GameManager.Instance.user.carrot.ToString();
         UsernameText.text = GameManager.Instance.user.name;
-        WaveText.text = "Wave " + GameManager.Instance.user.MaxWave.ToString();
+        string wavetext = (GameManager.Instance.user.MaxWave % 6) == 0 ? "Boss" : (GameManager.Instance.user.MaxWave % 6).ToString();
+        string wave = $"{((GameManager.Instance.user.MaxWave - 1) / 6) + 1}-{wavetext}";
+        WaveText.text = wave;
         MonsterText.text = GameManager.Instance.user.monster.ToString() + " ∏∂∏Æ";
         TimeText.text = GameManager.Instance.user.MaxTime.ToString() + " √ ";
     }
@@ -121,6 +123,8 @@ public class CharacterManager : MonoBehaviour
     public void GetStarPanel()
     {
         StarPanel.SetActive(true);
+        StarPanel.GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
+        StarPanel.GetComponent<AudioSource>().Play();
     }
 
     public void BreakStarPopup()

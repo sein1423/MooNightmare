@@ -164,6 +164,8 @@ public class FriendManager : MonoBehaviour
     public void GetStarPanel()
     {
         StarPanel.SetActive(true);
+        StarPanel.GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
+        StarPanel.GetComponent<AudioSource>().Play();
     }
 
     public void BreakStarPopup()
@@ -208,9 +210,12 @@ public class FriendManager : MonoBehaviour
     public void UpdateDiary(int a)
     {
         nowDiary = a;
+        if (DiaryPanel.activeSelf)
+        {
+            getsound();
+        }
         if (GameManager.Instance.user.DiaryGet[a])
         {
-            
             string diaryEx = diary[a].diaryEx1.Replace("000", GameManager.Instance.user.name);
             DiaryImage.sprite = diary[a].diaryImage;
             DiaryTitle.text = "Á¦¸ñ : " + diary[a].diaryTitle;
@@ -229,6 +234,11 @@ public class FriendManager : MonoBehaviour
         
     }
 
+    public void getsound()
+    {
+        GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
+        GetComponent<AudioSource>().Play();
+    }
     public void ButtonSet()
     {
         for(int i = 0; i < Buttons.Length; i++)
@@ -326,6 +336,8 @@ public class FriendManager : MonoBehaviour
     {
         if (GameManager.Instance.user.DiaryGet[nowDiary])
         {
+            GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
+            GetComponent<AudioSource>().Play();
             string diaryEx = diary[nowDiary].diaryEx2.Replace("000", GameManager.Instance.user.name);
             DiaryText.text = diaryEx;
         }
@@ -336,6 +348,8 @@ public class FriendManager : MonoBehaviour
     {
         if (GameManager.Instance.user.DiaryGet[nowDiary])
         {
+            GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
+            GetComponent<AudioSource>().Play();
             string diaryEx = diary[nowDiary].diaryEx1.Replace("000", GameManager.Instance.user.name);
             DiaryText.text = diaryEx;
         }

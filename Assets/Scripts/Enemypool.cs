@@ -41,7 +41,7 @@ public class Enemypool : MonoBehaviour
 
         public static Monster GetObject()
         {
-            if(Random.Range(0,10) > 8)
+            if(Random.Range(0,10) < 7)
             {
             if (Instance.TypeAQueue.Count > 0)
             {

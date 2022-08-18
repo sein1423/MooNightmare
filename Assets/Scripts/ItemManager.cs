@@ -122,8 +122,14 @@ public class ItemManager : MonoBehaviour
     public int AttackCount = 0;
     public bool Lock = false;
     public int StageCount = 1;
-
+    public int realStage = 1;
     public bool isBoss = false;
+    public float realtime = 0f;
+
+    [SerializeField]
+    Scrollbar BGM;
+    [SerializeField]
+    Scrollbar effect;
 
     static Stack<GameObject> PopupStack = new Stack<GameObject>();
     public MonsterType Type;
@@ -131,9 +137,11 @@ public class ItemManager : MonoBehaviour
     {
         Instance = this;
         SetHeart();
-        waveText.text = "Wave " + wavecount.ToString();
+        waveText.text = $"Wave {StageCount / 2 + 1}-{wavecount}";
         gameCarrotText.text = GetCarrot.ToString();
         Type = MonsterType.TypeA;
+        BGM.value = GameManager.Instance.user.BGM;
+        effect.value = GameManager.Instance.user.effect;
     }
 
 
@@ -205,11 +213,14 @@ public class ItemManager : MonoBehaviour
 
         
 
-        if (!isMenu && !isBoss && !isDead)
+        if (!isMenu && !isDead)
         {
-            time += Time.deltaTime;
-            timeText.text = (waveTime - time).ToString("F1");
-
+            if (!isBoss)
+            {
+                time += Time.deltaTime;
+                timeText.text = (waveTime - time).ToString("F1");
+            }
+            realtime += Time.deltaTime;
         }
 
         if(waveTime < time && !waveshop.activeSelf)
@@ -254,12 +265,12 @@ public class ItemManager : MonoBehaviour
         MoveLever.SetActive(true);
         AttackLever.SetActive(true);
         wavecount++;
-        waveText.text = "Wave " + wavecount.ToString();
+        waveText.text = $"Wave {StageCount / 2 + 1}-{wavecount}";
         gameCarrotText.text = GetCarrot.ToString(); 
         SetHeart();
         time = 0f;
         isMenu = false;
-
+        realStage++;
         if(wavecount % 6 == 0)
         {
             BossStage();
@@ -346,11 +357,12 @@ public class ItemManager : MonoBehaviour
         {
             GameOverPanel.SetActive(true);
             gameoverText.text = $"최고 기록 : {GameManager.Instance.user.MaxWave.ToString()}\n" +
-                $"현재 기록 : {wavecount}\n" +
-                $"획득한 빛나는 당근 : {((wavecount - 1) * 3).ToString()}\n" +
-                $"보유한 빛나는 당근 {GameManager.Instance.user.carrot.ToString()}\n " +
+                $"현재 기록 : {StageCount / 2 + 1}-{wavecount}\n" +
+                $"획득한 빛나는 당근 : {(realStage * 2 + realStage / 6 * (10 * realStage / 6)).ToString()}\n" +
+                $"보유한 빛나는 당근 {(GameManager.Instance.user.carrot + (realStage * 2 + realStage / 6 * (10 * realStage / 6))).ToString()}\n " +
                 $"처치한 적의 수 : {Enemy.ToString()}\n " +
-                $"생존한 시간 : {(((wavecount - 1) * waveTime) + time).ToString("F2")}";
+                $"생존한 시간 : {(Time.time).ToString("F2")}";
+            //$"생존한 시간 : {(((realStage - 1) * waveTime) + time).ToString("F2")}";
         }
     }
 
@@ -465,12 +477,12 @@ public class ItemManager : MonoBehaviour
 
     public void GameOverSave()
     {
-        if (GameManager.Instance.user.MaxWave < wavecount)
+        if (GameManager.Instance.user.MaxWave < realStage)
         {
-            GameManager.Instance.user.MaxWave = wavecount;
+            GameManager.Instance.user.MaxWave = realStage;
         }
-        GameManager.Instance.user.carrot += (wavecount - 1) * 3;
-        GameManager.Instance.user.MaxTime = (int)(((wavecount-1) * waveTime) + time);
+        GameManager.Instance.user.carrot += realStage * 2 + realStage/6*(10 * realStage/6);
+        GameManager.Instance.user.MaxTime = (int)realtime;
         GameManager.Instance.user.monster = Enemy;
         GameManager.Instance.user.LastGameDay = DateTime.Now.ToString("yyyy/MM/dd");
         GameManager.Instance.SaveData();
@@ -511,13 +523,27 @@ public class ItemManager : MonoBehaviour
         if(StageCount >= 5)
         {
             GameOver();
+            return;
         }
         isBoss = false;
         wavecount = 1;
         Stage[StageCount-1].SetActive(false);
         StageCount++;
         Stage[StageCount-1].SetActive(true);
+        realStage++;
 
         waveText.text = $"{StageCount / 2 + 1} - {wavecount}";
+    }
+
+
+    public void SetBGM(Scrollbar sb)
+    {
+        GameManager.Instance.user.BGM = sb.value;
+        GameManager.Instance.SaveVolumeButton(sb.value);
+    }
+
+    public void Seteffect(Scrollbar sb)
+    {
+        GameManager.Instance.user.effect = sb.value;
     }
 }

@@ -50,6 +50,8 @@ public class ItemPanel : MonoBehaviour
             gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color32(144, 144, 144, 255);
             comText.SetActive(true);
             CostText.SetActive(false);
+            GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
+            GetComponent<AudioSource>().Play();
         }
         else
         {
