@@ -8,7 +8,7 @@ public class Monster : MonoBehaviour
 {
     [SerializeField] public int waveHealth; 
     [SerializeField, Range(0.001f, 1f)] protected float speed;
-    public Transform player;
+    public GameObject player;
     public int health;
     public int carrot;
     bool touch = false;
@@ -18,7 +18,7 @@ public class Monster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Transform>();
+        player = GameObject.Find("Player");
     }
 
     
@@ -36,10 +36,21 @@ public class Monster : MonoBehaviour
             Enemypool.ReturnObject(this);
         }
 
+
+        if (player.GetComponent<PlayerController>().isDamage || dead)
+        {
+            gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        }
+        else
+        {
+            gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+        }
+
         if (!touch && !dead)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, speed);
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed);
             GetComponent<Animator>().SetBool("Walk", true);
+
         }
 
         float h = (player.transform.position.x - gameObject.transform.position.x);
@@ -82,7 +93,7 @@ public class Monster : MonoBehaviour
 
     public void OnCollisionExit2D(Collision2D collision)
     {
-        touch=false;
+        touch = false;
     }
 
     public void Dead()

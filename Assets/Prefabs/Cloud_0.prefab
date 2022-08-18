@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 458039708979857495}
   - component: {fileID: 458039708979857492}
   - component: {fileID: -699225899209295691}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cloud_0
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458039708979857493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2383533, y: -2.2802277, z: 0}
+  m_LocalPosition: {x: 2.2383533, y: -2.2802277, z: -1.08}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveHealth: 4
-  speed: 0.035
+  speed: 0.0525
   player: {fileID: 0}
   health: 6
   carrot: 1

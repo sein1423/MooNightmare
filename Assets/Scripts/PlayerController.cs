@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Range(1f, 10f)] float arrowSensitive;
     float attackCoolTime = 0.5f;
     float blinktime = 0f;
-    bool isDamage = false;
+    public bool isDamage = false;
     float attackTime = 0f;
     float DamageTime = 0f;
     [SerializeField]bool canAttack = true;
@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
             if (DamageTime > DamageCoolTime)
             {
                 isDamage = false;
-                gameObject.GetComponent<BoxCollider2D>().enabled = true;
 
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
             }
@@ -72,7 +71,7 @@ public class PlayerController : MonoBehaviour
         v = inputVector.y;
 
         Vector2 moveDirection = (Vector2.up * v) + (Vector2.right * h);
-
+        GetComponent<Animator>().SetTrigger("Move");
         rb.velocity = moveDirection * (speed + (speed * ItemManager.Instance.MoveSpeed));
         if(h > 0f)
         {
@@ -88,9 +87,9 @@ public class PlayerController : MonoBehaviour
     {
         vec= (Vector2)gameObject.transform.position + (inputVector.normalized * arrowSensitive);
         arrow.transform.position = vec;
-        Bullet[] bullet = new Bullet[ItemManager.Instance.AttackCount];
         if (canAttack)
         {
+            Bullet[] bullet = new Bullet[ItemManager.Instance.AttackCount];
             bullet[0] = Bulletpool.GetObject();
             bullet[0].transform.position = gameObject.transform.position;
             bullet[0].GetComponent<Bullet>().SetDir(inputVector.normalized);
@@ -106,7 +105,7 @@ public class PlayerController : MonoBehaviour
                     }
                     else
                     {
-                        bullet[i].transform.position = gameObject.transform.position + (new Vector3(inputVector.normalized.y, inputVector.normalized.x) * (0.5f * (i / 2)));
+                        bullet[i].transform.position = gameObject.transform.position + (new Vector3(inputVector.normalized.y, inputVector.normalized.x) * (0.5f * ((i + 1) / 2)));
                     }
                     bullet[i].GetComponent<Bullet>().SetDir(inputVector.normalized);
                 }
@@ -120,7 +119,7 @@ public class PlayerController : MonoBehaviour
                     }
                     else
                     {
-                        bullet[i].transform.position = gameObject.transform.position + (new Vector3(-inputVector.normalized.y, -inputVector.normalized.x) * (0.5f * (i / 2)));
+                        bullet[i].transform.position = gameObject.transform.position + (new Vector3(-inputVector.normalized.y, -inputVector.normalized.x) * (0.5f * ((i + 1) / 2)));
 
                     }
                     bullet[i].GetComponent<Bullet>().SetDir(inputVector.normalized);
@@ -177,7 +176,6 @@ public class PlayerController : MonoBehaviour
         Handheld.Vibrate();
         ItemManager.Instance.playerhealth--;
         ItemManager.Instance.SetHeart();
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
         if (ItemManager.Instance.playerhealth <= 0)
         {

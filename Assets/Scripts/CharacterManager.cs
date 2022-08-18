@@ -38,7 +38,7 @@ public class CharacterManager : MonoBehaviour
         CarrotText.text = GameManager.Instance.user.carrot.ToString();
         UsernameText.text = GameManager.Instance.user.name;
         string wavetext = (GameManager.Instance.user.MaxWave % 6) == 0 ? "Boss" : (GameManager.Instance.user.MaxWave % 6).ToString();
-        string wave = $"{((GameManager.Instance.user.MaxWave - 1) / 6) + 1}-{wavetext}";
+        string wave = GameManager.Instance.user.MaxTime == 0 ? "Wave 0": $"{((GameManager.Instance.user.MaxWave - 1) / 6) + 1 }- {wavetext}";
         WaveText.text = wave;
         MonsterText.text = GameManager.Instance.user.monster.ToString() + " ∏∂∏Æ";
         TimeText.text = GameManager.Instance.user.MaxTime.ToString() + " √ ";

@@ -84,6 +84,11 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Boss"))
         {
+            if (collision.gameObject.GetComponent<Boss>().dead)
+            {
+                return;
+            }
+
             if (Random.Range(0, 100) < (CriticalPercent + ItemManager.Instance.CriticalPercent))
             {
                 Bulletpool.ReturnObject(this);

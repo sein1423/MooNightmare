@@ -102,6 +102,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField] GameObject LockButton;
     [SerializeField] GameObject ExitPanel;
     [SerializeField] GameObject[] Stage;
+    [SerializeField] GameObject inGametutorial;
     public int playerhealth = 5;
     public bool isDead = false;
     public bool isMenu = false;
@@ -119,7 +120,7 @@ public class ItemManager : MonoBehaviour
     public float MoveSpeed = 0;
     public float CriticalDamage = 0;
     public float CriticalPercent= 0;
-    public int AttackCount = 0;
+    public int AttackCount = 1;
     public bool Lock = false;
     public int StageCount = 1;
     public int realStage = 1;
@@ -139,9 +140,15 @@ public class ItemManager : MonoBehaviour
         SetHeart();
         waveText.text = $"Wave {StageCount / 2 + 1}-{wavecount}";
         gameCarrotText.text = GetCarrot.ToString();
-        Type = MonsterType.TypeA;
+        Type = MonsterType.TypeB;
         BGM.value = GameManager.Instance.user.BGM;
         effect.value = GameManager.Instance.user.effect;
+
+        if(GameManager.Instance.user.MaxWave < 1)
+        {
+            inGametutorial.SetActive(true);
+            isMenu = true;
+        }
     }
 
 
@@ -276,7 +283,7 @@ public class ItemManager : MonoBehaviour
             BossStage();
         }
 
-        switch (StageCount)
+        switch (StageCount/2)
         {
             case 0:
                 Type = MonsterType.TypeB; break;
@@ -356,7 +363,8 @@ public class ItemManager : MonoBehaviour
         if (!GameOverPanel.activeSelf)
         {
             GameOverPanel.SetActive(true);
-            gameoverText.text = $"최고 기록 : {GameManager.Instance.user.MaxWave.ToString()}\n" +
+            string bestwave = (GameManager.Instance.user.MaxWave % 6) == 0 ? "Boss" : (GameManager.Instance.user.MaxWave % 6).ToString();
+            gameoverText.text = $"최고 기록 : {bestwave}\n" +
                 $"현재 기록 : {StageCount / 2 + 1}-{wavecount}\n" +
                 $"획득한 빛나는 당근 : {(realStage * 2 + realStage / 6 * (10 * realStage / 6)).ToString()}\n" +
                 $"보유한 빛나는 당근 {(GameManager.Instance.user.carrot + (realStage * 2 + realStage / 6 * (10 * realStage / 6))).ToString()}\n " +
@@ -545,5 +553,11 @@ public class ItemManager : MonoBehaviour
     public void Seteffect(Scrollbar sb)
     {
         GameManager.Instance.user.effect = sb.value;
+    }
+
+    public void BreakthisPanel(GameObject go)
+    {
+        go.SetActive(false);
+        isMenu = false;
     }
 }

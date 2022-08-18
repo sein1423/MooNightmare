@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
     {
         user = new userData();
         user.name = inputname;
-        user.carrot = 10000;
+        user.carrot = 0;
         user.lastGameTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         user.StarCount = 4;
         user.MaxTime = 0;

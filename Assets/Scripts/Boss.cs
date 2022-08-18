@@ -15,6 +15,7 @@ public class Boss : MonoBehaviour
     float attack1time = 0;
     float attack2time = 0;
     bool up = false;
+    public bool dead=false;
 
 
     [SerializeField]float attack1cooltime;
@@ -84,6 +85,7 @@ public class Boss : MonoBehaviour
 
         if (health < 1)
         {
+            dead = true;
             Invoke("next", 5f);
             gameObject.SetActive(false);
         }

@@ -24,10 +24,10 @@ public class Enemypool : MonoBehaviour
         {
             for (int i = 0; i < initCount; i++)
             {
-                TypeAQueue.Enqueue(CreateNewObject(3));
                 TypeBQueue.Enqueue(CreateNewObject(0));
                 TypeCQueue.Enqueue(CreateNewObject(1));
                 TypeDQueue.Enqueue(CreateNewObject(2));
+                TypeAQueue.Enqueue(CreateNewObject(3));
             }
         }
 
@@ -41,7 +41,7 @@ public class Enemypool : MonoBehaviour
 
         public static Monster GetObject()
         {
-            if(Random.Range(0,10) < 7)
+            if(Random.Range(0,10) > 7)
             {
             if (Instance.TypeAQueue.Count > 0)
             {

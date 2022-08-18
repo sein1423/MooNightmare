@@ -2564,7 +2564,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 764826339}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 70077409}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
+        m_MethodName: CheatCarrot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &764826339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4840,7 +4852,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1399175154}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 70077409}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
+        m_MethodName: CheatStar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1399175154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5763,7 +5787,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uBCC4 \uC0AC\uD0D5 \uCDA9\uC804"
+  m_Text: "\uBCC4\uC0AC\uD0D5\n\uCDA9\uC804"
 --- !u!222 &1580521581
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6898,7 +6922,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uBE14\uB9C1\uB2F9\uADFC \uD68D\uB4DD"
+  m_Text: "\uBE14\uB9C1\uB2F9\uADFC\n\uD68D\uB4DD"
 --- !u!222 &1920410472
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7840,6 +7864,10 @@ PrefabInstance:
     - target: {fileID: 3249859509732022989, guid: 04cdd7b3c0814a145a969b96777d2a7c, type: 3}
       propertyPath: m_Name
       value: StarPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249859509732022989, guid: 04cdd7b3c0814a145a969b96777d2a7c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3249859509732022990, guid: 04cdd7b3c0814a145a969b96777d2a7c, type: 3}
       propertyPath: m_Pivot.x
