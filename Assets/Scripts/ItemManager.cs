@@ -363,8 +363,9 @@ public class ItemManager : MonoBehaviour
         if (!GameOverPanel.activeSelf)
         {
             GameOverPanel.SetActive(true);
-            string bestwave = (GameManager.Instance.user.MaxWave % 6) == 0 ? "Boss" : (GameManager.Instance.user.MaxWave % 6).ToString();
-            gameoverText.text = $"최고 기록 : {bestwave}\n" +
+            string wavetext = (GameManager.Instance.user.MaxWave % 6) == 0 ? "Boss" : (GameManager.Instance.user.MaxWave % 6).ToString();
+            string wave = GameManager.Instance.user.MaxTime == 0 ? "X" : $"{((GameManager.Instance.user.MaxWave - 1) / 6) + 1 }- {wavetext}";
+            gameoverText.text = $"최고 기록 : {wave}\n" +
                 $"현재 기록 : {StageCount / 2 + 1}-{wavecount}\n" +
                 $"획득한 빛나는 당근 : {(realStage * 2 + realStage / 6 * (10 * realStage / 6)).ToString()}\n" +
                 $"보유한 빛나는 당근 {(GameManager.Instance.user.carrot + (realStage * 2 + realStage / 6 * (10 * realStage / 6))).ToString()}\n " +
