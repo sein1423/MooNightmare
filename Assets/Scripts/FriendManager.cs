@@ -265,10 +265,7 @@ public class FriendManager : MonoBehaviour
     {
         if (GameManager.Instance.user.DreamGet[a] && !GameManager.Instance.user.DiaryGet[a])
         {
-            GameManager.Instance.SaveData();
             GetPanel(a);
-            ButtonSet();
-            UpdateBar();
         }
     }
 
@@ -297,6 +294,9 @@ public class FriendManager : MonoBehaviour
         Gift3Panel.SetActive(true);
         DreamText.text = $"{diary[num].diaryTitle} 그림일기를\n 선물받았습니다..";
         GameManager.Instance.user.DiaryGet[num] = true;
+        ButtonSet();
+        UpdateBar();
+        GameManager.Instance.SaveData();
     }
 
     public void ExitPanel()

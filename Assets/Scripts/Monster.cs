@@ -14,6 +14,7 @@ public class Monster : MonoBehaviour
     bool touch = false;
     public MonsterType type;
     bool dead = false;
+    float time = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +51,16 @@ public class Monster : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed);
             GetComponent<Animator>().SetBool("Walk", true);
+        }
 
+        if (touch)
+        {
+            time += Time.deltaTime;
+            if(time > 3f)
+            {
+                touch = false;
+                time = 0f;
+            }
         }
 
         float h = (player.transform.position.x - gameObject.transform.position.x);
@@ -91,10 +101,6 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void OnCollisionExit2D(Collision2D collision)
-    {
-        touch = false;
-    }
 
     public void Dead()
     {

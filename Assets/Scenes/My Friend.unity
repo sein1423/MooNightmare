@@ -5419,7 +5419,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB2EC\uCF64\uD55C \uCD08\uCF5C\uB9BF \uB3D9\uC0B0"
+  m_Text: "\uB098\uC758 \uC18C\uC911\uD55C \uCE5C\uAD6C"
 --- !u!222 &811604273
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6706,7 +6706,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB098\uC758 \uC18C\uC911\uD55C \uCE5C\uAD6C"
+  m_Text: "\uC624\uB298\uB9CC\uD07C\uC740 \uB0B4\uAC00\n\uC601\uC6C5\uC774\uC57C!"
 --- !u!222 &1065453092
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8822,12 +8822,12 @@ MonoBehaviour:
   Diaryfeel: {fileID: 429901448}
   DiaryText: {fileID: 82552937}
   diary:
+  - {fileID: 11400000, guid: 36c00f01eeaa8da4faf824a787f522c2, type: 2}
   - {fileID: 11400000, guid: 6e15cd974d8720b48ba3ffc0d5bfca28, type: 2}
-  - {fileID: 11400000, guid: 0657497b6dbcf8c4c8030c5e9eaadd07, type: 2}
   - {fileID: 11400000, guid: 93a2c602cc6096c43b28e521eb6f24ff, type: 2}
   - {fileID: 11400000, guid: fa6e236fd06f9c94bbee43170c2bf47e, type: 2}
   - {fileID: 11400000, guid: cf73b715c96dba249848585d8ed8db2a, type: 2}
-  - {fileID: 11400000, guid: 36c00f01eeaa8da4faf824a787f522c2, type: 2}
+  - {fileID: 11400000, guid: 0657497b6dbcf8c4c8030c5e9eaadd07, type: 2}
   Buttons:
   - {fileID: 416592541}
   - {fileID: 2049062506}
@@ -9326,7 +9326,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC624\uB298\uB9CC\uD07C\uC740 \uB0B4\uAC00 \uC601\uC6C5\uC774\uC57C!"
+  m_Text: "\uB2EC\uCF64\uD55C \uCD08\uCF5C\uB9BF \uB3D9\uC0B0"
 --- !u!222 &1574159856
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10699,7 +10699,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110, y: -53.220947}
+  m_AnchoredPosition: {x: 110, y: -53.221}
   m_SizeDelta: {x: 242.7, y: 106.442}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1894867551

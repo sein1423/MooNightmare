@@ -122,7 +122,7 @@ public class ItemManager : MonoBehaviour
     public float CriticalPercent= 0;
     public int AttackCount = 1;
     public bool Lock = false;
-    public int StageCount = 1;
+    public int StageCount = 0;
     public int realStage = 1;
     public bool isBoss = false;
     public float realtime = 0f;
@@ -258,9 +258,11 @@ public class ItemManager : MonoBehaviour
         AttackLever.SetActive(false);
         UpdateStates();
         waveshop.SetActive(true);
-        showWaveText.text = $"Shop(Wave{wavecount})";
+        string wavetext = wavecount == 6 ? "Boss" : wavecount.ToString(); ;
+        showWaveText.text = $"Shop(Wave {StageCount / 2 + 1}-{wavetext})";
         showCarrotText.text = GetCarrot.ToString();
     }
+
 
     public void ExitShop()
     {
@@ -363,12 +365,13 @@ public class ItemManager : MonoBehaviour
         if (!GameOverPanel.activeSelf)
         {
             GameOverPanel.SetActive(true);
-            string wavetext = (GameManager.Instance.user.MaxWave % 6) == 0 ? "Boss" : (GameManager.Instance.user.MaxWave % 6).ToString();
+            string wavetext = ((GameManager.Instance.user.MaxWave - (GameManager.Instance.user.MaxWave / 6)) % 6) == 0 ? "Boss" : ((GameManager.Instance.user.MaxWave - (GameManager.Instance.user.MaxWave / 6 - 1)) % 6).ToString();
             string wave = GameManager.Instance.user.MaxTime == 0 ? "X" : $"{((GameManager.Instance.user.MaxWave - 1) / 6) + 1 }- {wavetext}";
-            gameoverText.text = $"최고 기록 : {wave}\n" +
-                $"현재 기록 : {StageCount / 2 + 1}-{wavecount}\n" +
+            string wavett = wavecount == 6 ? "Boss" : wavecount.ToString(); ;
+            gameoverText.text =/* $"최고 기록 : {wave}\n" +*/
+                $"현재 기록 : {StageCount / 2 + 1}-{wavett}\n" +
                 $"획득한 빛나는 당근 : {(realStage * 2 + realStage / 6 * (10 * realStage / 6)).ToString()}\n" +
-                $"보유한 빛나는 당근 {(GameManager.Instance.user.carrot + (realStage * 2 + realStage / 6 * (10 * realStage / 6))).ToString()}\n " +
+                $"보유한 빛나는 당근 : {(GameManager.Instance.user.carrot + (realStage * 2 + realStage / 6 * (10 * realStage / 6))).ToString()}\n " +
                 $"처치한 적의 수 : {Enemy.ToString()}\n " +
                 $"생존한 시간 : {(Time.time).ToString("F2")}";
             //$"생존한 시간 : {(((realStage - 1) * waveTime) + time).ToString("F2")}";
@@ -519,29 +522,30 @@ public class ItemManager : MonoBehaviour
     }
     public void BossStage()
     {
-        Stage[StageCount - 1].SetActive(false);
-        StageCount++;
-        Stage[StageCount - 1].SetActive(true);
-        waveText.text = $"{StageCount / 2}-Boss";
+        print(StageCount);
+        Stage[StageCount++].SetActive(false);
+        Stage[StageCount].SetActive(true);
+        waveText.text = $"{StageCount / 2 + 1}-Boss";
         GameObject Player = GameObject.Find("Player");
         Player.transform.position = Vector3.zero;
         isBoss = true;
     }
     public void NextStage()
     {
-        if(StageCount >= 5)
+        if (StageCount >= 5)
         {
             GameOver();
             return;
         }
+        GetItemShop();
+        waveText.text = $"{StageCount / 2 + 1} - {wavecount}";
         isBoss = false;
-        wavecount = 1;
-        Stage[StageCount-1].SetActive(false);
+        wavecount = 0;
+        Stage[StageCount].SetActive(false);
         StageCount++;
-        Stage[StageCount-1].SetActive(true);
+        Stage[StageCount].SetActive(true);
         realStage++;
 
-        waveText.text = $"{StageCount / 2 + 1} - {wavecount}";
     }
 
 
