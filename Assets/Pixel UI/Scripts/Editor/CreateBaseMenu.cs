@@ -6,10 +6,8 @@
  * Description:
  * Creates a menu for adding base Pixel UI essential prefabs to the scene.
  ******************************************************************************************/
-using UnityEngine;
 using UnityEditor;
-using System;
-using UnityEngine.EventSystems;
+using UnityEngine;
 
 namespace PixelsoftGames.PixelUI
 {

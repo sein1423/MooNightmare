@@ -252,8 +252,6 @@ public class ItemManager : MonoBehaviour
         Carrot.SetActive(false);
         HeartPanel1.SetActive(false);
         HeartPanel2.SetActive(false);
-        MoveLever.GetComponent<JoyStick>().DragEnd(); 
-        AttackLever.GetComponent<JoyStick>().DragEnd();
         MoveLever.SetActive(false);
         AttackLever.SetActive(false);
         UpdateStates();
@@ -369,12 +367,12 @@ public class ItemManager : MonoBehaviour
             string wave = GameManager.Instance.user.MaxTime == 0 ? "X" : $"{((GameManager.Instance.user.MaxWave - 1) / 6) + 1 }- {wavetext}";
             string wavett = wavecount == 6 ? "Boss" : wavecount.ToString(); ;
             gameoverText.text =/* $"ìµœê³  ê¸°ë¡ : {wave}\n" +*/
-                $"í˜„ì¬ ê¸°ë¡ : {StageCount / 2 + 1}-{wavett}\n" +
-                $"íšë“í•œ ë¹›ë‚˜ëŠ” ë‹¹ê·¼ : {(realStage * 2 + realStage / 6 * (10 * realStage / 6)).ToString()}\n" +
-                $"ë³´ìœ í•œ ë¹›ë‚˜ëŠ” ë‹¹ê·¼ : {(GameManager.Instance.user.carrot + (realStage * 2 + realStage / 6 * (10 * realStage / 6))).ToString()}\n " +
-                $"ì²˜ì¹˜í•œ ì ì˜ ìˆ˜ : {Enemy.ToString()}\n " +
-                $"ìƒì¡´í•œ ì‹œê°„ : {(Time.time).ToString("F2")}";
-            //$"ìƒì¡´í•œ ì‹œê°„ : {(((realStage - 1) * waveTime) + time).ToString("F2")}";
+                $"ÇöÀç ±â·Ï : {StageCount / 2 + 1}-{wavett}\n" +
+                $"È¹µæÇÑ ºí¸µ ´ç±Ù : {(realStage * 2 + realStage / 6 * (10 * realStage / 6)).ToString()}\n" +
+                $"º¸À¯ÇÑ ºí¸µ ´ç±Ù : {(GameManager.Instance.user.carrot + (realStage * 2 + realStage / 6 * (10 * realStage / 6))).ToString()}\n " +
+                $"Ã³Ä¡ÇÑ Àû : {Enemy.ToString()}\n " +
+                $"»ıÁ¸ÇÑ ½Ã°£ : {realtime.ToString("F2")}";
+            //$"?ì¡´???œê°„ : {(((realStage - 1) * waveTime) + time).ToString("F2")}";
         }
     }
 
@@ -511,13 +509,13 @@ public class ItemManager : MonoBehaviour
         {
             LockButton.GetComponent<Image>().color = new Color32(255,255,255, 255);
             Lock = false;
-            LockButton.transform.GetChild(0).GetComponent<Text>().text = "ì ê¸ˆ";
+            LockButton.transform.GetChild(0).GetComponent<Text>().text = "? ê¸ˆ";
         }
         else
         {
             LockButton.GetComponent<Image>().color = new Color32(114, 114, 114, 255);
             Lock = true;
-            LockButton.transform.GetChild(0).GetComponent<Text>().text = "ì ê¸ˆí•´ì œ";
+            LockButton.transform.GetChild(0).GetComponent<Text>().text = "? ê¸ˆ?´ì œ";
         }
     }
     public void BossStage()

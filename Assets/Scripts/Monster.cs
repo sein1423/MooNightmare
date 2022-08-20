@@ -19,7 +19,26 @@ public class Monster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player"); 
+        if (type == MonsterType.TypeD)
+        {
+            carrot = (ItemManager.Instance.StageCount / 2) + 1;
+            switch ((ItemManager.Instance.StageCount / 2) + 1)
+            {
+                case 1:
+                    //1스테이지 시작체력 설정
+                    //health = ;
+                    break;
+                case 2:
+                    //2스테이지 시작체력 설정
+                    //health = ;
+                    break;
+                case 3:
+                    //3스테이지 시작체력 설정
+                    //health = 86;
+                    break;
+            }
+        }
     }
 
     

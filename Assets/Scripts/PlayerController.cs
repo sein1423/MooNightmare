@@ -67,11 +67,27 @@ public class PlayerController : MonoBehaviour
 
     public void Move(Vector2 inputVector)
     {
+        if (ItemManager.Instance.isMenu)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
+        if(inputVector == Vector2.zero)
+        {
+            GetComponent<Animator>().SetBool("Move", false);
+            return;
+        }
+        else
+        {
+            GetComponent<Animator>().SetBool("Move", true);
+        }
+
+
         h = inputVector.x;
         v = inputVector.y;
 
         Vector2 moveDirection = (Vector2.up * v) + (Vector2.right * h);
-        GetComponent<Animator>().SetTrigger("Move");
         rb.velocity = moveDirection * (speed + (speed * ItemManager.Instance.MoveSpeed));
         if(h > 0f)
         {
@@ -85,6 +101,16 @@ public class PlayerController : MonoBehaviour
 
     public void Attack(Vector2 inputVector)
     {
+        if (ItemManager.Instance.isMenu)
+        {
+            return;
+        }
+        if (inputVector == Vector2.zero)
+        {
+            return;
+        }
+
+
         inputVector = inputVector.normalized;
 
         vec= (Vector2)gameObject.transform.position + (inputVector * arrowSensitive);
@@ -107,15 +133,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Skill1()
-    {
-        Debug.Log("��ų1�� ���");
-    }
-    
-    public void Skill2()
-    {
-        Debug.Log("��ų2�� ���");
-    }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {

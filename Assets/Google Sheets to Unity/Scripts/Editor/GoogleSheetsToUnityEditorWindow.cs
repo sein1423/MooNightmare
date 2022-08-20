@@ -67,7 +67,7 @@ namespace GoogleSheetsToUnity.Editor
 
         void OnGUI()
         {
-            tabID = GUILayout.Toolbar(tabID, new string[] {"Private", "Private (Legacy)", "Public"});
+            tabID = GUILayout.Toolbar(tabID, new string[] { "Private", "Private (Legacy)", "Public" });
 
             if (config == null)
             {
