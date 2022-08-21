@@ -146,10 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eabd5f73a32caac45939bf47b8184205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveHealth: 4
+  waveHealth: 5
   speed: 0.0325
   player: {fileID: 0}
-  health: 6
+  health: 15
   carrot: 1
   type: 1
 --- !u!95 &458039708979857492
