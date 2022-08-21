@@ -86,6 +86,7 @@ public class Boss : MonoBehaviour
         if (health < 1)
         {
             dead = true;
+            ItemManager.Instance.AddCarrot(((ItemManager.Instance.StageCount / 2) + 1) * 20);
             Invoke("next", 5f);
             gameObject.SetActive(false);
         }

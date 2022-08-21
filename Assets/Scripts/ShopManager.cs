@@ -11,6 +11,9 @@ public class ShopManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI CarrotText;
     [SerializeField] public GameObject Panel;
     [SerializeField] public Text DreamText;
+    [SerializeField, TextArea]
+    string[] line;
+    [SerializeField] TextMeshProUGUI textbox;
 
     private void Awake()
     {
@@ -36,6 +39,7 @@ public class ShopManager : MonoBehaviour
         SetStar();
         lastGameTime = DateTime.Parse(GameManager.Instance.user.lastGameTime);
         CarrotText.text = GameManager.Instance.user.carrot.ToString();
+        textbox.text = line[UnityEngine.Random.Range(0, line.Length)];
     }
 
     // Update is called once per frame

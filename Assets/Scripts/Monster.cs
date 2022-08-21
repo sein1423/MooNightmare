@@ -124,6 +124,6 @@ public class Monster : MonoBehaviour
     public void Dead()
     {
         Enemypool.ReturnObject(this);
-        ItemManager.Instance.AddCarrot(carrot);
+        ItemManager.Instance.AddCarrot((ItemManager.Instance.StageCount / 2) + 1);
     }
 }

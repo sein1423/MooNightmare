@@ -109,7 +109,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI waveText;
     [SerializeField] float waveTime = 30f;
     public int wavecount = 1;
-    float time = 0f;
+    public float time = 0f;
     public int GetCarrot = 0;
     public int Enemy = 0;
     //int ActiveSkill,

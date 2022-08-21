@@ -27,6 +27,25 @@ public class EnemySpawner : MonoBehaviour
         {
             return;
         }
+     
+        if(ItemManager.Instance.time >= 0f && ItemManager.Instance.time < 5f)
+        {
+            spawnTime = 1f;
+        }
+        else if(ItemManager.Instance.time >= 10f && ItemManager.Instance.time < 15f)
+        {
+            spawnTime = 0.5f;
+
+        }
+        else if (ItemManager.Instance.time >= 20f && ItemManager.Instance.time < 25f)
+        {
+            spawnTime = 2.5f;
+        }
+        else
+        {
+            spawnTime = 100f;
+        }
+
         time += Time.deltaTime;
         if(time > spawnTime)
         {

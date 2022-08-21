@@ -43,7 +43,9 @@ public class MainMenuManager : MonoBehaviour
     Scrollbar BGM;
     [SerializeField]
     Scrollbar effect;
-
+    [SerializeField, TextArea]
+    string[] line;
+    [SerializeField] TextMeshProUGUI textbox;
     static Stack<GameObject> PopupStack = new Stack<GameObject>();
     // Start is called before the first frame update
 
@@ -56,6 +58,7 @@ public class MainMenuManager : MonoBehaviour
         CarrotText.text = GameManager.Instance.user.carrot.ToString();
         BGM.value = GameManager.Instance.user.BGM;
         effect.value = GameManager.Instance.user.effect;
+        textbox.text = line[UnityEngine.Random.Range(0, line.Length)];
     }
 
     // Update is called once per frame

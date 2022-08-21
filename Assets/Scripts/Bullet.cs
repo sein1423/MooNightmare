@@ -71,14 +71,14 @@ public class Bullet : MonoBehaviour
         {
             if(Random.Range(0,100) < (CriticalPercent + ItemManager.Instance.CriticalPercent))
             {
-                Bulletpool.ReturnObject(this);
+                //Bulletpool.ReturnObject(this);
                 int Dam = Damage + (int)ItemManager.Instance.AttackPower;
                 int Cridam = (int)(Dam * (1.5f + ItemManager.Instance.CriticalDamage));
                 collision.gameObject.GetComponent<Monster>().GetDamage(Cridam);
             }
             else
             {
-                Bulletpool.ReturnObject(this);
+                //Bulletpool.ReturnObject(this);
                 collision.gameObject.GetComponent<Monster>().GetDamage(Damage + (int)ItemManager.Instance.AttackPower);
             }
         }
@@ -91,14 +91,14 @@ public class Bullet : MonoBehaviour
 
             if (Random.Range(0, 100) < (CriticalPercent + ItemManager.Instance.CriticalPercent))
             {
-                Bulletpool.ReturnObject(this);
+                //Bulletpool.ReturnObject(this);
                 int Dam = Damage + (int)ItemManager.Instance.AttackPower;
                 int Cridam = (int)(Dam * (1.5f + ItemManager.Instance.CriticalDamage));
                 collision.gameObject.GetComponent<Boss>().GetDamage(Cridam);
             }
             else
             {
-                Bulletpool.ReturnObject(this);
+                //Bulletpool.ReturnObject(this);
                 collision.gameObject.GetComponent<Boss>().GetDamage(Damage + (int)ItemManager.Instance.AttackPower);
             }
         }
