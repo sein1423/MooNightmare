@@ -149,7 +149,7 @@ MonoBehaviour:
   waveHealth: 20
   speed: 0.0125
   player: {fileID: 0}
-  health: 80
+  health: 130
   carrot: 2
   type: 2
 --- !u!95 &4805360004343946966

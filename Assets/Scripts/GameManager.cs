@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Intro");
+            SceneManager.LoadScene("Story");
         }
     }
 
@@ -179,6 +179,10 @@ public class GameManager : MonoBehaviour
                 AS.Play();
             }
         }
+        else if(scene.name == "Story" || scene.name == "Intro")
+        {
+            AS.Stop();
+        }
         else if(scene.name == "Main")
         {
             if(!(AS.clip == Main))
@@ -189,6 +193,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void GoStory()
+    {
+        SceneManager.LoadScene("Story");
+    }
+
+    public void GoIntro()
+    {
+        SceneManager.LoadScene("Intro");
+    }
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;

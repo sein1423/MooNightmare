@@ -27,15 +27,15 @@ public class Monster : MonoBehaviour
             {
                 case 1:
                     //1스테이지 시작체력 설정
-                    //health = ;
+                    health = 0;
                     break;
                 case 2:
                     //2스테이지 시작체력 설정
-                    //health = ;
+                    health = 40;
                     break;
                 case 3:
                     //3스테이지 시작체력 설정
-                    //health = 86;
+                    health = 140;
                     break;
             }
         }

@@ -67,7 +67,7 @@ public class Boss : MonoBehaviour
         if(attack1time > attack1cooltime)
         {
             var attack = Instantiate(dusteffect);
-            attack.transform.position = attacktransform[Random.Range(0, attacktransform.Length)];
+            attack.transform.position = GameObject.Find("Player").transform.position;
             attack1time = 0f;
         }
 

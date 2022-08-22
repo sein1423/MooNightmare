@@ -69,14 +69,13 @@ public class PlayerController : MonoBehaviour
     {
         if (ItemManager.Instance.isMenu)
         {
-            rb.velocity = Vector2.zero;
-            return;
+            Debug.Log(inputVector);
+            inputVector = Vector2.zero;
         }
 
         if(inputVector == Vector2.zero)
         {
             GetComponent<Animator>().SetBool("Move", false);
-            return;
         }
         else
         {
@@ -87,9 +86,13 @@ public class PlayerController : MonoBehaviour
         h = inputVector.x;
         v = inputVector.y;
 
+        Debug.Log($"{h},{v}");
+
         Vector2 moveDirection = (Vector2.up * v) + (Vector2.right * h);
         rb.velocity = moveDirection * (speed + (speed * ItemManager.Instance.MoveSpeed));
-        if(h > 0f)
+
+        Debug.Log(rb.velocity);
+        if (h > 0f)
         {
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }

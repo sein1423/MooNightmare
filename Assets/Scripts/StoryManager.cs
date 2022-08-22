@@ -70,8 +70,9 @@ public class StoryManager : MonoBehaviour
                 textbox[dialogNumber-1].SetActive(true); 
                 textobj = textbox[dialogNumber-1].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 Canvas.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 100 + (300 * dialogNumber - 1));
-                scroll.value = 0f;
+                
             }
+            scroll.value = 0f;
             char[] chars = dialogs[dialogNumber].ToCharArray();
             StartCoroutine(Typer(chars, textobj));
         }
@@ -122,6 +123,10 @@ public class StoryManager : MonoBehaviour
         {
             if (isTypingEnd)
             {
+                if(dialogNumber > 8)
+                {
+                    GameManager.Instance.GoIntro();
+                }
                 Typing(dialogsSave,num , tmpSave);
             }
             else

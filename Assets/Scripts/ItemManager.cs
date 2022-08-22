@@ -78,6 +78,7 @@ public class ItemManager : MonoBehaviour
     const string Link = "https://docs.google.com/spreadsheets/d/1rd4km6B1GyLqJWLXRQdl16TKyV95esAXdV5L-w5AaaM/export?format=tsv&range=B2:I";
 
     public List<Item> itemBuffer = new List<Item>();
+    [SerializeField] GameObject Player;
     [SerializeField] ItemPanel itemp1;
     [SerializeField] ItemPanel itemp2;
     [SerializeField] ItemPanel itemp3;
@@ -252,6 +253,8 @@ public class ItemManager : MonoBehaviour
         Carrot.SetActive(false);
         HeartPanel1.SetActive(false);
         HeartPanel2.SetActive(false);
+        Player.GetComponent<PlayerController>().Move(Vector2.zero);
+        Player.GetComponent<PlayerController>().Attack(Vector2.zero);
         MoveLever.SetActive(false);
         AttackLever.SetActive(false);
         UpdateStates();
@@ -509,13 +512,13 @@ public class ItemManager : MonoBehaviour
         {
             LockButton.GetComponent<Image>().color = new Color32(255,255,255, 255);
             Lock = false;
-            LockButton.transform.GetChild(0).GetComponent<Text>().text = "? ê¸ˆ";
+            LockButton.transform.GetChild(0).GetComponent<Text>().text = "Lock";
         }
         else
         {
             LockButton.GetComponent<Image>().color = new Color32(114, 114, 114, 255);
             Lock = true;
-            LockButton.transform.GetChild(0).GetComponent<Text>().text = "? ê¸ˆ?´ì œ";
+            LockButton.transform.GetChild(0).GetComponent<Text>().text = "UnLock";
         }
     }
     public void BossStage()

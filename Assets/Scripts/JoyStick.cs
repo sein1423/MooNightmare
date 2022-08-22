@@ -11,8 +11,8 @@ public enum eButtonState
     Up,
 }
 [AddComponentMenu("UI/Virtual/Stick")]
-public class JoyStick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
-        {
+public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+{
             [SerializeField]
             private UnityEvent<Vector2> onDragged;
             [SerializeField]
@@ -20,9 +20,7 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     public bool hold;
     public eButtonState State { get; set; }
-
-    public void OnPointerDown(PointerEventData eventData) => hold = true;
-    public void OnPointerUp(PointerEventData eventData) => hold = false;
+    
     private Image back;
             private Image stick;
 
@@ -96,8 +94,28 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
                     stick.rectTransform.anchoredPosition = stickPos.magnitude < backRadius ? stickPos : stickPos * (backRadius / stickPos.magnitude);
                 }
             }
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        hold = true;
+    }
 
-            private void InputcontrolVecter()
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        //Debug.Log("End");
+        transform.GetChild(0).gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        hold = false;
+        switch (joystickType)
+        {
+            case JoystichType.Move:
+                player.Move(Vector2.zero);
+                break;
+            case JoystichType.Attack:
+                player.Attack(Vector2.zero);
+                break;
+        }
+    }
+
+    private void InputcontrolVecter()
             {
                 switch (joystickType)
                 {
