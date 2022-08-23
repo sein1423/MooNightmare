@@ -19,8 +19,10 @@ public class userData
     public string LastGameDay;
     public bool[] DreamGet = new bool[6];
     public bool[] DiaryGet = new bool[6];
+    public bool[] BossLine = new bool[3];
     public float BGM;
     public float effect;
+    public Dictionary<string, bool> SceneTable = new Dictionary<string, bool>();
 }
 
 
@@ -33,7 +35,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip Main;
     [SerializeField] AudioClip Game;
 
-    
+
 
     private void Awake()
     {
@@ -98,7 +100,7 @@ public class GameManager : MonoBehaviour
     public void SetUserData(string inputname)
     {
         user = new userData();
-        user.name = inputname;
+        user.name = null;
         user.carrot = 0;
         user.lastGameTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         user.StarCount = 4;
@@ -113,6 +115,19 @@ public class GameManager : MonoBehaviour
             user.DreamGet[i] = false;
             user.DiaryGet[i] = false;
         }
+        for(int i = 0; i < user.BossLine.Length; i++)
+        {
+            user.BossLine[i] = false;
+        }
+        user.SceneTable.Add("GameStart",true);
+        user.SceneTable.Add("Story", false);
+        user.SceneTable.Add("Intro", false);
+        user.SceneTable.Add("Main", false);
+        user.SceneTable.Add("My Character", false);
+        user.SceneTable.Add("Shop", false);
+        user.SceneTable.Add("My Friend", false);
+        user.SceneTable.Add("Game", false);
+        user.SceneTable.Add("Ending story", false);
 
         userState = JsonUtility.ToJson(user);
 
@@ -138,7 +153,7 @@ public class GameManager : MonoBehaviour
 
     public void GoShop()
     {
-        SceneManager.LoadScene("Shop");
+            SceneManager.LoadScene("Shop");
     }
 
     public void GoCharacter()
@@ -207,4 +222,17 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    public void GoEnding()
+    {
+        SceneManager.LoadScene("Ending Story");
+    }
+
+    public void CloseTutorial()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        if (!user.SceneTable.ContainsKey(scene.name))
+        {
+            user.SceneTable[scene.name] = true;
+        }
+    }
 }

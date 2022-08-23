@@ -254,7 +254,9 @@ public class ItemManager : MonoBehaviour
         HeartPanel1.SetActive(false);
         HeartPanel2.SetActive(false);
         Player.GetComponent<PlayerController>().Move(Vector2.zero);
+        MoveLever.GetComponent<JoyStick>().SetLeverZeroPoint();
         Player.GetComponent<PlayerController>().Attack(Vector2.zero);
+        AttackLever.GetComponent<JoyStick>().SetLeverZeroPoint();
         MoveLever.SetActive(false);
         AttackLever.SetActive(false);
         UpdateStates();
@@ -530,6 +532,7 @@ public class ItemManager : MonoBehaviour
         GameObject Player = GameObject.Find("Player");
         Player.transform.position = Vector3.zero;
         isBoss = true;
+        timeText.gameObject.SetActive(false);
     }
     public void NextStage()
     {
@@ -546,6 +549,7 @@ public class ItemManager : MonoBehaviour
         StageCount++;
         Stage[StageCount].SetActive(true);
         realStage++;
+        timeText.gameObject.SetActive(true);
 
     }
 
@@ -565,5 +569,6 @@ public class ItemManager : MonoBehaviour
     {
         go.SetActive(false);
         isMenu = false;
+        GameManager.Instance.CloseTutorial();
     }
 }

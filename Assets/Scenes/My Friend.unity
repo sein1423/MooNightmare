@@ -7930,6 +7930,7 @@ MonoBehaviour:
     LastGameDay: 
     DreamGet: 000000000000
     DiaryGet: 000000000000
+    BossLine: 000000
     BGM: 0
     effect: 0
 --- !u!4 &1305385799

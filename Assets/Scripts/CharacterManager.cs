@@ -155,4 +155,15 @@ public class CharacterManager : MonoBehaviour
             GameManager.Instance.goToStage();
         }
     }
+
+    public void LookOpening()
+    {
+        GameManager.Instance.GoStory();
+
+    }
+
+    public void LookEnding()
+    {
+        GameManager.Instance.GoEnding();
+    }
 }

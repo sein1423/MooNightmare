@@ -102,17 +102,22 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnEndDrag(PointerEventData eventData)
     {
         //Debug.Log("End");
-        transform.GetChild(0).gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-        hold = false;
+        SetLeverZeroPoint();
         switch (joystickType)
         {
             case JoystichType.Move:
-                player.Move(Vector2.zero);
+                player.Move(inputVector);
                 break;
             case JoystichType.Attack:
-                player.Attack(Vector2.zero);
+                player.Attack(inputVector);
                 break;
         }
+    }
+
+    public void SetLeverZeroPoint()
+    {
+        hold = false;
+        transform.GetChild(0).gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
     }
 
     private void InputcontrolVecter()
