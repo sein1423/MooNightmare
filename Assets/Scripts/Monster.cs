@@ -1,43 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
+using TMPro;
+using UnityEngine.UI;
 
 public class Monster : MonoBehaviour
 {
     [SerializeField] public int waveHealth; 
     [SerializeField, Range(0.001f, 1f)] protected float speed;
     public GameObject player;
+    int MaxHealth;
+    public int maxH
+    {
+        get { return MaxHealth; }
+        set { MaxHealth = value; }
+    }
+
+    public int MH;
     public int health;
     public int carrot;
     bool touch = false;
     public MonsterType type;
     bool dead = false;
     float time = 0f;
+    GameObject Canvas;
+    [SerializeField]GameObject DamagePrefabs;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player"); 
+        player = GameObject.Find("Player");
+        Canvas = gameObject.transform.GetChild(0).gameObject;
         if (type == MonsterType.TypeD)
         {
-            carrot = (ItemManager.Instance.StageCount / 2) + 1;
-            switch ((ItemManager.Instance.StageCount / 2) + 1)
-            {
-                case 1:
-                    //1스테이지 시작체력 설정
-                    health = 0;
-                    break;
-                case 2:
-                    //2스테이지 시작체력 설정
-                    health = 40;
-                    break;
-                case 3:
-                    //3스테이지 시작체력 설정
-                    health = 140;
-                    break;
-            }
+            SetSlime();
         }
     }
 
@@ -98,11 +95,20 @@ public class Monster : MonoBehaviour
 
     }
 
-    public void GetDamage(int Damage)
+    public void GetDamage(int Damage, bool cri)
     {
-        health -= Damage;
-
-        if (health < 1)
+        Debug.Log($"{Damage} : {health + waveHealth * ItemManager.Instance.wavecount} : {MaxHealth}");
+        MaxHealth -= Damage;
+        Debug.Log($"{Damage} : {health} : {MaxHealth}");
+        var dmg = Instantiate(DamagePrefabs,gameObject.transform);
+        dmg.transform.SetParent(Canvas.transform);
+        if (cri)
+        {
+            dmg.GetComponent<TextMeshProUGUI>().color = new Color(255, 0, 0, 255);
+        }
+        Canvas.transform.GetChild(0).GetComponent<Image>().fillAmount = MaxHealth / (float)MH;
+        dmg.GetComponent<TextMeshProUGUI>().text = "-" + Damage.ToString();
+        if (MaxHealth < 1)
         {
             dead = true;
             GetComponent<BoxCollider2D>().enabled = false;
@@ -120,7 +126,26 @@ public class Monster : MonoBehaviour
         }
     }
 
+    public void SetSlime()
+    {
 
+        carrot = (ItemManager.Instance.StageCount / 2) + 1;
+        switch ((ItemManager.Instance.StageCount / 2) + 1)
+        {
+            case 1:
+                //1스테이지 시작체력 설정
+                health = 0;
+                break;
+            case 2:
+                //2스테이지 시작체력 설정
+                health = 140;
+                break;
+            case 3:
+                //3스테이지 시작체력 설정
+                health = 990;
+                break;
+        }
+    }
     public void Dead()
     {
         Enemypool.ReturnObject(this);

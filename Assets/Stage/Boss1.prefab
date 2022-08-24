@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 190659386}
   - component: {fileID: 190659387}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 437518784}
   - component: {fileID: 437518785}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 841933441}
   - component: {fileID: 841933442}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1295534010}
   - component: {fileID: 1295534011}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1356907503}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 7454050883487401466}
   - component: {fileID: 7454050883487401412}
   - component: {fileID: 7454050883487401467}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2184,7 +2184,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9529412, g: 0.8117647, b: 0.8117647, a: 1}
   m_Origin: {x: -18, y: 0, z: 0}
   m_Size: {x: 31, y: 33, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -2265,7 +2265,7 @@ GameObject:
   - component: {fileID: 7454050884394890919}
   - component: {fileID: 7454050884394890913}
   - component: {fileID: 7454050884394890912}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5814,7 +5814,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9529412, g: 0.8117647, b: 0.8117647, a: 1}
   m_Origin: {x: -17, y: 0, z: 0}
   m_Size: {x: 29, y: 32, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -5894,13 +5894,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7454050884540539177}
   - component: {fileID: 7454050884540539176}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Boss1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7454050884540539177
 Transform:
   m_ObjectHideFlags: 0
@@ -5915,6 +5915,7 @@ Transform:
   - {fileID: 7454050884394890919}
   - {fileID: 7454050883487401466}
   - {fileID: 1356907503}
+  - {fileID: 9007005225207554398}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5930,3 +5931,89 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!1001 &1374053415
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7454050884540539177}
+    m_Modifications:
+    - target: {fileID: 9007005223879902585, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902585, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902585, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902585, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902585, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902585, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902585, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902585, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902585, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902585, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902585, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902588, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: health
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902588, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: bossType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902588, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: dusteffect
+      value: 
+      objectReference: {fileID: 2690888176818912449, guid: b5a5bbeaccff32b4699924846f6ebfdc, type: 3}
+    - target: {fileID: 9007005223879902588, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: attack1cooltime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902588, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: attack2cooltime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902589, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: m_Name
+      value: "\uBBF8\uCE5C\uD1A0\uB07C (1)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007005223879902589, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+--- !u!4 &9007005225207554398 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9007005223879902585, guid: 2532d9fcf625a0542bef88869ead91d1, type: 3}
+  m_PrefabInstance: {fileID: 1374053415}
+  m_PrefabAsset: {fileID: 0}

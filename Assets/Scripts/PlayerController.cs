@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         if (!canAttack)
         {
             attackTime += Time.deltaTime;
-            if (attackTime > (attackCoolTime - (attackCoolTime * (ItemManager.Instance.AttackCoolTime * 0.1f))))
+            if (attackTime > (attackCoolTime - (attackCoolTime * (ItemManager.Instance.AttackCoolTime * 0.5f))))
             {
                 canAttack = true;
                 attackTime = 0f;
@@ -69,7 +69,6 @@ public class PlayerController : MonoBehaviour
     {
         if (ItemManager.Instance.isMenu)
         {
-            Debug.Log(inputVector);
             inputVector = Vector2.zero;
         }
 
@@ -86,12 +85,10 @@ public class PlayerController : MonoBehaviour
         h = inputVector.x;
         v = inputVector.y;
 
-        Debug.Log($"{h},{v}");
 
         Vector2 moveDirection = (Vector2.up * v) + (Vector2.right * h);
         rb.velocity = moveDirection * (speed + (speed * ItemManager.Instance.MoveSpeed));
 
-        Debug.Log(rb.velocity);
         if (h > 0f)
         {
             gameObject.GetComponent<SpriteRenderer>().flipX = false;

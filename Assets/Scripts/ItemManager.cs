@@ -104,6 +104,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField] GameObject ExitPanel;
     [SerializeField] GameObject[] Stage;
     [SerializeField] GameObject inGametutorial;
+    public bool isCloseShop = false;
     public int playerhealth = 5;
     public bool isDead = false;
     public bool isMenu = false;
@@ -248,7 +249,7 @@ public class ItemManager : MonoBehaviour
         {
             Reroll();
         }
-        
+        isCloseShop = false;
         TextObj.SetActive(false);
         Carrot.SetActive(false);
         HeartPanel1.SetActive(false);
@@ -269,6 +270,11 @@ public class ItemManager : MonoBehaviour
 
     public void ExitShop()
     {
+        if (isCloseShop)
+        {
+            return;
+        }
+        isCloseShop = true;
         waveshop.SetActive(false);
         TextObj.SetActive(true);
         Carrot.SetActive(true);
@@ -565,10 +571,13 @@ public class ItemManager : MonoBehaviour
         GameManager.Instance.user.effect = sb.value;
     }
 
-    public void BreakthisPanel(GameObject go)
+    public void BreakTutorial()
     {
-        go.SetActive(false);
+        Invoke("BreakthisPanel", 1f);
+    }
+    public void BreakthisPanel()
+    {
         isMenu = false;
-        GameManager.Instance.CloseTutorial();
+        inGametutorial.SetActive(false);
     }
 }

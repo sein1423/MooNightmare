@@ -256,9 +256,7 @@ public class FriendManager : MonoBehaviour
             {
                 Buttons[i].GetComponent<Image>().color = new Color32(114, 114, 114, 255);
             }
-
         }
-        
     }
 
     public void DreamGift(int a)

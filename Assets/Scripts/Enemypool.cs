@@ -46,7 +46,9 @@ public class Enemypool : MonoBehaviour
             if (Instance.TypeAQueue.Count > 0)
             {
                 var obj = Instance.TypeAQueue.Dequeue();
-                obj.health = 8 + (ItemManager.Instance.wavecount * obj.GetComponent<Monster>().waveHealth);
+                obj.SetSlime();
+                obj.maxH = obj.health + (ItemManager.Instance.wavecount * obj.waveHealth);
+                obj.MH = obj.maxH;
                 obj.transform.SetParent(null);
                 obj.gameObject.SetActive(true);
                 return obj;
@@ -54,7 +56,9 @@ public class Enemypool : MonoBehaviour
             else
             {
                 var newObj = Instance.CreateNewObject(3);
-                newObj.health = 8 + (ItemManager.Instance.wavecount * newObj.GetComponent<Monster>().waveHealth);
+                newObj.SetSlime();
+                newObj.maxH = newObj.health + (ItemManager.Instance.wavecount * newObj.waveHealth);
+                newObj.MH = newObj.maxH;
                 newObj.gameObject.SetActive(true);
                 newObj.transform.SetParent(null);
                 return newObj;
@@ -68,7 +72,8 @@ public class Enemypool : MonoBehaviour
                 if (Instance.TypeBQueue.Count > 0)
                 {
                     var obj = Instance.TypeBQueue.Dequeue();
-                    obj.health = 8 + (ItemManager.Instance.wavecount * obj.GetComponent<Monster>().waveHealth);
+                    obj.maxH = obj.health + (ItemManager.Instance.wavecount * obj.waveHealth);
+                    obj.MH = obj.maxH;
                     obj.transform.SetParent(null);
                     obj.gameObject.SetActive(true);
                     return obj;
@@ -76,7 +81,8 @@ public class Enemypool : MonoBehaviour
                 else
                 {
                     var newObj = Instance.CreateNewObject(0);
-                    newObj.health = 8 + (ItemManager.Instance.wavecount * newObj.GetComponent<Monster>().waveHealth);
+                    newObj.maxH = newObj.health + (ItemManager.Instance.wavecount * newObj.waveHealth);
+                    newObj.MH = newObj.maxH;
                     newObj.gameObject.SetActive(true);
                     newObj.transform.SetParent(null);
                     return newObj;
@@ -87,7 +93,8 @@ public class Enemypool : MonoBehaviour
                 if (Instance.TypeCQueue.Count > 0)
                 {
                     var obj = Instance.TypeCQueue.Dequeue();
-                    obj.health = 8 + (ItemManager.Instance.wavecount * obj.GetComponent<Monster>().waveHealth);
+                    obj.maxH = obj.health + (ItemManager.Instance.wavecount * obj.waveHealth);
+                    obj.MH = obj.maxH;
                     obj.transform.SetParent(null);
                     obj.gameObject.SetActive(true);
                     return obj;
@@ -95,7 +102,8 @@ public class Enemypool : MonoBehaviour
                 else
                 {
                     var newObj = Instance.CreateNewObject(1);
-                    newObj.health = 8 + (ItemManager.Instance.wavecount * newObj.GetComponent<Monster>().waveHealth);
+                    newObj.maxH = newObj.health + (ItemManager.Instance.wavecount * newObj.waveHealth);
+                    newObj.MH = newObj.maxH;
                     newObj.gameObject.SetActive(true);
                     newObj.transform.SetParent(null);
                     return newObj;
@@ -107,7 +115,8 @@ public class Enemypool : MonoBehaviour
                 if (Instance.TypeDQueue.Count > 0)
                 {
                     var obj = Instance.TypeDQueue.Dequeue();
-                    obj.health = 8 + (ItemManager.Instance.wavecount * obj.GetComponent<Monster>().waveHealth);
+                    obj.maxH = obj.health + (ItemManager.Instance.wavecount * obj.waveHealth);
+                    obj.MH = obj.maxH;
                     obj.transform.SetParent(null);
                     obj.gameObject.SetActive(true);
                     return obj;
@@ -115,7 +124,8 @@ public class Enemypool : MonoBehaviour
                 else
                 {
                     var newObj = Instance.CreateNewObject(2);
-                    newObj.health = 8 + (ItemManager.Instance.wavecount * newObj.GetComponent<Monster>().waveHealth);
+                    newObj.maxH = newObj.health + (ItemManager.Instance.wavecount * newObj.waveHealth);
+                    newObj.MH = newObj.maxH;
                     newObj.gameObject.SetActive(true);
                     newObj.transform.SetParent(null);
                     return newObj;
