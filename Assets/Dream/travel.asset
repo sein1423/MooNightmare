@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1467243d4d776c647be7b250805d7ed0, type: 3}
   m_Name: travel
   m_EditorClassIdentifier: 
-  dreamnum: 4
+  dreamnum: 0
   dreamImage: {fileID: 21300000, guid: b318a92a1c612dd4dad0d75da0bcd84d, type: 3}
   dreamTitle: "\uD558\uB298\uC744 \uB0A0\uC544\uAC00\uBCF4\uC790"
-  dreamEx: "\uBD84\uBA85\uD788 \uCC98\uC74C \uC640 \uBCF8 \uACF3\uC778\uB370, \n\uC65C
-    \uB0AE\uC124\uC9C0 \uC54A\uC740 \uAE30\uBD84\uC774 \uB4DC\uB294 \uAC78\uAE4C?"
-  cost: 250
+  dreamEx: "\uC9C0\uAE08\uC740 \uD798\uB4E4\uC9C0\uB9CC \uD2BC\uD2BC\uD574\uC9C0\uBA74
+    \uAF2D \uC5EC\uD589\uC744 \uAC08 \uAC70\uC57C"
+  cost: 300

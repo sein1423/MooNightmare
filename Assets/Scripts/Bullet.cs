@@ -94,12 +94,12 @@ public class Bullet : MonoBehaviour
                 //Bulletpool.ReturnObject(this);
                 int Dam = Damage + (int)ItemManager.Instance.AttackPower;
                 int Cridam = (int)(Dam * (1.5f + ItemManager.Instance.CriticalDamage));
-                collision.gameObject.GetComponent<Boss>().GetDamage(Cridam);
+                collision.gameObject.GetComponent<Boss>().GetDamage(Cridam,true);
             }
             else
             {
                 //Bulletpool.ReturnObject(this);
-                collision.gameObject.GetComponent<Boss>().GetDamage(Damage + (int)ItemManager.Instance.AttackPower);
+                collision.gameObject.GetComponent<Boss>().GetDamage(Damage + (int)ItemManager.Instance.AttackPower,false);
             }
         }
 

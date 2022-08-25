@@ -1,0 +1,104 @@
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LICENSE
+
+- You can use this asset in any game project, personal or commercial
+- DO NOT resell or redistribute AS A GAME ASSET, it has to be part of a project
+- Modify to suit your needs
+- You are NOT allowed to turn any of my assets to an NFT.
+- Credit not necessary but appreciated, if you do you can link to my ITCH profile
+ITCH.IO LINK: https://admurin.itch.io/
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ENEMY DETAILS
+
+Behre - Balk
+
+- 21 frames
+- 4 FX frames (shared between Behres) 
+- 4 animations (Death, Hit, Idle, Run)
+
+
+Behre - Grizzle
+
+- 21 frames
+- 4 FX frames (shared between Behres) 
+- 4 animations (Death, Hit, Idle, Run)
+
+
+Behre - Pande
+
+- 21 frames
+- 4 FX frames (shared between Behres) 
+- 4 animations (Death, Hit, Idle, Run)
+
+
+Behre - Pole
+
+- 21 frames
+- 4 FX frames (shared between Behres) 
+- 4 animations (Death, Hit, Idle, Run)
+
+
+Hopper - Kango
+
+- 19 frames
+- 6 FX frames (shared between Hoppers) 
+- 4 animations (Death, Hit, Idle, Run)
+
+
+Hopper - Rabbeet
+
+- 19 frames
+- 6 FX frames (shared between Hoppers) 
+- 4 animations (Death, Hit, Idle, Run)
+
+
+Titan - Dinio
+
+- 22 frames
+- 9 FX frames (shared between Titans) 
+- 4 animations (Death, Hit, Idle, Run)
+
+
+Titan - Elephantto
+
+- 22 frames
+- 9 FX frames (shared between Titans) 
+- 4 animations (Death, Hit, Idle, Run)
+
+
+Titan - Hispo
+
+- 22 frames
+- 9 FX frames (shared between Titans) 
+- 4 animations (Death, Hit, Idle, Run)
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+IDEAS
+
+- Behres and Hoppers are plushies so they should not be able to attack you, but they could deal damage when touhing you
+- Titans have more health
+- Maybe they can use magic.
+- They can be used as NPCs? or maybe you catch them in quests and they go into your inventory (check my item pack - there is an item for each plushy)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+If you have any other questions you can check my discord where I will answer and help you use my assets. 
+DISCORD LINK: https://discord.com/invite/jmf4pzv5Fj
+
+If you want to support me you can check out my Patreon. This allows me to focus on making more assets and releasing them for free assets!
+PATREON LINK: https://www.patreon.com/admurin
+
+
+Don't forget to leave a review and check my other assets!
+
+Thank you.
+Admurin

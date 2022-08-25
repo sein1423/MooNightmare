@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1467243d4d776c647be7b250805d7ed0, type: 3}
   m_Name: sea
   m_EditorClassIdentifier: 
-  dreamnum: 3
+  dreamnum: 4
   dreamImage: {fileID: 21300000, guid: 0626224530aaf0b4f9b124be4df9d44a, type: 3}
   dreamTitle: "\uAD6C\uB984 \uBC14\uB2E4 \uB3CC\uACE0\uB798 \uCE5C\uAD6C"
-  dreamEx: "\"\uAD6C\uB984\uBC14\uB2E4\uC5D0 \uC0AC\uB294 \uB3CC\uACE0\uB798\uB97C
-    \uCC3E\uC73C\uBA74,\n \uC88B\uC544\uD558\uB294 \uC0AC\uB78C\uC758 \uC18D\uB9C8\uC74C\uC744
-    \uC77D\uC744 \uC218 \n\uC788\uB294 \uAE30\uD68C\uAC00 \uC0DD\uAE34\uB2E4\uACE0
-    \uD55C\uB2E4.\"\t"
+  dreamEx: "\uBC14\uB2E4... \uAC00\uBCF8 \uC801\uC740 \uC5C6\uC9C0\uB9CC \uBD84\uBA85
+    \uBA4B\uC9C4 \uACF3\uC77C \uAC70\uC57C"
   cost: 200

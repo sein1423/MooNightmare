@@ -52,15 +52,16 @@ public class FriendManager : MonoBehaviour
     Toggle[] toggles;
 
     [SerializeField]
-    Sprite defaultFriend;
-    [SerializeField]
-    Sprite NextFriend;
+    Sprite[] baby;
     [SerializeField]
     Image FriendImage;
 
     int nowDiary = 0;
     int GetDream = 0;
     int num = 0;
+    float time = 0;
+    bool fadein = false;
+    float blinktime = 0f;
     #region 별 변수
     DateTime nowTime;
     int ChargeTime = 30;
@@ -97,6 +98,31 @@ public class FriendManager : MonoBehaviour
         {
             timeText.text = "";
         }
+
+        if (GetDream == 6)
+        {
+            blink();
+        }
+    }
+
+    void blink()
+    {
+        if (blinktime < 0.5f)
+        {
+            GiftImage.gameObject.transform.parent.GetComponent<Image>().color = new Color(0.92f, 0.90f, 0.51f, 1 - blinktime);
+            GiftImage.color = new Color(0.92f, 0.90f, 0.51f, 1 - blinktime);
+        }
+        else
+        {
+            GiftImage.gameObject.transform.parent.GetComponent<Image>().color = new Color(0.92f, 0.90f, 0.51f, blinktime);
+            GiftImage.color = new Color(0.92f, 0.90f, 0.51f, blinktime);
+            if (blinktime > 1.0f)
+            {
+                blinktime = 0;
+            }
+        }
+
+        blinktime += Time.deltaTime;
     }
     #region 별
     public void CountTime()
@@ -155,7 +181,7 @@ public class FriendManager : MonoBehaviour
     {
         for (int n = 0; n < GameManager.Instance.user.StarCount; n++)
         {
-            if (!stars[n].activeSelf)
+            if(!stars[n].activeSelf)
             {
                 stars[n].SetActive(true);
             }
@@ -315,13 +341,34 @@ public class FriendManager : MonoBehaviour
 
         giftbarText.text = (GetDream / (float)GameManager.Instance.user.DiaryGet.Length * 100f).ToString("F0") + "%";
         GiftImage.fillAmount = GetDream / (float)GameManager.Instance.user.DiaryGet.Length;
-        if(GiftImage.fillAmount < 0.1f)
+
+        switch (GetDream)
         {
-            FriendImage.sprite = defaultFriend;
-        }
-        else
-        {
-            FriendImage.sprite = NextFriend;
+            case 0:
+                FriendImage.sprite = baby[GetDream];
+                break;
+            case 1:
+                FriendImage.sprite = baby[GetDream];
+                break;
+            case 2:
+                FriendImage.sprite = baby[GetDream];
+                break;
+            case 3:
+                FriendImage.sprite = baby[GetDream];
+                break;
+            case 4:
+                FriendImage.sprite = baby[GetDream];
+                break;
+            case 5:
+                FriendImage.sprite = baby[GetDream];
+                break;
+            case 6:
+                FriendImage.sprite = baby[GetDream];
+                GiftImage.color = new Color(255, 255, 0, 255);
+                giftbarText.text = "엔딩 보기";
+                giftbarText.gameObject.AddComponent<Button>().onClick.AddListener(delegate { LookEnding(); });
+
+                break;
         }
     }
 
@@ -364,5 +411,15 @@ public class FriendManager : MonoBehaviour
         {
             GameManager.Instance.goToStage();
         }
+    }
+
+    public void LookEnding()
+    {
+        StarPanel.SetActive(true);
+    }
+
+    public void BreakThisPanel(GameObject go)
+    {
+        go.SetActive(false);
     }
 }

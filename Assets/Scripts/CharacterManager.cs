@@ -164,6 +164,12 @@ public class CharacterManager : MonoBehaviour
 
     public void LookEnding()
     {
-        GameManager.Instance.GoEnding();
+        StarPanel.SetActive(true);
+    }
+
+    public void breakThisPanel(GameObject go)
+    {
+
+        go.SetActive(false);
     }
 }

@@ -12,7 +12,7 @@ public class IntroManager : MonoBehaviour
     [SerializeField] GameObject NamePanel;
     [SerializeField] GameObject text;
     [SerializeField] GameObject SkipButton;
-
+    AudioSource AS;
     [Header("Timess for each character")]
     public float timeForCharacter;
 
@@ -41,7 +41,7 @@ public class IntroManager : MonoBehaviour
         }
         timer = timeForCharacter;
         characterTime = timeForCharacter;
-
+        AS = GetComponent<AudioSource>();
         NamePanel.SetActive(false);
     }
     // Start is called before the first frame update
@@ -90,6 +90,7 @@ public class IntroManager : MonoBehaviour
         int currentChar = 0;
         int charLength = chars.Length;
         isTypingEnd = false;
+        AS.Play();
 
         while (currentChar < charLength)
         {
@@ -108,6 +109,7 @@ public class IntroManager : MonoBehaviour
         if (currentChar >= charLength)
         {
             isTypingEnd = true;
+            AS.Stop();
             dialogNumber++;
             yield break;
         }

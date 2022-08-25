@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Range(1f, 10f)] float arrowSensitive;
     float attackCoolTime = 0.5f;
     float blinktime = 0f;
+    AudioSource AS;
     public bool isDamage = false;
     float attackTime = 0f;
     float DamageTime = 0f;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         rb = GetComponent<Rigidbody2D>();
+        AS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -128,7 +130,8 @@ public class PlayerController : MonoBehaviour
                 bullet[i].transform.position = gameObject.transform.position + pos * delta;
                 bullet[i].GetComponent<Bullet>().SetDir(inputVector);
             }
-
+            AS.volume = GameManager.Instance.user.effect;
+            AS.Play();
             canAttack = false;
         }
     }

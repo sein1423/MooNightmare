@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Boss : MonoBehaviour
 {
@@ -12,16 +14,25 @@ public class Boss : MonoBehaviour
     [SerializeField] Vector2[] balltransform;
     [SerializeField, Range(0.005f, 0.5f)] float speed;
     [SerializeField] float health;
+    float MaxHealth;
+    [SerializeField] GameObject DamagePrefabs;
+    Animator ani;
     float attack1time = 0;
     float attack2time = 0;
     bool up = false;
     public bool dead=false;
+    GameObject Canvas;
 
 
     [SerializeField]float attack1cooltime;
     [SerializeField]float attack2cooltime;
 
-
+    private void Start()
+    {
+        ani = GetComponent<Animator>();
+        Canvas = gameObject.transform.GetChild(0).gameObject;
+        MaxHealth = health;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -32,10 +43,12 @@ public class Boss : MonoBehaviour
 
         if (up)
         {
+            ani.SetBool("Run",true);
             gameObject.transform.Translate(Vector2.up * speed);
         }
         else
         {
+            ani.SetBool("Run", true);
             gameObject.transform.Translate(-Vector2.up * speed);
         }
 
@@ -79,17 +92,35 @@ public class Boss : MonoBehaviour
         }
     }
 
-    public void GetDamage(int Damage)
+    public void GetDamage(int Damage , bool cri)
     {
+        if (dead)
+        {
+            return;
+        }
         health -= Damage;
+        Debug.Log($"{Damage} : {health} : {MaxHealth}");
+        var dmg = Instantiate(DamagePrefabs, gameObject.transform);
+        dmg.transform.SetParent(Canvas.transform);
+        if (cri)
+        {
+            dmg.GetComponent<TextMeshProUGUI>().color = new Color(255, 0, 0, 255);
+        }
+        Canvas.transform.GetChild(0).GetComponent<Image>().fillAmount = health / MaxHealth;
+        dmg.GetComponent<TextMeshProUGUI>().text = "-" + Damage.ToString();
 
         if (health < 1)
         {
             dead = true;
-            ItemManager.Instance.AddCarrot(((ItemManager.Instance.StageCount / 2) + 1) * 20);
+            ani.SetTrigger("Death");
             Invoke("next", 5f);
-            gameObject.SetActive(false);
         }
+    }
+
+    public void Death()
+    {
+        ItemManager.Instance.AddCarrot(((ItemManager.Instance.StageCount / 2) + 1) * 50);
+        gameObject.SetActive(false);
     }
 
     public void next()
