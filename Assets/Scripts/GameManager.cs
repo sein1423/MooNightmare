@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
     public void SetUserData(string inputname)
     {
         user = new userData();
-        user.name = null;
+        user.name = inputname;
         user.carrot = 0;
         user.lastGameTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         user.StarCount = 4;

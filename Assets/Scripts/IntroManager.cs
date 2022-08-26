@@ -125,7 +125,7 @@ public class IntroManager : MonoBehaviour
                 ClickCount++;
                 if(ClickCount == 6)
                 {
-                    if(GameManager.Instance.user.name == null)
+                    if(GameManager.Instance.user.name == "")
                     {
                         isTypingEnd = false;
                         GetNickName();

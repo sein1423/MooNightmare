@@ -72,7 +72,6 @@ public class StoryManager : MonoBehaviour
                 Canvas.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 100 + (300 * dialogNumber - 1));
                 
             }
-            scroll.value = 0f;
             char[] chars = dialogs[dialogNumber].ToCharArray();
             StartCoroutine(Typer(chars, textobj));
         }
@@ -103,6 +102,7 @@ public class StoryManager : MonoBehaviour
             }
             else
             {
+                scroll.value = 0f;
                 textObj.text += chars[currentChar].ToString();
                 currentChar++;
                 timer = characterTime;

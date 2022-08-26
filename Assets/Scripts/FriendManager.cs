@@ -365,9 +365,9 @@ public class FriendManager : MonoBehaviour
             case 6:
                 FriendImage.sprite = baby[GetDream];
                 GiftImage.color = new Color(255, 255, 0, 255);
+                GiftImage.gameObject.AddComponent<Button>().onClick.AddListener(delegate { LookEnding(); });
                 giftbarText.text = "엔딩 보기";
                 giftbarText.gameObject.AddComponent<Button>().onClick.AddListener(delegate { LookEnding(); });
-
                 break;
         }
     }
