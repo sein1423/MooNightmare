@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc73c150e2d8dd943ad0ae119f76e35d, type: 3}
   m_Name: Land
   m_EditorClassIdentifier: 
-  diaryImage: {fileID: 21300000, guid: a5f1f5071f871b44191749a5c96e32a4, type: 3}
+  diaryImage: {fileID: 21300000, guid: 7be4f8f92ee8b22489e331cca7e4c945, type: 3}
   diaryTitle: "\uB180\uC774\uACF5\uC6D0"
   DreamName: "\uB180\uC774\uACF5\uC6D0"
   weather: "\uB0A0\uC528"

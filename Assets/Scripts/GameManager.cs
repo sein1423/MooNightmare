@@ -22,6 +22,7 @@ public class userData
     public bool[] BossLine = new bool[3];
     public float BGM;
     public float effect;
+    public bool UsedCoupon;
     public Dictionary<string, bool> SceneTable = new Dictionary<string, bool>();
 }
 
@@ -109,6 +110,7 @@ public class GameManager : MonoBehaviour
         user.monster = 0;
         user.LastGameDay = DateTime.Now.ToString("yyyy/MM/dd");
         user.BGM = 1;
+        user.UsedCoupon = false;
         user.effect = 1;
         for(int i = 0; i < user.DreamGet.Length; i++)
         {

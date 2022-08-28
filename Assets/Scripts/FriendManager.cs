@@ -272,7 +272,7 @@ public class FriendManager : MonoBehaviour
             if (GameManager.Instance.user.DiaryGet[i])
             {
                 Buttons[i].gameObject.transform.GetChild(0).GetComponent<Text>().text = "선물완료";
-                Buttons[i].GetComponent<Image>().color = new Color32(0, 0, 255, 255);
+                Buttons[i].GetComponent<Image>().color = new Color32(255, 230, 153, 255);
             }
             else if (GameManager.Instance.user.DreamGet[i])
             {
@@ -415,7 +415,7 @@ public class FriendManager : MonoBehaviour
 
     public void LookEnding()
     {
-        StarPanel.SetActive(true);
+        GameManager.Instance.GoEnding();
     }
 
     public void BreakThisPanel(GameObject go)

@@ -143,4 +143,9 @@ public class StoryManager : MonoBehaviour
             characterTime = timeForCharacter;
         }
     }
+
+    public void Skip()
+    {
+        GameManager.Instance.GoIntro();
+    }
 }

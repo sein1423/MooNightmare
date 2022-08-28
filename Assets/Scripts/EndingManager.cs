@@ -44,6 +44,8 @@ public class EndingManager : MonoBehaviour
         //AS = GetComponent<AudioSource>();
         textObj.text = "";
         Typing(dialogStrings, num, textObj);
+        NameBar.SetActive(false);
+        CharacterImage.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -62,18 +64,28 @@ public class EndingManager : MonoBehaviour
 
     public void Typing(string[] dialogs, int[] num, TextMeshProUGUI textobj)
     {
+        dialogs[dialogNumber] = dialogs[dialogNumber].Replace("00", "≈‰≤§¿Ã"/*GameManager.Instance.user.name*/);
         isDialogEnd = false;
         dialogsSave = dialogs;
         tmpSave = textobj;
         if (dialogNumber < dialogs.Length)
         {
+            if (num[dialogNumber] == 2)
+            {
+                NameBar.SetActive(false);
+                CharacterImage.gameObject.SetActive(false);
+            }
             if(num[dialogNumber] == 1)
             {
-                NameBar.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameManager.Instance.user.name;
+                NameBar.SetActive(true);
+                CharacterImage.gameObject.SetActive(true);
+                NameBar.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "≈‰≥¢";//GameManager.Instance.user.name;
                 CharacterImage.sprite = RabbitSprite;
             }
             else
             {
+                NameBar.SetActive(true);
+                CharacterImage.gameObject.SetActive(true);
                 NameBar.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "æ∆¿Ã";
                 CharacterImage.sprite = HumanSprite;
             }
@@ -146,5 +158,10 @@ public class EndingManager : MonoBehaviour
         {
             characterTime = timeForCharacter;
         }
+    }
+
+    public void Skip()
+    {
+        GameManager.Instance.goMain();
     }
 }

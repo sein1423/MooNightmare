@@ -164,7 +164,15 @@ public class CharacterManager : MonoBehaviour
 
     public void LookEnding()
     {
-        StarPanel.SetActive(true);
+        for(int i = 0; i < GameManager.Instance.user.DiaryGet.Length; i++)
+        {
+            if (!GameManager.Instance.user.DiaryGet[i])
+            {
+                StarPanel.SetActive(true);
+                return;
+            }
+        }
+        GameManager.Instance.GoEnding();
     }
 
     public void breakThisPanel(GameObject go)

@@ -46,6 +46,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField, TextArea]
     string[] line;
     [SerializeField] TextMeshProUGUI textbox;
+    [SerializeField] GameObject CouponPanel;
+    [SerializeField] Text CouponText;
+    [SerializeField] GameObject AlertPanel;
     static Stack<GameObject> PopupStack = new Stack<GameObject>();
     // Start is called before the first frame update
 
@@ -249,5 +252,46 @@ public class MainMenuManager : MonoBehaviour
     public void Seteffect(Scrollbar sb)
     {
         GameManager.Instance.user.effect = sb.value;
+    }
+
+    public void OpenCoupon()
+    {
+        PopupPanel.SetActive(true);
+        PopupStack.Push(PopupPanel);
+        SmallPanel.SetActive(true);
+        PopupStack.Push(SmallPanel);
+        CouponPanel.SetActive(true);
+        PopupStack.Push(CouponPanel);
+    }
+
+    public void userCoupon()
+    {
+        if (CouponText.text == "GoodDream")
+        {
+            if (!GameManager.Instance.user.UsedCoupon)
+            {
+                GameManager.Instance.user.UsedCoupon = true;
+                GameManager.Instance.user.carrot += 50;
+                CarrotText.text = GameManager.Instance.user.carrot.ToString();
+                AlertPanel.SetActive(true);
+                AlertPanel.transform.GetChild(0).gameObject.GetComponent<Text>().text = "쿠폰이 정상적으로\n입력되었습니다.";
+                //GameManager.Instance.SaveData();
+            }
+            else
+            {
+                AlertPanel.SetActive(true);
+                AlertPanel.transform.GetChild(0).gameObject.GetComponent<Text>().text = "쿠폰을 이미 사용한 계정입니다.";
+            }
+        }
+        else
+        {
+            AlertPanel.SetActive(true);
+            AlertPanel.transform.GetChild(0).gameObject.GetComponent<Text>().text = "잘못된 번호입니다";
+        }
+    }
+
+    public void ExitAlert()
+    {
+        AlertPanel.SetActive(false);
     }
 }

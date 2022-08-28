@@ -63,9 +63,9 @@ public class IntroManager : MonoBehaviour
 
     public void Typing(string[] dialogs, TextMeshProUGUI textobj)
     {
-        if(ClickCount == 7)
+        if(ClickCount == 6)
         {
-            dialogs[6] = dialogs[6].Replace("Username", GameManager.Instance.user.name);
+            dialogs[5] = dialogs[5].Replace("Username", GameManager.Instance.user.name);
         }
         isDialogEnd = false;
         dialogsSave = dialogs;
@@ -123,7 +123,7 @@ public class IntroManager : MonoBehaviour
             {
                 tmpSave.text = "";
                 ClickCount++;
-                if(ClickCount == 6)
+                if(ClickCount == 5)
                 {
                     if(GameManager.Instance.user.name == "")
                     {
@@ -132,10 +132,12 @@ public class IntroManager : MonoBehaviour
                     }
                     else
                     {
+                        isTypingEnd = true;
                         ClickCount++;
+                        Typing(dialogsSave, tmpSave);
                     }
                 }
-                else if(ClickCount == 8)
+                else if(ClickCount == 7)
                 {
                     GameManager.Instance.goMain();
                 }
@@ -169,10 +171,14 @@ public class IntroManager : MonoBehaviour
 
     public void Skip()
     {
-        if(ClickCount < 6)
+        if (!(GameManager.Instance.user.name == ""))
+        {
+            GameManager.Instance.goMain();
+        }
+            if (ClickCount < 5)
         {
             skip = true;
-            ClickCount = 5;
+            ClickCount = 4;
             text.SetActive(false);
             isTypingEnd = true;
             GetInputDown();
