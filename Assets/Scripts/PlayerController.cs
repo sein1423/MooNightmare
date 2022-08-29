@@ -172,6 +172,7 @@ public class PlayerController : MonoBehaviour
         Handheld.Vibrate();
         ItemManager.Instance.playerhealth--;
         ItemManager.Instance.SetHeart();
+        GetComponent<ParticleSystem>().Play();
 
         if (ItemManager.Instance.playerhealth <= 0)
         {

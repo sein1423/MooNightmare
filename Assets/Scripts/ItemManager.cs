@@ -104,6 +104,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField] GameObject ExitPanel;
     [SerializeField] GameObject[] Stage;
     [SerializeField] GameObject inGametutorial;
+    [SerializeField] AudioClip[] BossBGM;
     public bool isCloseShop = false;
     public int playerhealth = 5;
     public bool isDead = false;
@@ -128,6 +129,8 @@ public class ItemManager : MonoBehaviour
     public int realStage = 1;
     public bool isBoss = false;
     public float realtime = 0f;
+    int GetBlingCarrot = 0;
+    bool boss_clear = false;
 
     [SerializeField]
     Scrollbar BGM;
@@ -368,8 +371,86 @@ public class ItemManager : MonoBehaviour
         HeartPanel2.SetActive(false);
         MoveLever.SetActive(false);
         AttackLever.SetActive(false);
-        
 
+        if (!boss_clear)
+        {
+            switch (StageCount)
+            {
+                case 0:
+                    switch (wavecount)
+                    {
+                        case 1:
+                            GetBlingCarrot = 0;
+                            break;
+                        case 2:
+                            GetBlingCarrot = 1;
+                            break;
+                        case 3:
+                            GetBlingCarrot = 3;
+                            break;
+                        case 4:
+                            GetBlingCarrot = 6;
+                            break;
+                        case 5:
+                            GetBlingCarrot = 10;
+                            break;
+                    }
+                    break;
+                case 2:
+                    switch (wavecount)
+                    {
+                        case 1:
+                            GetBlingCarrot = 25;
+                            break;
+                        case 2:
+                            GetBlingCarrot = 36;
+                            break;
+                        case 3:
+                            GetBlingCarrot = 48;
+                            break;
+                        case 4:
+                            GetBlingCarrot = 51;
+                            break;
+                        case 5:
+                            GetBlingCarrot = 65;
+                            break;
+                    }
+                    break;
+                case 4:
+                    switch (wavecount)
+                    {
+                        case 1:
+                            GetBlingCarrot = 101;
+                            break;
+                        case 2:
+                            GetBlingCarrot = 122;
+                            break;
+                        case 3:
+                            GetBlingCarrot = 144;
+                            break;
+                        case 4:
+                            GetBlingCarrot = 167;
+                            break;
+                        case 5:
+                            GetBlingCarrot = 201;
+                            break;
+                    }
+                    break;
+                case 1:
+                    GetBlingCarrot = 15;
+                    break;
+                case 3:
+                    GetBlingCarrot = 80;
+                    break;
+                case 5:
+                    GetBlingCarrot = 216;
+                    break;
+            }
+        }
+        else
+        {
+            GetBlingCarrot = 276;
+        }
 
         if (!GameOverPanel.activeSelf)
         {
@@ -379,8 +460,8 @@ public class ItemManager : MonoBehaviour
             string wavett = wavecount == 6 ? "Boss" : wavecount.ToString(); ;
             gameoverText.text =/* $"理쒓퀬 湲곕줉 : {wave}\n" +*/
                 $"현재 기록 : {StageCount / 2 + 1}-{wavett}\n" +
-                $"획득한 블링 당근 : {(realStage * 2 + realStage / 6 * (10 * realStage / 6)).ToString()}\n" +
-                $"보유한 블링 당근 : {(GameManager.Instance.user.carrot + (realStage * 2 + realStage / 6 * (10 * realStage / 6))).ToString()}\n " +
+                $"획득한 블링 당근 : {GetBlingCarrot.ToString()}\n" +
+                $"보유한 블링 당근 : {(GameManager.Instance.user.carrot + (GetBlingCarrot)).ToString()}\n " +
                 $"처치한 적 : {Enemy.ToString()}\n " +
                 $"생존한 시간 : {realtime.ToString("F2")}";
             //$"?앹〈???쒓컙 : {(((realStage - 1) * waveTime) + time).ToString("F2")}";
@@ -480,6 +561,7 @@ public class ItemManager : MonoBehaviour
         (PopupStack.Pop()).SetActive(false);
         PausePanel.SetActive(true);
         PopupStack.Push(PausePanel);
+        isMenu = false;
     }
 
     public void GetExit()
@@ -535,6 +617,7 @@ public class ItemManager : MonoBehaviour
         Stage[StageCount++].SetActive(false);
         Stage[StageCount].SetActive(true);
         waveText.text = $"{StageCount / 2 + 1}-Boss";
+        GameManager.Instance.AS.clip = BossBGM[StageCount / 2];
         GameObject Player = GameObject.Find("Player");
         Player.transform.position = Vector3.zero;
         isBoss = true;
@@ -544,6 +627,7 @@ public class ItemManager : MonoBehaviour
     {
         if (StageCount >= 5)
         {
+            boss_clear = true;
             GameOver();
             return;
         }

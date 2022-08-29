@@ -105,6 +105,7 @@ public class Monster : MonoBehaviour
         Debug.Log($"{Damage} : {health + waveHealth * ItemManager.Instance.wavecount} : {MaxHealth}");
         MaxHealth -= Damage;
         Debug.Log($"{Damage} : {health} : {MaxHealth}");
+        gameObject.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
         var dmg = Instantiate(DamagePrefabs,gameObject.transform);
         dmg.transform.SetParent(Canvas.transform);
         if (cri)

@@ -30,7 +30,7 @@ public class userData
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    AudioSource AS;
+    public AudioSource AS;
     public bool userdataget = false;
     private const string jsonFilePath = "/UserData.json";
     [SerializeField] AudioClip Main;
@@ -196,11 +196,11 @@ public class GameManager : MonoBehaviour
                 AS.Play();
             }
         }
-        else if(scene.name == "Story" || scene.name == "Intro")
+        else if(scene.name == "Story" || scene.name == "Intro" || scene.name == "Ending story")
         {
             AS.Stop();
         }
-        else if(scene.name == "Main")
+        else if(scene.name == "Main" || scene.name == "My Character" || scene.name == "Shop" || scene.name == "My Friend")
         {
             if(!(AS.clip == Main))
             {
