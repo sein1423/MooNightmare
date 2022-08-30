@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: choco
   m_EditorClassIdentifier: 
   dreamnum: 1
-  dreamImage: {fileID: 21300000, guid: 5899842e61d8b58429ef522ea8996b66, type: 3}
+  dreamImage: {fileID: 21300000, guid: c7e65ff5a3143674487499076c20a38b, type: 3}
   dreamTitle: "\uB2EC\uCF64\uD55C \uCD08\uCF5C\uB9BF \uB3D9\uC0B0"
   dreamEx: "\uD558\uB8E8\uC885\uC77C \uCD08\uCF5C\uB9BF\uC744 \uBA39\uC744 \uC218
     \uC788\uB2E4\uBA74...\t\n\uC5BC\uB9C8\uB098 \uC88B\uC744\uAE4C?"

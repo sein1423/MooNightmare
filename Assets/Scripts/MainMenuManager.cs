@@ -266,7 +266,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void userCoupon()
     {
-        if (CouponText.text == "GoodDream")
+        if (CouponText.text.ToLower() == "gooddream")
         {
             if (!GameManager.Instance.user.UsedCoupon)
             {
@@ -293,5 +293,10 @@ public class MainMenuManager : MonoBehaviour
     public void ExitAlert()
     {
         AlertPanel.SetActive(false);
+    }
+
+    public void AdPlay()
+    {
+        AdmobManager.Instance.ShowRewardAd();
     }
 }

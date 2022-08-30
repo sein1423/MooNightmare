@@ -28,6 +28,7 @@ public class DreamPanel : MonoBehaviour
 
         if (GameManager.Instance.user.carrot < dream.cost)
         {
+            LackCarrot();
             return;
         }
 
@@ -39,6 +40,12 @@ public class DreamPanel : MonoBehaviour
         GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
         GetComponent<AudioSource>().Play();
         Dreampp();
+    }
+
+    public void LackCarrot()
+    {
+        ShopManager.Instance.LackPanel.SetActive(true);
+
     }
 
     public void Dreampp()

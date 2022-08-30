@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public bool userdataget = false;
     private const string jsonFilePath = "/UserData.json";
     [SerializeField] AudioClip Main;
-    [SerializeField] AudioClip Game;
+    [SerializeField] public AudioClip Game;
 
 
 
@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
     public void goMain()
     {
         SceneManager.LoadScene("Main");
+        AdmobManager.Instance.ShowRewardAd();
     }
 
     public void GameQuit()

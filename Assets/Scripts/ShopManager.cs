@@ -11,6 +11,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI CarrotText;
     [SerializeField] public GameObject Panel;
     [SerializeField] public Text DreamText;
+    public GameObject LackPanel;
     [SerializeField, TextArea]
     string[] line;
     [SerializeField] TextMeshProUGUI textbox;
@@ -134,9 +135,9 @@ public class ShopManager : MonoBehaviour
     // Update is called once per frame
 
 
-    public void BreakPanel()
+    public void BreakPanel(GameObject go)
     {
-        Panel.SetActive(false);
+        go.SetActive(false);
     }
 
     public void GoMain()

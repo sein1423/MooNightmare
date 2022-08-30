@@ -105,6 +105,8 @@ public class ItemManager : MonoBehaviour
     [SerializeField] GameObject[] Stage;
     [SerializeField] GameObject inGametutorial;
     [SerializeField] AudioClip[] BossBGM;
+    [SerializeField] TextMeshProUGUI GGText;
+    [SerializeField] AudioClip[] GGClip;
     public bool isCloseShop = false;
     public int playerhealth = 5;
     public bool isDead = false;
@@ -454,18 +456,41 @@ public class ItemManager : MonoBehaviour
 
         if (!GameOverPanel.activeSelf)
         {
-            GameOverPanel.SetActive(true);
-            string wavetext = ((GameManager.Instance.user.MaxWave - (GameManager.Instance.user.MaxWave / 6)) % 6) == 0 ? "Boss" : ((GameManager.Instance.user.MaxWave - (GameManager.Instance.user.MaxWave / 6 - 1)) % 6).ToString();
-            string wave = GameManager.Instance.user.MaxTime == 0 ? "X" : $"{((GameManager.Instance.user.MaxWave - 1) / 6) + 1 }- {wavetext}";
-            string wavett = wavecount == 6 ? "Boss" : wavecount.ToString(); ;
-            gameoverText.text =/* $"理쒓퀬 湲곕줉 : {wave}\n" +*/
-                $"현재 기록 : {StageCount / 2 + 1}-{wavett}\n" +
-                $"획득한 블링 당근 : {GetBlingCarrot.ToString()}\n" +
-                $"보유한 블링 당근 : {(GameManager.Instance.user.carrot + (GetBlingCarrot)).ToString()}\n " +
-                $"처치한 적 : {Enemy.ToString()}\n " +
-                $"생존한 시간 : {realtime.ToString("F2")}";
+            if (!boss_clear)
+            {
+                GetComponent<AudioSource>().clip = GGClip[0];
+                GetComponent<AudioSource>().Play();
+                string wavetext = ((GameManager.Instance.user.MaxWave - (GameManager.Instance.user.MaxWave / 6)) % 6) == 0 ? "Boss" : ((GameManager.Instance.user.MaxWave - (GameManager.Instance.user.MaxWave / 6 - 1)) % 6).ToString();
+                string wave = GameManager.Instance.user.MaxTime == 0 ? "X" : $"{((GameManager.Instance.user.MaxWave - 1) / 6) + 1}- {wavetext}";
+                string wavett = wavecount == 6 ? "Boss" : wavecount.ToString(); ;
+                gameoverText.text =/* $"理쒓퀬 湲곕줉 : {wave}\n" +*/
+                    $"현재 기록 : {StageCount / 2 + 1}-{wavett}\n" +
+                    $"획득한 블링 당근 : {GetBlingCarrot.ToString()}\n" +
+                    $"보유한 블링 당근 : {(GameManager.Instance.user.carrot + (GetBlingCarrot)).ToString()}\n " +
+                    $"처치한 적 : {Enemy.ToString()}\n " +
+                    $"생존한 시간 : {realtime.ToString("F2")}";
+            }
+            else
+            {
+                GetComponent<AudioSource>().clip = GGClip[1];
+                GetComponent<AudioSource>().Play();
+                string wavetext = ((GameManager.Instance.user.MaxWave - (GameManager.Instance.user.MaxWave / 6)) % 6) == 0 ? "Boss" : ((GameManager.Instance.user.MaxWave - (GameManager.Instance.user.MaxWave / 6 - 1)) % 6).ToString();
+                string wave = GameManager.Instance.user.MaxTime == 0 ? "X" : $"{((GameManager.Instance.user.MaxWave - 1) / 6) + 1}- {wavetext}";
+                string wavett = wavecount == 6 ? "Boss" : wavecount.ToString();
+                GGText.text = "DREAM CLEAR";
+                gameoverText.text =/* $"理쒓퀬 湲곕줉 : {wave}\n" +*/
+                    $"현재 기록 : 3-Boss\n" +
+                    $"획득한 블링 당근 : {GetBlingCarrot.ToString()}\n" +
+                    $"보유한 블링 당근 : {(GameManager.Instance.user.carrot + (GetBlingCarrot)).ToString()}\n " +
+                    $"처치한 적 : {Enemy.ToString()}\n " +
+                    $"생존한 시간 : {realtime.ToString("F2")}";
+
+            }
             //$"?앹〈???쒓컙 : {(((realStage - 1) * waveTime) + time).ToString("F2")}";
         }
+
+
+        GameOverPanel.SetActive(true);
     }
 
     public void GetItem(Item item)
@@ -614,13 +639,14 @@ public class ItemManager : MonoBehaviour
     public void BossStage()
     {
         print(StageCount);
+        isBoss = true;
         Stage[StageCount++].SetActive(false);
         Stage[StageCount].SetActive(true);
         waveText.text = $"{StageCount / 2 + 1}-Boss";
         GameManager.Instance.AS.clip = BossBGM[StageCount / 2];
+        GameManager.Instance.AS.Play();
         GameObject Player = GameObject.Find("Player");
         Player.transform.position = Vector3.zero;
-        isBoss = true;
         timeText.gameObject.SetActive(false);
     }
     public void NextStage()
@@ -632,6 +658,8 @@ public class ItemManager : MonoBehaviour
             return;
         }
         GetItemShop();
+        GameManager.Instance.AS.clip = GameManager.Instance.Game;
+        GameManager.Instance.AS.Play();
         waveText.text = $"{StageCount / 2 + 1} - {wavecount}";
         isBoss = false;
         wavecount = 0;
@@ -663,5 +691,24 @@ public class ItemManager : MonoBehaviour
     {
         isMenu = false;
         inGametutorial.SetActive(false);
+    }
+
+    public void AdHeal()
+    {
+        AdmobManager.Instance.ShowRewardAd();
+        playerhealth += 2;
+    }
+
+    public void Help(int a)
+    {
+        switch (a)
+        {
+            case 1:
+                inGametutorial.SetActive(true);
+                isMenu = true;
+                break;
+            default:
+                return;
+        }
     }
 }
