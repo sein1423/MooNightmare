@@ -37,8 +37,7 @@ public class CharacterManager : MonoBehaviour
         lastGameTime = DateTime.Parse(GameManager.Instance.user.lastGameTime);
         CarrotText.text = GameManager.Instance.user.carrot.ToString();
         UsernameText.text = GameManager.Instance.user.name;
-        string wavetext = (GameManager.Instance.user.MaxWave % 6) == 0 ? "Boss" : (GameManager.Instance.user.MaxWave % 6).ToString();
-        string wave = GameManager.Instance.user.MaxTime == 0 ? "Wave 0": $"{((GameManager.Instance.user.MaxWave - 1) / 6) + 1 }- {wavetext}";
+        string wave = SetStage();
         WaveText.text = wave;
         MonsterText.text = GameManager.Instance.user.monster.ToString() + " ∏∂∏Æ";
         TimeText.text = GameManager.Instance.user.MaxTime.ToString() + " √ ";
@@ -132,6 +131,54 @@ public class CharacterManager : MonoBehaviour
         StarPanel.SetActive(false);
     }
     #endregion
+
+    public string SetStage()
+    {
+        switch (GameManager.Instance.user.MaxWave)
+        {
+            case 0:
+                return "0-0";
+            case 1:
+                return "1-1";
+            case 2:
+                return "1-2";
+            case 3:
+                return "1-3";
+            case 4:
+                return "1-4";
+            case 5:
+                return "1-5";
+            case 6:
+                return "1-Boss";
+            case 7:
+                return "2-1";
+            case 8:
+                return "2-2";
+            case 9:
+                return "2-3";
+            case 10:
+                return "2-4";
+            case 11:
+                return "2-5";
+            case 12:
+                return "2-Boss";
+            case 13:
+                return "3-1";
+            case 14:
+                return "3-2";
+            case 15:
+                return "3-3";
+            case 16:
+                return "3-4";
+            case 17:
+                return "3-5";
+            default:
+                return "3-Boss";
+        }
+
+        string wavetext = (GameManager.Instance.user.MaxWave % 6) == 0 ? "Boss" : (GameManager.Instance.user.MaxWave % 6).ToString();
+        string wave = GameManager.Instance.user.MaxTime == 0 ? "Wave 0" : $"{((GameManager.Instance.user.MaxWave - 1) / 6) + 1}- {wavetext}";
+    }
 
     public void GoMain()
     {

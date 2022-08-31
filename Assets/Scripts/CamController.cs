@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class CamController : MonoBehaviour
 {
-    [SerializeField] Transform player;
+    public static CamController Instance;
+
+    [SerializeField] public Transform target;
     void Start()
     {
-        
+        Instance = this;
+        target = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
@@ -15,7 +18,7 @@ public class CamController : MonoBehaviour
     {
         if (!ItemManager.Instance.isDead)
         {
-            gameObject.transform.position = new Vector3(player.position.x, player.position.y, -10f);
+            gameObject.transform.position = new Vector3(target.position.x, target.position.y, -10f);
 
         }
     }

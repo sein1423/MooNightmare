@@ -15,6 +15,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField, TextArea]
     string[] line;
     [SerializeField] TextMeshProUGUI textbox;
+    [SerializeField] GameObject tutorial;
 
     private void Awake()
     {
@@ -41,6 +42,10 @@ public class ShopManager : MonoBehaviour
         lastGameTime = DateTime.Parse(GameManager.Instance.user.lastGameTime);
         CarrotText.text = GameManager.Instance.user.carrot.ToString();
         textbox.text = line[UnityEngine.Random.Range(0, line.Length)];
+        if (!GameManager.Instance.user.ShopTutorial)
+        {
+            tutorial.SetActive(true);
+        }
     }
 
     // Update is called once per frame

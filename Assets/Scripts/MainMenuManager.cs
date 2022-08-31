@@ -272,6 +272,7 @@ public class MainMenuManager : MonoBehaviour
             {
                 GameManager.Instance.user.UsedCoupon = true;
                 GameManager.Instance.user.carrot += 50;
+                GameManager.Instance.SaveData();
                 CarrotText.text = GameManager.Instance.user.carrot.ToString();
                 AlertPanel.SetActive(true);
                 AlertPanel.transform.GetChild(0).gameObject.GetComponent<Text>().text = "쿠폰이 정상적으로\n입력되었습니다.";

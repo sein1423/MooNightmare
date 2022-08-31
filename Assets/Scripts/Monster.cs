@@ -117,6 +117,7 @@ public class Monster : MonoBehaviour
         if (MaxHealth < 1)
         {
             dead = true;
+            ItemManager.Instance.AddCarrot((ItemManager.Instance.StageCount / 2) + 1);
             GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
             GetComponent<AudioSource>().Play();
@@ -155,6 +156,5 @@ public class Monster : MonoBehaviour
     public void Dead()
     {
         Enemypool.ReturnObject(this);
-        ItemManager.Instance.AddCarrot((ItemManager.Instance.StageCount / 2) + 1);
     }
 }

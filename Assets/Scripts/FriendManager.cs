@@ -16,7 +16,8 @@ public class FriendManager : MonoBehaviour
     GameObject DiaryPanel;
     [SerializeField]
     TextMeshProUGUI CarrotText;
-
+    [SerializeField]
+    public GameObject TopButton;
     [SerializeField]
     Image DiaryImage;
     [SerializeField]
@@ -59,7 +60,8 @@ public class FriendManager : MonoBehaviour
     Image FriendImage;
     [SerializeField]
     GameObject DiaryNullImage;
-
+    [SerializeField]
+    GameObject tutorial;
     int nowDiary = 0;
     int GetDream = 0;
     int num = 0;
@@ -95,6 +97,11 @@ public class FriendManager : MonoBehaviour
         UpdateDiary(0);
         ButtonSet();
         UpdateBar();
+
+        if (!GameManager.Instance.user.FriendTutorial)
+        {
+            tutorial.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -346,6 +353,8 @@ public class FriendManager : MonoBehaviour
 
     public void ExitPanel()
     {
+        Gift1Panel.SetActive(false);
+        Gift2Panel.SetActive(false);
         Gift3Panel.SetActive(false);
     }
 

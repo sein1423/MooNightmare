@@ -24,6 +24,8 @@ public class userData
     public float effect;
     public bool UsedCoupon;
     public bool gameTutorial;
+    public bool ShopTutorial;
+    public bool FriendTutorial;
 }
 
 
@@ -85,7 +87,6 @@ public class GameManager : MonoBehaviour
     public void goMain()
     {
         SceneManager.LoadScene("Main");
-        AdmobManager.Instance.ShowRewardAd();
     }
 
     public void GameQuit()
@@ -123,6 +124,8 @@ public class GameManager : MonoBehaviour
             user.BossLine[i] = false;
         }
         user.gameTutorial = false;
+        user.FriendTutorial = false;
+        user.ShopTutorial = false;
 
         userState = JsonUtility.ToJson(user);
 
@@ -191,11 +194,14 @@ public class GameManager : MonoBehaviour
             }
         }
         else
+        {
+            if(!(AS.clip == Main))
             {
                 AS.clip = Main;
-            AS.volume = user.BGM;
-            AS.Play();
-            }
+                AS.volume = user.BGM;
+                AS.Play();
+            }    
+        }
     }
 
     public void GoStory()

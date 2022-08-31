@@ -108,6 +108,8 @@ public class ItemManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI GGText;
     [SerializeField] AudioClip[] GGClip;
     [SerializeField] GameObject gt;
+    [SerializeField] GameObject BossLine;
+    [SerializeField, TextArea] string[] BossLineText; 
     public bool isCloseShop = false;
     public int playerhealth = 5;
     public bool isDead = false;
@@ -132,6 +134,7 @@ public class ItemManager : MonoBehaviour
     public int realStage = 1;
     public bool isBoss = false;
     public float realtime = 0f;
+    public bool isAds = false;
     int GetBlingCarrot = 0;
     bool boss_clear = false;
 
@@ -226,7 +229,7 @@ public class ItemManager : MonoBehaviour
             return;
         }
 
-        if(waveshop.activeSelf || OptionPanel.activeSelf || gt.activeSelf || inGametutorial.activeSelf || PauseBg.activeSelf)
+        if(waveshop.activeSelf || OptionPanel.activeSelf || gt.activeSelf || inGametutorial.activeSelf || PauseBg.activeSelf || BossLine.activeSelf)
         {
             isMenu = true;
         }
@@ -302,6 +305,7 @@ public class ItemManager : MonoBehaviour
         time = 0f;
         isMenu = false;
         realStage++;
+        isAds = false;
         if(wavecount % 6 == 0)
         {
             BossStage();
@@ -459,7 +463,7 @@ public class ItemManager : MonoBehaviour
         }
         else
         {
-            GetBlingCarrot = 276;
+            GetBlingCarrot = 300;
         }
 
         if (!GameOverPanel.activeSelf)
@@ -617,9 +621,16 @@ public class ItemManager : MonoBehaviour
         {
             GameManager.Instance.user.MaxWave = realStage;
         }
-        GameManager.Instance.user.carrot += realStage * 2 + realStage/6*(10 * realStage/6);
-        GameManager.Instance.user.MaxTime = (int)realtime;
-        GameManager.Instance.user.monster = Enemy;
+        if(GameManager.Instance.user.MaxTime < realtime)
+        {
+            GameManager.Instance.user.MaxTime = (int)realtime;
+        }
+        if(GameManager.Instance.user.monster < Enemy)
+        {
+
+            GameManager.Instance.user.monster = Enemy;
+        }
+        GameManager.Instance.user.carrot += GetBlingCarrot ;
         GameManager.Instance.user.LastGameDay = DateTime.Now.ToString("yyyy/MM/dd");
         GameManager.Instance.SaveData();
     }
@@ -651,12 +662,48 @@ public class ItemManager : MonoBehaviour
         Stage[StageCount++].SetActive(false);
         Stage[StageCount].SetActive(true);
         waveText.text = $"{StageCount / 2 + 1}-Boss";
+        if (!GameManager.Instance.user.BossLine[StageCount / 2])
+        {
+            isMenu = true;
+            SetBossLine();
+        }
         GameManager.Instance.AS.clip = BossBGM[StageCount / 2];
         GameManager.Instance.AS.Play();
         GameObject Player = GameObject.Find("Player");
         Player.transform.position = Vector3.zero;
         timeText.gameObject.SetActive(false);
     }
+
+    private void SetBossLine()
+    {
+        BossLine.SetActive(true);
+        CamController.Instance.target = GameObject.FindGameObjectWithTag("Boss").transform;
+        switch (StageCount / 2)
+        {
+            case 0:
+                BossLine.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = BossLineText[0];
+                BossLine.transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "¾óÀ½ ´«¹° ÇÏ¸¶";
+                break;
+            case 1:
+                BossLine.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = BossLineText[1];
+                BossLine.transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "¹«±â·ÂÀ» »Õ´Â ÄÚ³¢¸®";
+                break;
+            case 2:
+                BossLine.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = BossLineText[2];
+                BossLine.transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "´Ã È­°¡ ³­ °ø·æ";
+                break;
+        }
+    }
+
+    public void ExitBossLine()
+    {
+        CamController.Instance.target = GameObject.Find("Player").transform;
+        BossLine.SetActive(false);
+        GameManager.Instance.user.BossLine[StageCount / 2] = true;
+        GameManager.Instance.SaveData();
+        isMenu = false;
+    }
+
     public void NextStage()
     {
         if (StageCount >= 5)
@@ -674,7 +721,6 @@ public class ItemManager : MonoBehaviour
         Stage[StageCount].SetActive(false);
         StageCount++;
         Stage[StageCount].SetActive(true);
-        realStage++;
         timeText.gameObject.SetActive(true);
 
     }
@@ -705,12 +751,17 @@ public class ItemManager : MonoBehaviour
 
     public void AdHeal()
     {
+        if (isAds)
+        {
+            return;
+        }
         AdmobManager.Instance.ShowRewardAd();
         if (playerhealth >= 9)
             playerhealth = 10;
         else
             playerhealth += 2;
-        
+
+        isAds = true;
     }
 
     public void Help(int a)
