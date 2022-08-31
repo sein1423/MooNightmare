@@ -132,6 +132,13 @@ public class CharacterManager : MonoBehaviour
     }
     #endregion
 
+    public void Cheat()
+    {
+        GameManager.Instance.user.carrot += 1000;
+        CarrotText.text = GameManager.Instance.user.carrot.ToString();
+        GameManager.Instance.SaveData();
+    }
+
     public string SetStage()
     {
         switch (GameManager.Instance.user.MaxWave)
