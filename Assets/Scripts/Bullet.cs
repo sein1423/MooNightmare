@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField, Range(0.1f, 100f)] float speed;
     public float nowtime = 0;
     int Damage = 10;
-    int CriticalPercent;
+    int CriticalPercent = 10;
     GameObject player;
     Transform arrow;
 

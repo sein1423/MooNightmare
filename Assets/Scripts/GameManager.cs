@@ -23,7 +23,7 @@ public class userData
     public float BGM;
     public float effect;
     public bool UsedCoupon;
-    public Dictionary<string, bool> SceneTable = new Dictionary<string, bool>();
+    public bool gameTutorial;
 }
 
 
@@ -122,15 +122,7 @@ public class GameManager : MonoBehaviour
         {
             user.BossLine[i] = false;
         }
-        user.SceneTable.Add("GameStart",true);
-        user.SceneTable.Add("Story", false);
-        user.SceneTable.Add("Intro", false);
-        user.SceneTable.Add("Main", false);
-        user.SceneTable.Add("My Character", false);
-        user.SceneTable.Add("Shop", false);
-        user.SceneTable.Add("My Friend", false);
-        user.SceneTable.Add("Game", false);
-        user.SceneTable.Add("Ending story", false);
+        user.gameTutorial = false;
 
         userState = JsonUtility.ToJson(user);
 
@@ -194,21 +186,16 @@ public class GameManager : MonoBehaviour
             if (!(AS.clip == Game))
             {
                 AS.clip = Game;
+                AS.volume = user.BGM;
                 AS.Play();
             }
         }
-        else if(scene.name == "Story" || scene.name == "Intro" || scene.name == "Ending story")
-        {
-            AS.Stop();
-        }
-        else if(scene.name == "Main" || scene.name == "My Character" || scene.name == "Shop" || scene.name == "My Friend")
-        {
-            if(!(AS.clip == Main))
+        else
             {
                 AS.clip = Main;
-                AS.Play();
+            AS.volume = user.BGM;
+            AS.Play();
             }
-        }
     }
 
     public void GoStory()
@@ -230,12 +217,4 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Ending Story");
     }
 
-    public void CloseTutorial()
-    {
-        Scene scene = SceneManager.GetActiveScene();
-        if (!user.SceneTable.ContainsKey(scene.name))
-        {
-            user.SceneTable[scene.name] = true;
-        }
-    }
 }

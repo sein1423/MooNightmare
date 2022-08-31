@@ -1,4 +1,4 @@
-/*using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +7,7 @@ using UnityEngine.UI;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
-    AudioClip ac; 
-    [SerializeField] private Slider volumeSlider = null;
-    [SerializeField] private Text volumeTextUI = null;
-    public GameObject AudioManager;
+    AudioSource AS;
     private void Awake()
     {
         if (Instance == null)
@@ -20,33 +17,18 @@ public class SoundManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        ac = GetComponent<AudioClip>(); 
-        LoadValues();
-        DontDestroyOnLoad(AudioManager);
-    }
-    public void VolumeSlider(float volume)
-    {
-        volume = volume * 100;
-        volume = (float)Math.Round(volume);
-        volumeTextUI.text = volume.ToString();
-    }
 
-    public void SaveVolumeButton()
+    private void Start()
     {
-        float volumeValue = volumeSlider.value;
-        PlayerPrefs.SetFloat("VolumeValue", volumeValue);
-        LoadValues();
+        AS = GetComponent<AudioSource>();
     }
-
-    
-
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            AS.volume = GameManager.Instance.user.effect;
+            AS.Play();
+        }
     }
 }
-*/

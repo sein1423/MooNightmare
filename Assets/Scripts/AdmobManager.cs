@@ -10,6 +10,7 @@ public class AdmobManager : MonoBehaviour
     public bool isTestMode;
     public Text LogText;
     public Button FrontAdsBtn, RewardAdsBtn;
+    public bool isEndAds = false;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class AdmobManager : MonoBehaviour
         LoadBannerAd();
         LoadFrontAd();
         LoadRewardAd();
+        LoadRewardAdGame();
     }
 
     void Update()
@@ -83,7 +85,9 @@ public class AdmobManager : MonoBehaviour
         frontAd.LoadAd(GetAdRequest());
         frontAd.OnAdClosed += (sender, e) =>
         {
-            LogText.text = "Àü¸é±¤°í ¼º°ø";
+            //LogText.text = "Àü¸é±¤°í ¼º°ø";
+            Debug.Log("¾ÀÀÌµ¿");
+            GameManager.Instance.goMain();
         };
     }
 
@@ -100,15 +104,16 @@ public class AdmobManager : MonoBehaviour
     const string rewardTestID = "ca-app-pub-3940256099942544/5224354917";
     const string rewardID = "";
     RewardedAd rewardAd;
-
+    RewardedAd ScenerewardAd;
 
     void LoadRewardAd()
     {
+        Debug.Log("in Load AD");
         rewardAd = new RewardedAd(isTestMode ? rewardTestID : rewardID);
         rewardAd.LoadAd(GetAdRequest());
         rewardAd.OnUserEarnedReward += (sender, e) =>
         {
-            LogText.text = "¸®¿öµå ±¤°í ¼º°ø";
+            Debug.Log("±¤°í ¿Ï·á");
         };
     }
 
@@ -116,6 +121,29 @@ public class AdmobManager : MonoBehaviour
     {
         rewardAd.Show();
         LoadRewardAd();
+    }
+
+    
+
+
+    void LoadRewardAdGame()
+    {
+        Debug.Log("in Load AD Game");
+        ScenerewardAd = new RewardedAd(isTestMode ? rewardTestID : rewardID);
+        ScenerewardAd.LoadAd(GetAdRequest());
+        ScenerewardAd.OnUserEarnedReward += (sender, e) =>
+        {
+            Debug.Log("end ad");
+            GameManager.Instance.goToStage();
+        };
+    }
+
+    public void ShowRewardAdGame()
+    {
+        Debug.Log("AD Game");
+        ScenerewardAd.Show();
+        Debug.Log("Load AD Game");
+        LoadRewardAdGame();
     }
     #endregion
 }

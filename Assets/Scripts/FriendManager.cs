@@ -8,6 +8,8 @@ using System;
 
 public class FriendManager : MonoBehaviour
 {
+    public static FriendManager Instance;
+
     [SerializeField]
     GameObject DreamPanel;
     [SerializeField]
@@ -55,6 +57,8 @@ public class FriendManager : MonoBehaviour
     Sprite[] baby;
     [SerializeField]
     Image FriendImage;
+    [SerializeField]
+    GameObject DiaryNullImage;
 
     int nowDiary = 0;
     int GetDream = 0;
@@ -75,6 +79,13 @@ public class FriendManager : MonoBehaviour
     [SerializeField]
     GameObject StarPanel;
     #endregion
+
+    private void Awake()
+    {
+        if(Instance == null)
+            Instance = this;
+    }
+
     void Start()
     {
         CountTime();
@@ -213,6 +224,7 @@ public class FriendManager : MonoBehaviour
         }
         DiaryPanel.SetActive(false);
         DreamPanel.SetActive(true);
+        DiaryNullImage.SetActive(false);
     }
 
     public void LookDiary()
@@ -242,6 +254,7 @@ public class FriendManager : MonoBehaviour
         }
         if (GameManager.Instance.user.DiaryGet[a])
         {
+            DiaryNullImage.SetActive(false);
             string diaryEx = diary[a].diaryEx1.Replace("000", GameManager.Instance.user.name);
             DiaryImage.sprite = diary[a].diaryImage;
             DiaryTitle.text = "제목 : " + diary[a].diaryTitle;
@@ -251,6 +264,7 @@ public class FriendManager : MonoBehaviour
         }
         else
         {
+            DiaryNullImage.SetActive(true);
             DiaryImage.sprite = null;
             DiaryTitle.text = "제목 : ?";
             DiaryWeather.text = "날씨 : ?";
@@ -314,13 +328,20 @@ public class FriendManager : MonoBehaviour
 
     public void GetEndPanel()
     {
-        Gift2Panel.SetActive(false);
         Gift3Panel.SetActive(true);
         DreamText.text = $"{diary[num].diaryTitle} 그림일기를\n 선물받았습니다..";
         GameManager.Instance.user.DiaryGet[num] = true;
         ButtonSet();
         UpdateBar();
         GameManager.Instance.SaveData();
+    }
+
+    public void MakePanel(GameObject go)
+    {
+        Gift2Panel.SetActive(false);
+        var GM = Instantiate(go);
+        GM.transform.SetParent(GameObject.Find("Canvas").transform);
+        GM.GetComponent<RectTransform>().position = new Vector3(Screen.width / 2, Screen.height / 2, 0);
     }
 
     public void ExitPanel()

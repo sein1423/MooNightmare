@@ -23,7 +23,7 @@ public class Boss : MonoBehaviour
     public bool dead=false;
     GameObject Canvas;
 
-
+    [SerializeField] AudioSource AS;
     [SerializeField]float attack1cooltime;
     [SerializeField]float attack2cooltime;
 
@@ -112,6 +112,8 @@ public class Boss : MonoBehaviour
         if (health < 1)
         {
             dead = true;
+            AS.volume = GameManager.Instance.user.effect;
+            AS.Play();
             ani.SetTrigger("Death");
             Invoke("next", 5f);
         }

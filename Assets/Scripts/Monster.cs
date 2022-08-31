@@ -97,7 +97,7 @@ public class Monster : MonoBehaviour
 
     public void OnEnable()
     {
-
+        Canvas = gameObject.transform.GetChild(0).gameObject;
         Canvas.transform.GetChild(0).GetComponent<Image>().fillAmount = 1.0f;
     }
     public void GetDamage(int Damage, bool cri)

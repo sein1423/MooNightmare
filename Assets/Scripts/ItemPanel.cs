@@ -11,6 +11,8 @@ public class ItemPanel : MonoBehaviour
     [SerializeField] Text costText;
     [SerializeField] GameObject CostText;
     [SerializeField] GameObject comText;
+    [SerializeField] AudioClip CompleteSource;
+    [SerializeField] AudioClip EnuffSource;
 
     public Item item;
     bool getItem;
@@ -39,6 +41,9 @@ public class ItemPanel : MonoBehaviour
     {
         if (getItem)
         {
+            GetComponent<AudioSource>().clip = EnuffSource;
+            GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
+            GetComponent<AudioSource>().Play();
             return;
         }
 
@@ -50,11 +55,15 @@ public class ItemPanel : MonoBehaviour
             gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color32(144, 144, 144, 255);
             comText.SetActive(true);
             CostText.SetActive(false);
+            GetComponent<AudioSource>().clip = CompleteSource;
             GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
             GetComponent<AudioSource>().Play();
         }
         else
         {
+            GetComponent<AudioSource>().clip = EnuffSource;
+            GetComponent<AudioSource>().volume = GameManager.Instance.user.effect;
+            GetComponent<AudioSource>().Play();
             Debug.Log("당근이 부족합니다");
         }
     }

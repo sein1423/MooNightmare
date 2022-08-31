@@ -103,10 +103,11 @@ public class ItemManager : MonoBehaviour
     [SerializeField] GameObject LockButton;
     [SerializeField] GameObject ExitPanel;
     [SerializeField] GameObject[] Stage;
-    [SerializeField] GameObject inGametutorial;
+    [SerializeField] public GameObject inGametutorial;
     [SerializeField] AudioClip[] BossBGM;
     [SerializeField] TextMeshProUGUI GGText;
     [SerializeField] AudioClip[] GGClip;
+    [SerializeField] GameObject gt;
     public bool isCloseShop = false;
     public int playerhealth = 5;
     public bool isDead = false;
@@ -151,9 +152,9 @@ public class ItemManager : MonoBehaviour
         BGM.value = GameManager.Instance.user.BGM;
         effect.value = GameManager.Instance.user.effect;
 
-        if(GameManager.Instance.user.MaxWave < 1)
+        if(!GameManager.Instance.user.gameTutorial)
         {
-            inGametutorial.SetActive(true);
+            gt.SetActive(true);
             isMenu = true;
         }
     }
@@ -225,7 +226,14 @@ public class ItemManager : MonoBehaviour
             return;
         }
 
-        
+        if(waveshop.activeSelf || OptionPanel.activeSelf || gt.activeSelf || inGametutorial.activeSelf || PauseBg.activeSelf)
+        {
+            isMenu = true;
+        }
+        else
+        {
+            isMenu = false;
+        }
 
         if (!isMenu && !isDead)
         {
@@ -619,7 +627,7 @@ public class ItemManager : MonoBehaviour
     public void EndGame()
     {
         GameOverSave();
-        GameManager.Instance.goMain();
+        AdmobManager.Instance.ShowFrontAd();
     }
     public void ShopLock()
     {
@@ -685,18 +693,24 @@ public class ItemManager : MonoBehaviour
 
     public void BreakTutorial()
     {
-        Invoke("BreakthisPanel", 1f);
+        Invoke("BreaktutorialPanel", 1f);
     }
-    public void BreakthisPanel()
+    public void BreaktutorialPanel()
     {
         isMenu = false;
+        GameManager.Instance.user.gameTutorial = true;
+        GameManager.Instance.SaveData();
         inGametutorial.SetActive(false);
     }
 
     public void AdHeal()
     {
         AdmobManager.Instance.ShowRewardAd();
-        playerhealth += 2;
+        if (playerhealth >= 9)
+            playerhealth = 10;
+        else
+            playerhealth += 2;
+        
     }
 
     public void Help(int a)
@@ -704,11 +718,21 @@ public class ItemManager : MonoBehaviour
         switch (a)
         {
             case 1:
-                inGametutorial.SetActive(true);
+                gt.SetActive(true);
                 isMenu = true;
                 break;
             default:
                 return;
         }
+    }
+
+    public void LookShowTutorial(GameObject go)
+    {
+        go.SetActive(true);
+    }
+
+    public void BreakTutorial(GameObject go)
+    {
+        go.SetActive(false);
     }
 }

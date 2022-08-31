@@ -297,6 +297,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void AdPlay()
     {
-        AdmobManager.Instance.ShowRewardAd();
+        AdmobManager.Instance.ShowRewardAdGame();
+        //StartCoroutine(AddRoution());
     }
+
 }
