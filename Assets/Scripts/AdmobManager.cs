@@ -7,7 +7,7 @@ using GoogleMobileAds.Api;
 public class AdmobManager : MonoBehaviour
 {
     public static AdmobManager Instance;
-    public bool isTestMode;
+    bool isTestMode = false;
     public Text LogText;
     public Button FrontAdsBtn, RewardAdsBtn;
     public bool isEndAds = false;
@@ -24,10 +24,7 @@ public class AdmobManager : MonoBehaviour
 
     void Start()
     {
-        var requestConfiguration = new RequestConfiguration
-           .Builder()
-           .SetTestDeviceIds(new List<string>() { "1DF7B7CC05014E8" }) // test Device ID
-           .build();
+        var requestConfiguration = new RequestConfiguration.Builder().build();
 
         MobileAds.SetRequestConfiguration(requestConfiguration);
 
@@ -81,7 +78,7 @@ public class AdmobManager : MonoBehaviour
 
     void LoadFrontAd()
     {
-        frontAd = new InterstitialAd(isTestMode ? frontTestID : frontID);
+        frontAd = new InterstitialAd(frontID);
         frontAd.LoadAd(GetAdRequest());
         frontAd.OnAdClosed += (sender, e) =>
         {
@@ -110,7 +107,7 @@ public class AdmobManager : MonoBehaviour
     void LoadRewardAd()
     {
         Debug.Log("in Load AD");
-        rewardAd = new RewardedAd(isTestMode ? rewardTestID : rewardID);
+        rewardAd = new RewardedAd(rewardID);
         rewardAd.LoadAd(GetAdRequest());
         rewardAd.OnUserEarnedReward += (sender, e) =>
         {
@@ -130,7 +127,7 @@ public class AdmobManager : MonoBehaviour
     void LoadRewardAdGame()
     {
         Debug.Log("in Load AD Game");
-        ScenerewardAd = new RewardedAd(isTestMode ? rewardTestID : rewardStarID);
+        ScenerewardAd = new RewardedAd(rewardStarID);
         ScenerewardAd.LoadAd(GetAdRequest());
         ScenerewardAd.OnUserEarnedReward += (sender, e) =>
         {

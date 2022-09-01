@@ -522,6 +522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d7de2cc432b77419052da4c4d22d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AS: {fileID: 0}
   userdataget: 0
   Main: {fileID: 0}
   Game: {fileID: 0}
@@ -540,6 +541,9 @@ MonoBehaviour:
     BGM: 0
     effect: 0
     UsedCoupon: 0
+    gameTutorial: 0
+    ShopTutorial: 0
+    FriendTutorial: 0
 --- !u!4 &560303785
 Transform:
   m_ObjectHideFlags: 0
@@ -1293,7 +1297,7 @@ MonoBehaviour:
   - "\uC694\uC998\uC5D4 \uB098\uC05C \uAFC8\uB3C4 \uAFB8\uC9C0 \uC54A\uB294\uB2E4.\r\n\uC544\uD508
     \uAC83\uB3C4 \uB9CE\uC774 \uB098\uC544\uC11C \uC77C\uC8FC\uC77C\uC5D0 \uD55C
     \uBC88\uC529 \uC720\uCE58\uC6D0\uB3C4 \uAC04\uB2E4."
-  - "\uC720\uCE58\uC6D0\uC5D0 \uAC00\uBA74 \uCE5C\uAD6C\uB4E4\uC774\uB791 \uC7AC\uBC0C\uAC8C
+  - "\uD559\uAD50\uC5D0 \uAC00\uBA74 \uCE5C\uAD6C\uB4E4\uC774\uB791 \uC7AC\uBC0C\uAC8C
     \uB180\uACE0\r\n\uBA39\uC9C0 \uBABB\uD588\uB358 \uCD08\uCF5C\uB9BF\uB3C4 \uBA39\uC744
     \uC218 \uC788\uC744 \uB9CC\uD07C \uAC74\uAC15\uD574\uC84C\uB2E4.\r\n00(\uC774)\uB3C4
     \uAC19\uC774 \uB180\uBA74 \uC88B\uC744\uD150\uB370..."
@@ -1341,8 +1345,8 @@ MonoBehaviour:
   num: 020000000200000002000000020000000100000000000000010000000000000001000000000000000100000001000000000000000100000001000000000000000100000000000000000000000000000000000000000000000000000000000000
   textObj: {fileID: 1774072963}
   CharacterImage: {fileID: 1391808343}
-  RabbitSprite: {fileID: 21300000, guid: 709b6faa13bff7a4f953ceafba08f4ac, type: 3}
-  HumanSprite: {fileID: 21300000, guid: 6fbccab0893abc649813bde270075345, type: 3}
+  RabbitSprite: {fileID: 21300000, guid: cfad4e230a647044b95bb134f7fdb8b8, type: 3}
+  HumanSprite: {fileID: 21300000, guid: 81f789615760d5443b990fb47ee9a27d, type: 3}
   NameBar: {fileID: 2070578242}
   timeForCharacter: 0.2
   timeForCharacter_Fast: 0.01
