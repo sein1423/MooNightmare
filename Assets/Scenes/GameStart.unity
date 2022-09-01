@@ -580,7 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fcb9586c392d37409ec6848c675e418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTestMode: 1
+  isTestMode: 0
   LogText: {fileID: 0}
   FrontAdsBtn: {fileID: 0}
   RewardAdsBtn: {fileID: 0}

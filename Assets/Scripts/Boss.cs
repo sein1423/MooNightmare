@@ -32,6 +32,7 @@ public class Boss : MonoBehaviour
         ani = GetComponent<Animator>();
         Canvas = gameObject.transform.GetChild(0).gameObject;
         MaxHealth = health;
+        
     }
     // Update is called once per frame
     void Update()
@@ -39,6 +40,15 @@ public class Boss : MonoBehaviour
         if(ItemManager.Instance.isMenu || ItemManager.Instance.isDead)
         {
             return;
+        }
+
+        if(ItemManager.Instance.isMenu && Canvas.activeSelf)
+        {
+            Canvas.SetActive(false);
+        }
+        else if(!ItemManager.Instance.isMenu && !Canvas.activeSelf)
+        {
+            Canvas.SetActive(true);
         }
 
         if (up)

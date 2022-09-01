@@ -645,10 +645,10 @@ RectTransform:
   m_Father: {fileID: 807214082}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: -466.82, y: 85}
-  m_SizeDelta: {x: -2000.009, y: 159.98999}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &363943502
 MonoBehaviour:
@@ -4447,6 +4447,7 @@ MonoBehaviour:
     \uC808\uB300 \uC78A\uC9C0 \uC54A\uB294\uB2E4\uB124."
   textbox: {fileID: 647086643}
   tutorial: {fileID: 807214081}
+  isFade: 0
   stars:
   - {fileID: 3617577526652072036}
   - {fileID: 3617577526652072035}
@@ -5059,8 +5060,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.000030518, y: 85}
-  m_SizeDelta: {x: 773.657, y: 111.39801}
+  m_AnchoredPosition: {x: 25, y: 85}
+  m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1766459655
 MonoBehaviour:
@@ -5082,8 +5083,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uACF3\uC740 \uC0C1\uC810\uC774\uC57C.\r\n\uC544\uC774\uC5D0\uAC8C
-    \uC120\uBB3C\uD560 \uAFC8\uC744 \uAD6C\uB9E4\uD560 \uC218 \uC788\uC5B4.\r\n"
+  m_text: "\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147\u3147"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 87ca49b403aa3d648a8d51a00dc4bafd, type: 2}
   m_sharedMaterial: {fileID: 8155928559370236438, guid: 87ca49b403aa3d648a8d51a00dc4bafd, type: 2}
@@ -5110,10 +5110,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 31.2
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: choco
   m_EditorClassIdentifier: 
   diaryImage: {fileID: 21300000, guid: 9f246b6fe45a94e4189b3daad2677dde, type: 3}
-  diaryTitle: "\uCD08\uCF54\uB3D9\uC0B0"
-  DreamName: "\uCD08\uCF54\uAC00 \uAC00\uB4DD\uD574"
-  weather: "\uB2EC\uCF64"
-  feel: "\uC138\uC0C1\uC5D0\uC11C \uC81C\uC77C \uCD5C\uACE0"
+  diaryTitle: "\uCD08\uCF54\uAC00 \uAC00\uB4DD\uD55C \uB3D9\uC0B0"
+  DreamName: "\uB2EC\uCF64\uD55C \uCD08\uCF5C\uB9BF \uB3D9\uC0B0"
+  weather: "\uD750\uB9BC"
+  feel: "\uB2EC\uCF64\uD55C \uAE30\uBD84"
   diaryEx1: "\uC624\uB298\uC740 \uAFC8\uC5D0\uC11C 000(\uC774)\uB791 \n\uCD08\uCF54\uB3D9\uC0B0\uC5D0
     \uAC14\uB2E4.\r\n\uCD08\uCF54\uB791 \uC0AC\uD0D5\uC774 \uC5C4\uCCAD \uB9CE\uC544\uC11C
     \n\uB2EC\uCF64\uD55C \uD5A5\uAE30\uAC00 \uACC4\uC18D \uB0AC\uB2E4.\r\n000(\uC774)\uB791

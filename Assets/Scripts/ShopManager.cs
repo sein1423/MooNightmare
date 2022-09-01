@@ -16,6 +16,7 @@ public class ShopManager : MonoBehaviour
     string[] line;
     [SerializeField] TextMeshProUGUI textbox;
     [SerializeField] GameObject tutorial;
+    public bool isFade = false;
 
     private void Awake()
     {

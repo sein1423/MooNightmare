@@ -47,7 +47,14 @@ public class IntroManager : MonoBehaviour
     // Start is called before the first frame update
     public void CompleteName()
     {
-        GameManager.Instance.SetUserData(userName.text);
+        if(userName.text.Trim() == "")
+        {
+            GameManager.Instance.SetUserData("≈‰≥¢");
+        }
+        else
+        {
+            GameManager.Instance.SetUserData(userName.text.Trim());
+        }
         if (skip)
         {
             GameManager.Instance.goMain();

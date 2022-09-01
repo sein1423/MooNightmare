@@ -82,6 +82,7 @@ public class FriendManager : MonoBehaviour
     GameObject StarPanel;
     #endregion
 
+    public bool isFade = false;
     private void Awake()
     {
         if(Instance == null)
@@ -220,12 +221,16 @@ public class FriendManager : MonoBehaviour
 
     public void goBack()
     {
+        if (isFade)
+        {
+            return;
+        }
         GameManager.Instance.goMain();
     }
 
     public void LookDream()
     {
-        if (DreamPanel.activeSelf)
+        if (DreamPanel.activeSelf || isFade)
         {
             return;
         }
@@ -236,7 +241,7 @@ public class FriendManager : MonoBehaviour
 
     public void LookDiary()
     {
-        if (DiaryPanel.activeSelf)
+        if (DiaryPanel.activeSelf || isFade)
         {
             return;
         }
@@ -308,6 +313,10 @@ public class FriendManager : MonoBehaviour
 
     public void DreamGift(int a)
     {
+        if (isFade)
+        {
+            return;
+        }
         if (GameManager.Instance.user.DreamGet[a] && !GameManager.Instance.user.DiaryGet[a])
         {
             GetPanel(a);
@@ -336,7 +345,7 @@ public class FriendManager : MonoBehaviour
     public void GetEndPanel()
     {
         Gift3Panel.SetActive(true);
-        DreamText.text = $"{diary[num].diaryTitle} 그림일기를\n 선물받았습니다..";
+        DreamText.text = $"{diary[num].diaryTitle} 그림일기를\n 선물받았습니다.";
         GameManager.Instance.user.DiaryGet[num] = true;
         ButtonSet();
         UpdateBar();

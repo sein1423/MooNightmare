@@ -472,30 +472,26 @@ public class ItemManager : MonoBehaviour
             {
                 GetComponent<AudioSource>().clip = GGClip[0];
                 GetComponent<AudioSource>().Play();
-                string wavetext = ((GameManager.Instance.user.MaxWave - (GameManager.Instance.user.MaxWave / 6)) % 6) == 0 ? "Boss" : ((GameManager.Instance.user.MaxWave - (GameManager.Instance.user.MaxWave / 6 - 1)) % 6).ToString();
-                string wave = GameManager.Instance.user.MaxTime == 0 ? "X" : $"{((GameManager.Instance.user.MaxWave - 1) / 6) + 1}- {wavetext}";
+                string maxWave = Countwave();
                 string wavett = wavecount == 6 ? "Boss" : wavecount.ToString(); ;
                 gameoverText.text =/* $"理쒓퀬 湲곕줉 : {wave}\n" +*/
+                    $"최고 기록 : {maxWave}\n"+
                     $"현재 기록 : {StageCount / 2 + 1}-{wavett}\n" +
                     $"획득한 블링 당근 : {GetBlingCarrot.ToString()}\n" +
-                    $"보유한 블링 당근 : {(GameManager.Instance.user.carrot + (GetBlingCarrot)).ToString()}\n " +
-                    $"처치한 적 : {Enemy.ToString()}\n " +
-                    $"생존한 시간 : {realtime.ToString("F2")}";
+                    $"보유한 블링 당근 : {(GameManager.Instance.user.carrot + (GetBlingCarrot)).ToString()}\n ";
             }
             else
             {
                 GetComponent<AudioSource>().clip = GGClip[1];
                 GetComponent<AudioSource>().Play();
-                string wavetext = ((GameManager.Instance.user.MaxWave - (GameManager.Instance.user.MaxWave / 6)) % 6) == 0 ? "Boss" : ((GameManager.Instance.user.MaxWave - (GameManager.Instance.user.MaxWave / 6 - 1)) % 6).ToString();
-                string wave = GameManager.Instance.user.MaxTime == 0 ? "X" : $"{((GameManager.Instance.user.MaxWave - 1) / 6) + 1}- {wavetext}";
+                string maxWave = Countwave();
                 string wavett = wavecount == 6 ? "Boss" : wavecount.ToString();
                 GGText.text = "DREAM CLEAR";
                 gameoverText.text =/* $"理쒓퀬 湲곕줉 : {wave}\n" +*/
+                    $"최고 기록 : {maxWave}\n" +
                     $"현재 기록 : 3-Boss\n" +
                     $"획득한 블링 당근 : {GetBlingCarrot.ToString()}\n" +
-                    $"보유한 블링 당근 : {(GameManager.Instance.user.carrot + (GetBlingCarrot)).ToString()}\n " +
-                    $"처치한 적 : {Enemy.ToString()}\n " +
-                    $"생존한 시간 : {realtime.ToString("F2")}";
+                    $"보유한 블링 당근 : {(GameManager.Instance.user.carrot + (GetBlingCarrot)).ToString()}\n ";
 
             }
             //$"?앹〈???쒓컙 : {(((realStage - 1) * waveTime) + time).ToString("F2")}";
@@ -503,6 +499,52 @@ public class ItemManager : MonoBehaviour
 
 
         GameOverPanel.SetActive(true);
+    }
+
+    public string Countwave()
+    {
+
+        switch (GameManager.Instance.user.MaxWave)
+        {
+            case 0:
+                return "0-0";
+            case 1:
+                return "1-1";
+            case 2:
+                return "1-2";
+            case 3:
+                return "1-3";
+            case 4:
+                return "1-4";
+            case 5:
+                return "1-5";
+            case 6:
+                return "1-Boss";
+            case 7:
+                return "2-1";
+            case 8:
+                return "2-2";
+            case 9:
+                return "2-3";
+            case 10:
+                return "2-4";
+            case 11:
+                return "2-5";
+            case 12:
+                return "2-Boss";
+            case 13:
+                return "3-1";
+            case 14:
+                return "3-2";
+            case 15:
+                return "3-3";
+            case 16:
+                return "3-4";
+            case 17:
+                return "3-5";
+            default:
+                return "3-Boss";
+        }
     }
 
     public void GetItem(Item item)

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: hero
   m_EditorClassIdentifier: 
   diaryImage: {fileID: 21300000, guid: 05ea232841e880a4ba3402ca94d6e57d, type: 3}
-  diaryTitle: "\uD788\uC5B4\uB85C"
-  DreamName: "\uD788\uC5B4\uB85C"
-  weather: "\uB0A0\uC528"
-  feel: "\uAE30\uBD84"
+  diaryTitle: "\uC624\uB298\uC740 \uB0B4\uAC00 \uC288\uD37C\uB9E8!"
+  DreamName: "\uC624\uB298\uB9CC\uD07C\uC740 \uB0B4\uAC00 \uC601\uC6C5!"
+  weather: "\uBC18\uC9DD\uBC18\uC9DD"
+  feel: "\uC6A9\uAC10\uD55C \uAE30\uBD84"
   diaryEx1: "\uC624\uB298\uB3C4 \uAFC8\uC5D0 \uAD34\uBB3C\uB4E4\uC774 \uB098\uC654\uB2E4.\r\n\uADFC\uB370
     000(\uC774)\uAC00 \uB098\uB97C \uAD34\uB86D\uD788\uB294 \n\uAD34\uBB3C\uB4E4\uC774\uB791
     \uC2F8\uC6B0\uACE0 \uC788\uC5C8\uB2E4.\r\n\uB098\uB294 \uB9E8\uB0A0 \uBB34\uC11C\uC6CC\uC11C

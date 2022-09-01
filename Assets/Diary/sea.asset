@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: sea
   m_EditorClassIdentifier: 
   diaryImage: {fileID: 21300000, guid: 880a8e473360b124daa0bfc9b53f93fc, type: 3}
-  diaryTitle: "\uB3CC\uACE0\uB798\uC640 \uD5E4\uC5C4"
-  DreamName: "\uBC14\uB2F7\uAC00"
-  weather: "\uB0A0\uC528"
-  feel: "\uAE30\uBD84"
+  diaryTitle: "\uBC14\uB2E4\uAC00 \uB108\uBB34\uB108\uBB34 \uC88B\uC544"
+  DreamName: "\uAD6C\uB984 \uBC14\uB2E4 \uB3CC\uACE0\uB798 \uCE5C\uAD6C"
+  weather: "\uD587\uBCD5 \uCA0D\uCA0D"
+  feel: "\uC2DC\uC6D0\uD55C \uAE30\uBD84"
   diaryEx1: "\uC624\uB298\uC740 \uAFC8\uC5D0\uC11C 000(\uC774)\uB791 \uBC14\uB2E4\uC5D0
     \uAC14\uB2E4.\r\n\uBC14\uB2E4\uB294 \uCC98\uC74C \uAC00\uBD24\uB294\uB370 \uC815\uB9D0
     \uC2DC\uC6D0\uD588\uB2E4.\r\n\uBAA8\uB798\uC131\uC744 \uBA4B\uC9C0\uAC8C \uC313\uC558\uB294\uB370

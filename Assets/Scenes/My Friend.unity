@@ -616,10 +616,10 @@ RectTransform:
   m_Father: {fileID: 378295012}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: -466.82, y: 85}
-  m_SizeDelta: {x: -2000.009, y: 159.98999}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &83869242
 MonoBehaviour:
@@ -2211,8 +2211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text: {fileID: 1265550958}
   TextArea:
-  - "\uC790 \u3147\u3147(\uC720\uC800 \uC774\uB984), \uB108\uC758 \uBBF8\uC158 \uAE30\uC5B5\uD558\uC9C0?
-    \r\n\uC544\uC774\uB97C \uD589\uBCF5\uD558\uAC8C \uB9CC\uB4E4\uC5B4\uC8FC\uAE30."
+  - "\uC790 \u3147\u3147, \uB108\uC758 \uBBF8\uC158 \uAE30\uC5B5\uD558\uC9C0? \r\n\uC544\uC774\uB97C
+    \uD589\uBCF5\uD558\uAC8C \uB9CC\uB4E4\uC5B4\uC8FC\uAE30."
   - "\uC544\uC774\uB97C \uD589\uBCF5\uD558\uAC8C \uD558\uB824\uBA74, \uC774 \uAD7F\uB098\uC787
     \uAC8C\uC774\uC9C0\uB97C \uAF49 \uCC44\uC6B0\uBA74 \uB3FC. "
   - "\uC5B4\uB5BB\uAC8C \uCC44\uC6B0\uB0D0\uACE0? \uADF8\uAC74 \uC544\uC774\uC5D0\uAC8C
@@ -3825,7 +3825,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -100}
+  m_AnchoredPosition: {x: 300, y: -100}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &820781218
@@ -5490,8 +5490,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.000030518, y: 85}
-  m_SizeDelta: {x: 773.657, y: 111.39801}
+  m_AnchoredPosition: {x: 25, y: 85}
+  m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1265550958
 MonoBehaviour:
@@ -5513,8 +5513,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uACF3\uC740 \uC0C1\uC810\uC774\uC57C.\r\n\uC544\uC774\uC5D0\uAC8C
-    \uC120\uBB3C\uD560 \uAFC8\uC744 \uAD6C\uB9E4\uD560 \uC218 \uC788\uC5B4.\r\n"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 87ca49b403aa3d648a8d51a00dc4bafd, type: 2}
   m_sharedMaterial: {fileID: 8155928559370236438, guid: 87ca49b403aa3d648a8d51a00dc4bafd, type: 2}
@@ -5544,7 +5543,7 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -6686,6 +6685,7 @@ MonoBehaviour:
   - {fileID: 6282734616970965205}
   timeText: {fileID: 1448233237}
   StarPanel: {fileID: 1630659056}
+  isFade: 0
 --- !u!4 &1540359056
 Transform:
   m_ObjectHideFlags: 0

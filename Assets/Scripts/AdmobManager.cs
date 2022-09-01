@@ -75,7 +75,7 @@ public class AdmobManager : MonoBehaviour
 
     #region Àü¸é ±¤°í
     const string frontTestID = "ca-app-pub-3940256099942544/8691691433";
-    const string frontID = "";
+    const string frontID = "ca-app-pub-7992386729167855/6540762859";
     InterstitialAd frontAd;
 
 
@@ -102,7 +102,8 @@ public class AdmobManager : MonoBehaviour
 
     #region ¸®¿öµå ±¤°í
     const string rewardTestID = "ca-app-pub-3940256099942544/5224354917";
-    const string rewardID = "";
+    const string rewardID = "ca-app-pub-7992386729167855/4106171201";
+    const string rewardStarID = "ca-app-pub-7992386729167855/4297742893";
     RewardedAd rewardAd;
     RewardedAd ScenerewardAd;
 
@@ -129,7 +130,7 @@ public class AdmobManager : MonoBehaviour
     void LoadRewardAdGame()
     {
         Debug.Log("in Load AD Game");
-        ScenerewardAd = new RewardedAd(isTestMode ? rewardTestID : rewardID);
+        ScenerewardAd = new RewardedAd(isTestMode ? rewardTestID : rewardStarID);
         ScenerewardAd.LoadAd(GetAdRequest());
         ScenerewardAd.OnUserEarnedReward += (sender, e) =>
         {

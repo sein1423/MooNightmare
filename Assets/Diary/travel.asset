@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: travel
   m_EditorClassIdentifier: 
   diaryImage: {fileID: 21300000, guid: c6c73d1b174308e4c994c80f2fca372b, type: 3}
-  diaryTitle: "\uC606\uB098\uB77C\uC5EC\uD589\uAE30"
-  DreamName: "\uB098\uC758 \uCCAB \uC5EC\uD589"
+  diaryTitle: "\uB098\uC758 \uCCAB \uC5EC\uD589"
+  DreamName: "\uD558\uB298\uC744 \uB0A0\uC544\uAC00\uBCF4\uC790"
   weather: "\uC88B\uC74C"
   feel: "\uB0A0\uC544\uAC00\uB294 \uAE30\uBD84"
   diaryEx1: "\uAFC8\uC5D0\uC11C 000(\uC774)\uAC00 \uC5EC\uD589\uC744 \uAC00\uC790\uACE0

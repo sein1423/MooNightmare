@@ -41,6 +41,7 @@ public class FadeIO : MonoBehaviour
             else
             {
                 time = 0;
+                FriendManager.Instance.isFade = false;
                 FriendManager.Instance.GetEndPanel();
                 Destroy(gameObject);
             }
@@ -67,5 +68,6 @@ public class FadeIO : MonoBehaviour
         GetComponent<Image>().color = new Color(1, 1, 1, 0);
         gameObject.SetActive(true);
         time = 0;
+        FriendManager.Instance.isFade = true;
     }
 }
